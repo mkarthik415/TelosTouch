@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resource majorVersion="1" minorVersion="6" useXmlUI="false">
+    <image name="agentSign.png" type="multi"  />
+    <image name="amountDetails.png" type="multi"  />
+    <image name="amountDetailsWhite.png" type="multi"  />
+    <image name="backButtonGrey.png"  />
+    <image name="backWhite.png" type="multi"  />
+    <image name="carImage.png" type="multi"  />
+    <image name="carNumber.png" type="multi"  />
+    <image name="companyDetails.png" type="multi"  />
+    <image name="companyDetailsWhite.png" type="multi"  />
+    <image name="companyDetailsWhite.png 1" type="multi"  />
+    <image name="contactBlue.png" type="multi"  />
+    <image name="contactButton.png" type="multi"  />
+    <image name="contactsButton.png"  />
+    <image name="contactSmall.png" type="multi"  />
+    <ui name="DialogForm" />
+    <image name="documents.png" type="multi"  />
+    <image name="documentswhite.png" type="multi"  />
+    <image name="downArrow.png" type="multi"  />
+    <image name="fireImage.png" type="multi"  />
+    <image name="graphButton.png" type="multi"  />
+    <image name="graphsBlue.png" type="multi"  />
+    <image name="graphSmall.png" type="multi"  />
+    <image name="helpBlue.png" type="multi"  />
+    <image name="helpButton.png 1" type="multi"  />
+    <image name="helpSmall.png" type="multi"  />
+    <image name="karthikPhoto.png" type="multi"  />
+    <image name="leftArrow.png" type="multi"  />
+    <image name="locateBlue.png" type="multi"  />
+    <image name="locateButton.png" type="multi"  />
+    <image name="locateSmall.png" type="multi"  />
+    <image name="login.png" type="multi"  />
+    <image name="manageAccount.png" type="multi"  />
+    <image name="name.png" type="multi"  />
+    <image name="personalDetails.png" type="multi"  />
+    <image name="personalDetailsWhite.png" type="multi"  />
+    <image name="personalDetailsWhite.png 1" type="multi"  />
+    <image name="policyCertificate.png" type="multi"  />
+    <image name="policyDetails.png" type="multi"  />
+    <image name="policyIssue.png" type="multi"  />
+    <image name="renewalDetails.png" type="multi"  />
+    <image name="renewalDetailsWhite.png" type="multi"  />
+    <image name="reportButton.png" type="multi"  />
+    <image name="reportsBlue.png" type="multi"  />
+    <image name="reportSmall.png" type="multi"  />
+    <image name="searchButton.png" type="multi"  />
+    <image name="searchSmall.png" type="multi"  />
+    <image name="searchWhite.png" type="multi"  />
+    <image name="serialNumber.png" type="multi"  />
+    <image name="shipImage.png" type="multi"  />
+    <image name="signOut.png" type="multi"  />
+    <image name="spaceBlue.png" type="multi"  />
+    <image name="telephoneNumber.png" type="multi"  />
+    <image name="telosLogo.png" type="multi"  />
+    <image name="telosLogoBlue.png" type="multi"  />
+    <image name="telosSmall.png" type="multi"  />
+    <theme name="Theme">
+        <val key="Button.margin" value="0,0,0,0" />
+        <val key="Button.padding" value="0,0,0,0" />
+        <val key="Button.press#margin" value="0,0,0,0" />
+        <val key="Button.press#padding" value="0,0,0,0" />
+        <val key="Button.press#transparency" value="255" />
+        <val key="Button.sel#margin" value="0,0,0,0" />
+        <val key="Button.sel#padding" value="0,0,0,0" />
+        <val key="Button.sel#transparency" value="255" />
+        <val key="Button.transparency" value="255" />
+        <val key="Form.margin" value="0,0,0,0" />
+        <val key="Form.padding" value="0,0,0,0" />
+        <val key="Label.margin" value="0,0,0,0" />
+        <val key="Label.padding" value="0,0,0,0" />
+        <val key="Label.transparency" value="0" />
+        <val key="PopupDialog.align" value="4" />
+        <val key="PopupDialog.margin" value="0,0,0,0" />
+        <val key="PopupDialog.padding" value="0,0,0,0" />
+        <val key="PopupDialog.transparency" value="255" />
+        <border key="Tab.border" type="empty" />
+        <val key="Tab.margin" value="0,0,0,0" />
+        <val key="Tab.padding" value="0,0,0,0" />
+        <border key="Tab.press#border" type="empty" />
+        <val key="Tab.press#margin" value="0,0,0,0" />
+        <val key="Tab.press#padding" value="0,0,0,0" />
+        <val key="Tab.press#transparency" value="255" />
+        <border key="Tab.sel#border" type="empty" />
+        <val key="Tab.sel#margin" value="0,0,0,0" />
+        <val key="Tab.sel#padding" value="0,0,0,0" />
+        <val key="Tab.sel#transparency" value="255" />
+        <val key="Tab.transparency" value="255" />
+        <val key="bannerContainer.align" value="4" />
+        <val key="bannerContainer.bgColor" value="485aa2" />
+        <val key="bannerContainer.margin" value="0,0,0,0" />
+        <val key="bannerContainer.padding" value="0,0,0,0" />
+        <val key="bannerContainer.sel#bgColor" value="485aa2" />
+        <val key="bannerContainer.sel#transparency" value="255" />
+        <val key="bannerContainer.transparency" value="255" />
+        <font key="clientInfoLabel.font" type="system" face="0" style="1" size="16" />
+        <val key="clientInfoLabel.padding" value="0,15,10,10" />
+        <font key="clientInfoLabel.press#font" type="system" face="0" style="1" size="16" />
+        <val key="clientInfoLabel.press#padding" value="0,15,10,10" />
+        <val key="clientInfoLabel.press#transparency" value="0" />
+        <font key="clientInfoLabel.sel#font" type="system" face="0" style="1" size="16" />
+        <val key="clientInfoLabel.sel#padding" value="0,15,10,10" />
+        <val key="clientInfoLabel.sel#transparency" value="255" />
+        <val key="clientInfoLabel.transparency" value="255" />
+        <font key="clientLabel.font" type="system" face="0" style="0" size="8" />
+        <val key="clientLabel.padding" value="15,0,10,10" />
+        <font key="clientLabel.press#font" type="system" face="0" style="0" size="16" />
+        <val key="clientLabel.press#padding" value="15,0,10,10" />
+        <font key="clientLabel.sel#font" type="system" face="0" style="0" size="16" />
+        <val key="clientLabel.sel#padding" value="15,0,10,10" />
+        <val key="clientLabel.sel#transparency" value="255" />
+        <val key="clientLabel.transparency" value="255" />
+        <val key="logInButton.bgColor" value="d2d2d2" />
+        <val key="logInButton.margin" value="0,0,0,0" />
+        <val key="logInButton.padding" value="10,0,0,0" />
+        <val key="logInButton.transparency" value="0" />
+        <val key="logInContainer.bgColor" value="a0a1a4" />
+        <val key="logInContainer.margin" value="0,0,0,0" />
+        <val key="logInContainer.padding" value="0,0,0,0" />
+        <val key="logInContainer.sel#bgColor" value="9c9da2" />
+        <val key="logInContainer.sel#margin" value="0,0,0,0" />
+        <val key="logInContainer.sel#padding" value="0,0,0,0" />
+        <val key="logInContainer.sel#transparency" value="255" />
+        <val key="logInContainer.transparency" value="255" />
+        <font key="nameLabel.font" type="system" face="0" style="1" size="16" />
+        <val key="nameLabel.margin" value="0,0,0,0" />
+        <val key="nameLabel.padding" value="0,0,0,0" />
+        <val key="nameLabel.press#margin" value="0,0,0,0" />
+        <val key="nameLabel.press#padding" value="0,0,0,0" />
+        <val key="nameLabel.press#transparency" value="0" />
+        <val key="nameLabel.sel#margin" value="0,0,0,0" />
+        <val key="nameLabel.sel#padding" value="0,0,0,0" />
+        <val key="nameLabel.sel#transparency" value="255" />
+        <val key="nameLabel.transparency" value="0" />
+        <val key="press#bgColor" value="495ca0" />
+        <val key="press#margin" value="0,0,0,0" />
+        <val key="press#padding" value="0,0,0,0" />
+        <val key="press#transparency" value="255" />
+        <val key="tabContainer.margin" value="0,0,0,0" />
+        <val key="tabContainer.padding" value="0,0,0,0" />
+        <val key="tabContainer.transparency" value="255" />
+    </theme>
+    <image name="travelImage.png" type="multi"  />
+</resource>

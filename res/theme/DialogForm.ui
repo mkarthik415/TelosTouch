@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" name="DialogForm" cloudDestinationProperty="DialogForm" >
+  <component type="Label" name="Label" cloudDestinationProperty="Label" uiid="clientLabel" text="Label" >
+  </component>
+  <component type="Label" name="Label1" cloudDestinationProperty="Label1" uiid="clientInfoLabel" text="Label" >
+  </component>
+  <component type="Label" name="Label2" cloudDestinationProperty="Label2" uiid="nameLabel" text="Label" >
+  </component>
+  <component type="Container" name="Container" cloudDestinationProperty="Container" uiid="tabContainer" >
+  </component>
+  <component type="Container" name="Container1" cloudDestinationProperty="Container1" uiid="bannerContainer" >
+  </component>
+  <component type="Container" name="Container2" cloudDestinationProperty="Container2" uiid="logInContainer" >
+  </component>
+  <component type="Button" name="Button" cloudDestinationProperty="Button" uiid="logInButton" text="Button" >
+  </component>
+</component>
