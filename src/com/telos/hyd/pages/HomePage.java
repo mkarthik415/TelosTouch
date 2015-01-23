@@ -1,21 +1,14 @@
 package com.telos.hyd.pages;
 
 import com.codename1.ui.*;
-import com.codename1.ui.Button;
-import com.codename1.ui.Component;
-import com.codename1.ui.Container;
-import com.codename1.ui.Label;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
-import com.codename1.ui.layouts.FlowLayout;
-import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.table.TableLayout;
 import com.codename1.ui.util.Resources;
 import com.telos.hyd.TouchTelos;
-import com.telos.hyd.standard.Styles;
-
+import com.telos.hyd.Styles.Styles;
 
 import java.io.IOException;
 
@@ -24,7 +17,7 @@ import java.io.IOException;
  */
 public class HomePage {
 
-    Form logInForm;
+Form logInForm;
     Resources theme;
    public HomePage(Form form)
     {
