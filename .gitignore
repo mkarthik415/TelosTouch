@@ -1,7 +1,6 @@
 /build
 /dist
 /bin
-/lib/*.jar
 /nbproject/private
 .idea/vcs.xml
 .idea/workspace.xml
