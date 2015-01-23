@@ -1,17 +1,9 @@
 package com.telos.hyd.pages;
 
-import com.codename1.components.WebBrowser;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.*;
-import com.codename1.ui.Button;
-import com.codename1.ui.Component;
-import com.codename1.ui.Container;
-import com.codename1.ui.Dialog;
-import com.codename1.ui.Label;
-import com.codename1.ui.List;
-import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
@@ -19,17 +11,16 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.Border;
 import com.codename1.ui.table.TableLayout;
 import com.codename1.ui.util.Resources;
+import com.telos.hyd.Styles.Styles;
 import com.telos.hyd.model.Client;
 import com.telos.hyd.model.ClientMapper;
-
 import com.telos.hyd.renderers.SearchRenderer;
-import com.telos.hyd.standard.Styles;
-import java.io.ByteArrayInputStream;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by karthikmarupeddi on 10/11/14.
@@ -63,6 +54,7 @@ public class SearchPage{
 
 
         Toolbar toolbar = new Toolbar();
+        toolbar.getStyle().setPadding(30,0,0,0);
         searchPageForm.setToolBar(toolbar);
 
 

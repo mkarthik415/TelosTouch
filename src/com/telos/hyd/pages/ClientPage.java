@@ -5,13 +5,12 @@ import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
-import com.codename1.ui.plaf.Border;
 import com.codename1.ui.table.TableLayout;
 import com.codename1.ui.util.Resources;
-import com.telos.hyd.standard.Styles;
+import com.telos.hyd.Styles.Styles;
+import com.telos.hyd.model.Client;
 
 import java.io.IOException;
-import com.telos.hyd.model.Client;
 
 /**
  * Created by karthikmarupeddi on 12/31/14.

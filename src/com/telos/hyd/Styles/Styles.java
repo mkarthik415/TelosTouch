@@ -1,4 +1,4 @@
-package com.telos.hyd.standard;
+package com.telos.hyd.Styles;
 
 import com.codename1.ui.Button;
 import com.codename1.ui.Component;

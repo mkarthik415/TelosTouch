@@ -11,7 +11,7 @@ import com.codename1.ui.table.TableLayout;
 import com.codename1.ui.util.Resources;
 import com.telos.hyd.model.Client;
 import com.telos.hyd.pages.ClientPage;
-import com.telos.hyd.standard.Styles;
+import com.telos.hyd.Styles.Styles;
 
 import java.io.IOException;
 import java.text.Format;
