@@ -21,6 +21,7 @@ import com.codename1.ui.table.TableLayout;
 import com.codename1.ui.util.Resources;
 import com.telos.hyd.model.Client;
 import com.telos.hyd.model.ClientMapper;
+
 import com.telos.hyd.renderers.SearchRenderer;
 import com.telos.hyd.standard.Styles;
 import java.io.ByteArrayInputStream;

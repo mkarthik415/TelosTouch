@@ -84,9 +84,9 @@ public class SearchRenderer implements ListCellRenderer {
 
         Styles.ButtonStylesForCell(departmentButton, client.getDepartment(), this.theme);
         if(client.getPhoneNumber() != null )
-        Styles.ButtonStylesForCell(policyNumberButton, client.getPhoneNumber().toString(), this.theme);
+            Styles.ButtonStylesForCell(policyNumberButton, client.getPhoneNumber().toString(), this.theme);
         else
-        Styles.ButtonStylesForCell(policyNumberButton, "N/A", this.theme);
+            Styles.ButtonStylesForCell(policyNumberButton, "N/A", this.theme);
 
         Format formatter = new SimpleDateFormat("dd-MM-YYYY");
         String stringDate = formatter.format(client.getPolicyStartdate());
@@ -130,7 +130,7 @@ public class SearchRenderer implements ListCellRenderer {
 
         public void actionPerformed(ActionEvent evt) {
 
-        System.out.println("name is"+client.getName());
+            System.out.println("name is"+client.getName());
             ClientPage clientPage = new ClientPage(client);
             try {
                 clientPage.createPage();
