@@ -63,6 +63,7 @@ public class SearchPage{
 
 
         Toolbar toolbar = new Toolbar();
+        toolbar.getStyle().setPadding(30,0,0,0);
         searchPageForm.setToolBar(toolbar);
 
 
