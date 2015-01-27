@@ -72,8 +72,21 @@
         <val key="Label.padding" value="0,0,0,0" />
         <val key="Label.transparency" value="0" />
         <val key="PopupDialog.align" value="4" />
+        <gradient key="PopupDialog.bgGradient" color1="0" color2="0" posX="0.5" posY="0.5" radius="1.0" />
+        <val key="PopupDialog.bgType" value="0" />
+        <border key="PopupDialog.border" type="empty" />
         <val key="PopupDialog.margin" value="0,0,0,0" />
         <val key="PopupDialog.padding" value="0,0,0,0" />
+        <border key="PopupDialog.press#border" type="empty" />
+        <val key="PopupDialog.press#margin" value="0,0,0,0" />
+        <val key="PopupDialog.press#padding" value="0,0,0,0" />
+        <val key="PopupDialog.press#transparency" value="255" />
+        <gradient key="PopupDialog.sel#bgGradient" color1="0" color2="0" posX="0.5" posY="0.5" radius="1.0" />
+        <val key="PopupDialog.sel#bgType" value="0" />
+        <border key="PopupDialog.sel#border" type="empty" />
+        <val key="PopupDialog.sel#margin" value="0,0,0,0" />
+        <val key="PopupDialog.sel#padding" value="0,0,0,0" />
+        <val key="PopupDialog.sel#transparency" value="255" />
         <val key="PopupDialog.transparency" value="255" />
         <border key="Tab.border" type="empty" />
         <val key="Tab.margin" value="0,0,0,0" />

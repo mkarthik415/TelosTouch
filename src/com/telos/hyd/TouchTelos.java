@@ -62,8 +62,8 @@ public class TouchTelos {
         Container imageContainer = new Container();
         TableLayout imageTableLayout = new TableLayout(2,2);
         TableLayout.Constraint imageRowConstraint = imageTableLayout.createConstraint();
-        imageRowConstraint.setWidthPercentage(50);
-        imageRowConstraint.setHeightPercentage(50);
+//        imageRowConstraint.setWidthPercentage(50);
+//        imageRowConstraint.setHeightPercentage(50);
         imageRowConstraint.setHorizontalAlign(Component.CENTER);
         imageRowConstraint.setVerticalAlign(Component.CENTER);
         imageContainer.setLayout(imageTableLayout);
@@ -133,10 +133,10 @@ public class TouchTelos {
         travelImage.setIcon(theme.getImage("travelImage.png"));
 
 
-        imageContainer.addComponent(imageRowConstraint,carImage);
-        imageContainer.addComponent(imageRowConstraint,shipImage);
-        imageContainer.addComponent(imageRowConstraint,fireImage);
-        imageContainer.addComponent(imageRowConstraint,travelImage);
+        imageContainer.addComponent(carImage);
+        imageContainer.addComponent(shipImage);
+        imageContainer.addComponent(fireImage);
+        imageContainer.addComponent(travelImage);
 
 
         f.addComponent(BorderLayout.CENTER, imageContainer);
@@ -169,7 +169,7 @@ public class TouchTelos {
         fieldsContainer.addComponent(fieldRowConstraint,loginButton);
 
 
-        f.addComponent(BorderLayout.SOUTH, fieldsContainer);
+        f.addComponent(BorderLayout.CENTER, fieldsContainer);
 
 
 

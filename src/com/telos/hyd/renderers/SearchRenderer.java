@@ -9,13 +9,11 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.list.ListCellRenderer;
 import com.codename1.ui.table.TableLayout;
 import com.codename1.ui.util.Resources;
+import com.telos.hyd.Styles.Styles;
 import com.telos.hyd.model.Client;
 import com.telos.hyd.pages.ClientPage;
-import com.telos.hyd.Styles.Styles;
 
 import java.io.IOException;
-import java.text.Format;
-import java.text.SimpleDateFormat;
 
 /**
  * Created by karthikmarupeddi on 12/11/14.
@@ -80,30 +78,24 @@ public class SearchRenderer implements ListCellRenderer {
 
         Styles.ButtonStylesForCell(idButton, client.getId().toString() + index, this.theme);
 
-        Styles.ButtonStylesForCell(nameButton, client.getDepartment(), this.theme);
+        Styles.ButtonStylesForCell(nameButton, client.getName(), this.theme);
 
         Styles.ButtonStylesForCell(departmentButton, client.getDepartment(), this.theme);
-        if(client.getPhoneNumber() != null )
-            Styles.ButtonStylesForCell(policyNumberButton, client.getPhoneNumber().toString(), this.theme);
+        if(client.getPolicyNumber() != null )
+            Styles.ButtonStylesForCell(policyNumberButton, client.getPolicyNumber(), this.theme);
         else
             Styles.ButtonStylesForCell(policyNumberButton, "N/A", this.theme);
 
-        Format formatter = new SimpleDateFormat("dd-MM-YYYY");
-        String stringDate = formatter.format(client.getPolicyStartdate());
-        Styles.ButtonStylesForCell(startDateButton, stringDate, this.theme);
+//        Format formatter = new SimpleDateFormat("dd-MM-YYYY");
+//        String stringDate = formatter.format(client.getPolicyStartdate());
+        Styles.ButtonStylesForCell(startDateButton, "01/02/2015", this.theme);
 
         Styles.ButtonStylesForCell(insuranceCompanyButton, client.getInsCompanyName(), this.theme);
 
         rowContainer.getStyle().setBgTransparency(255);
 
-
-//        rowContainer.getStyle().setBgColor(Styles.getLIghtGray());
-//        rowContainer.getUnselectedStyle().setBgColor(Styles.getLIghtGray());
-//        rowContainer.getSelectedStyle().setBgColor(Styles.getLIghtGray());
-
         rowContainer.getStyle().setMargin(0, 0, 0, 0);
         rowContainer.getStyle().setPadding(10, 10, 10, 10);
-        System.out.println("total roows are");
         return rowContainer;
     }
 
@@ -121,7 +113,6 @@ public class SearchRenderer implements ListCellRenderer {
      */
     @Override
     public Component getListFocusComponent(List list) {
-        System.out.println("list value is"+list.getSelectedItem().toString());
         return null;
     }
 
@@ -130,7 +121,6 @@ public class SearchRenderer implements ListCellRenderer {
 
         public void actionPerformed(ActionEvent evt) {
 
-            System.out.println("name is"+client.getName());
             ClientPage clientPage = new ClientPage(client);
             try {
                 clientPage.createPage();
