@@ -1,6 +1,5 @@
 package com.telos.hyd.pages;
 
-import com.codename1.components.InfiniteProgress;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkManager;
@@ -124,9 +123,85 @@ public class SearchPage{
         container.getStyle().setPadding(Component.LEFT,5);
 
         searchInput = new TextField();
-        searchInput.setHeight(1000);
         searchInput.putClientProperty("searchField", Boolean.TRUE);
-        searchInput.setDoneListener(searchAction);
+        searchInput.setDoneListener(new ActionListener() {
+
+
+            /**
+             * Invoked when an action occurred on a component
+             *
+             * @param evt event object describing the source of the action as well as
+             *            its trigger
+             */
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+
+
+                String searchString = searchInput.getText();
+                final ClientMapper clientMapper = new ClientMapper();
+
+                ConnectionRequest cr = new ConnectionRequest() {
+
+
+                    public Map<String, Object> totalList;
+
+                    protected void readResponse(InputStream is)
+                            throws IOException {
+
+                        JSONParser p = new JSONParser();
+                        totalList = p.parseJSON(new InputStreamReader(is));
+
+
+                    }
+
+                    /**
+                     * A callback method that's invoked on the EDT after the readResponse() method has finished,
+                     * this is the place where developers should change their Codename One user interface to
+                     * avoid race conditions that might be triggered by modifications within readResponse.
+                     * Notice this method is only invoked on a successful response and will not be invoked in case
+                     * of a failure.
+                     */
+                    @Override
+                    protected void postResponse() {
+                        List dataList = new List();
+                        dataList.setItemGap(0);
+                        ArrayList list = (ArrayList) totalList.get("root");
+                        for (Object object : list) {
+                            Client clientValues = new Client();
+                            clientMapper.readMap((Map) object, clientValues);
+                            System.out.println("client values are" + clientValues.getName());
+                            dataList.addItem(clientValues);
+                        }
+
+                        tabelContainer.removeAll();
+
+                        try {
+                            dataList.setRenderer(new SearchRenderer());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        tabelContainer.setScrollable(true);
+                        tabelContainer.setLayout(new BorderLayout());
+                        tabelContainer.addComponent(BorderLayout.NORTH, dataList);
+                        searchPageForm.repaint();
+
+                    }
+
+
+                };
+
+                try {
+                    cr.setUrl("https://connect2telos.com/ws/telos/findClientByName/searchString");
+                } catch (Exception e) {
+                    Dialog d = new Dialog("error caused by my code"+e.toString());
+                    d.show();
+                }
+                cr.setPost(false);
+                NetworkManager.getInstance().addToQueue(cr);
+            }
+        });
+
+
         container.addComponent(searchInput);
         toolbarContainer.addComponent(toolbarConstraint, container);
 
@@ -392,6 +467,8 @@ public class SearchPage{
         @Override
         public void actionPerformed(ActionEvent evt) {
 
+            String searchString = searchInput.getText();
+
             final ClientMapper clientMapper = new ClientMapper();
 
             ConnectionRequest cr = new ConnectionRequest() {
@@ -445,15 +522,16 @@ public class SearchPage{
             };
 
             try {
-                cr.setUrl("https://connect2telos.com/ws/telos/findClientByName/q");
+                cr.setUrl("https://connect2telos.com/ws/telos/findClientByName/"+searchString);
             } catch (Exception e) {
                 e.printStackTrace();
             }
             cr.setPost(false);
-            cr.addArgument("q", searchInput.getText());
-            InfiniteProgress progress = new InfiniteProgress();
-            Dialog dialog = progress.showInifiniteBlocking();
-            cr.setDisposeOnCompletion(dialog);
+            if(searchInput.getText() != null)
+            {
+
+                cr.addArgument("q", searchInput.getText());
+            }
             NetworkManager.getInstance().addToQueue(cr);
         }
     };

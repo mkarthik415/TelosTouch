@@ -18,8 +18,8 @@ public class Styles {
         button.getStyle().setMargin(Component.BOTTOM,0);
         button.setIcon(theme.getImage(buttonName));
         button.getStyle().setAlignment(Component.CENTER);
-        button.getSelectedStyle().setBgTransparency(255);
-        button.getUnselectedStyle().setBgTransparency(255);
+        button.getSelectedStyle().setBgTransparency(0);
+        button.getUnselectedStyle().setBgTransparency(0);
         button.getStyle().setBorder(Border.createEmpty());
         button.getSelectedStyle().setBorder(Border.createEmpty());
         button.getUnselectedStyle().setBorder(Border.createEmpty());

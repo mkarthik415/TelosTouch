@@ -1,5 +1,6 @@
 package com.telos.hyd;
 
+import com.codename1.io.Log;
 import com.codename1.ui.*;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
@@ -24,6 +25,17 @@ public class TouchTelos {
         try{
             theme = Resources.openLayered("/theme");
             UIManager.getInstance().setThemeProps(theme.getTheme(theme.getThemeResourceNames()[0]));
+            Display.getInstance().addEdtErrorHandler(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    evt.consume();
+                    Log.p("Exception in AppName version " + Display.getInstance().getProperty("AppVersion", "Unknown"));
+                    Log.p("OS " + Display.getInstance().getPlatformName());
+                    Log.p("Error " + evt.getSource());
+                    Log.p("Current Form " + Display.getInstance().getCurrent().getName());
+                    Log.e((Throwable)evt.getSource());
+                    Log.sendLog();
+                }
+            });
         }catch(IOException e){
             e.printStackTrace();
         }
