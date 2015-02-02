@@ -349,10 +349,14 @@ public class SearchPage{
             container.addComponent(b3);
             container.addComponent(b4);
             container.addComponent(b5);
-            container.getStyle().setBgTransparency(225);
-            container.getUnselectedStyle().setBgTransparency(225);
-            container.getSelectedStyle().setBgTransparency(225);
+            container.getStyle().setBgTransparency(0);
+            container.getUnselectedStyle().setBgTransparency(0);
+            container.getSelectedStyle().setBgTransparency(0);
             dialog.addComponent(container);
+            dialog.getStyle().setBgTransparency(0);
+            dialog.getUnselectedStyle().setBgTransparency(0);
+            dialog.getSelectedStyle().setBgTransparency(0);
+            dialog.getDialogStyle().setBgTransparency(0);
             //dialog.show();
             dialog.showPopupDialog(searchBy);
 
@@ -466,7 +470,7 @@ public class SearchPage{
          */
         @Override
         public void actionPerformed(ActionEvent evt) {
-
+            dialog.dispose();
             String searchString = searchInput.getText();
 
             final ClientMapper clientMapper = new ClientMapper();

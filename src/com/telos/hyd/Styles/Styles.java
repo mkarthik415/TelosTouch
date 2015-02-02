@@ -56,17 +56,5 @@ public class Styles {
         button.setUIID("Label");
     }
 
-//    public static int getGray()
-//    {
-//        Color textFieldColor = new Color(156, 157, 162);
-//        int textFieldRGB = textFieldColor.getRGB();
-//        return textFieldRGB;
-//    }
 
-//    public static int getLIghtGray()
-//    {
-//        Color textFieldColor = new Color(210, 210, 210);
-//        int textFieldRGB = textFieldColor.getRGB();
-//        return textFieldRGB;
-//    }
 }
