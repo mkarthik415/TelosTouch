@@ -1,5 +1,6 @@
 package com.telos.hyd.pages;
 
+import com.codename1.components.InfiniteProgress;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkManager;
@@ -504,7 +505,6 @@ public class SearchPage{
                     for (Object object : list) {
                         Client clientValues = new Client();
                         clientMapper.readMap((Map) object, clientValues);
-                        System.out.println("client values are" + clientValues.getName());
                         dataList.addItem(clientValues);
                     }
 
@@ -515,7 +515,7 @@ public class SearchPage{
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    tabelContainer.setScrollable(true);
+                    tabelContainer.setScrollableY(true);
                     tabelContainer.setLayout(new BorderLayout());
                     tabelContainer.addComponent(BorderLayout.NORTH, dataList);
                     searchPageForm.repaint();
@@ -531,6 +531,9 @@ public class SearchPage{
                 e.printStackTrace();
             }
             cr.setPost(false);
+            InfiniteProgress progress = new InfiniteProgress();
+            Dialog dialogProgress = progress.showInifiniteBlocking();
+            cr.setDisposeOnCompletion(dialogProgress);
             if(searchInput.getText() != null)
             {
 
