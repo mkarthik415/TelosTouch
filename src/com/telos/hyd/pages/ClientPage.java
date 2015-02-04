@@ -48,6 +48,7 @@ public class ClientPage {
 
 
         Toolbar toolbar = new Toolbar();
+        toolbar.getStyle().setPadding(30,0,0,0);
         clientForm.setToolBar(toolbar);
 
 
@@ -984,9 +985,10 @@ public class ClientPage {
         //back button
         com.codename1.ui.Button backButton = new Button();
         backButton.setGap(0);
-        Styles.ButtonStyles(backButton, "backButtonGrey.png", theme);
+        Styles.ButtonStyles(backButton, "backWhite.png", theme);
         backButton.addActionListener(backButtonAction);
         fieldContainer.addComponent(backButton);
+
 
         Label clientFoundLabel = new Label();
         clientFoundLabel.setText("Search Results");
@@ -994,17 +996,16 @@ public class ClientPage {
         TableLayout tableLayout = new TableLayout(1,1);
         foundContainer.setLayout(tableLayout);
         TableLayout.Constraint rowConstraint = tableLayout.createConstraint();
-        //rowConstraint.setWidthPercentage(100);
-        rowConstraint.setWidthPercentage(-2);
+        rowConstraint.setWidthPercentage(100);
         rowConstraint.setHorizontalAlign(Component.CENTER);
         rowConstraint.setVerticalAlign(Component.CENTER);
         rowConstraint.setVerticalSpan(3);
         foundContainer.getStyle().setBgTransparency(225);
-//        foundContainer.getStyle().setBgColor(Styles.getGray());
-//        foundContainer.getUnselectedStyle().setBgColor(Styles.getGray());
-//        foundContainer.getSelectedStyle().setBgColor(Styles.getGray());
+        foundContainer.getStyle().setBgColor(0xffffffff);
+        foundContainer.getUnselectedStyle().setBgColor(0xffffffff);
+        foundContainer.getSelectedStyle().setBgColor(0xffffffff);
         foundContainer.addComponent(rowConstraint,clientFoundLabel);
-        fieldContainer.addComponent(foundContainer);
+        fieldContainer.addComponent(toolbarConstraint,foundContainer);
 
         clientForm.show();
     }

@@ -52,11 +52,13 @@
     <image name="shipImage.png" type="multi"  />
     <image name="signOut.png" type="multi"  />
     <image name="spaceBlue.png" type="multi"  />
+    <image name="spinner.jpg" type="multi"  />
     <image name="telephoneNumber.png" type="multi"  />
     <image name="telosLogo.png" type="multi"  />
     <image name="telosLogoBlue.png" type="multi"  />
     <image name="telosSmall.png" type="multi"  />
     <theme name="Theme">
+        <val key="@infiniteImage" value="spinner.jpg" />
         <val key="Button.margin" value="0,0,0,0" />
         <val key="Button.padding" value="0,0,0,0" />
         <val key="Button.press#margin" value="0,0,0,0" />
