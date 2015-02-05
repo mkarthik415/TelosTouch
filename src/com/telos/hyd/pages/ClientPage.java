@@ -147,17 +147,6 @@ public class ClientPage {
 
         toolbar.setTitleComponent(toolbarContainer);
 
-
-
-        // Banner container
-//        Container buttonsContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-//        buttonsContainer.setName("buttonsContainer");
-//        buttonsContainer.getStyle().setBorder(null);
-//        buttonsContainer.getSelectedStyle().setBorder(Border.createEmpty());
-//        buttonsContainer.getUnselectedStyle().setBorder(Border.createEmpty());
-//        buttonsContainer.getPressedStyle().setBorder(Border.createEmpty());
-//        clientForm.addComponent(buttonsContainer);
-
         Container contantContainer  = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         contantContainer.setUIID("tabContainer");
         contantContainer.setScrollableY(true);
