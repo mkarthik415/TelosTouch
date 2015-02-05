@@ -146,9 +146,9 @@ public class SearchPage{
              */
             @Override
             public void actionPerformed(ActionEvent evt) {
-
-
+                dialog.dispose();
                 String searchString = searchInput.getText();
+
                 final ClientMapper clientMapper = new ClientMapper();
 
                 ConnectionRequest cr = new ConnectionRequest() {
@@ -180,18 +180,17 @@ public class SearchPage{
                         for (Object object : list) {
                             Client clientValues = new Client();
                             clientMapper.readMap((Map) object, clientValues);
-                            System.out.println("client values are" + clientValues.getName());
                             dataList.addItem(clientValues);
                         }
 
                         tabelContainer.removeAll();
 
                         try {
-                            dataList.setRenderer(new SearchRenderer());
+                            dataList.setRenderer(new SearchRenderer(searchPageForm));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        tabelContainer.setScrollable(true);
+                        tabelContainer.setScrollableY(true);
                         tabelContainer.setLayout(new BorderLayout());
                         tabelContainer.addComponent(BorderLayout.NORTH, dataList);
                         searchPageForm.repaint();
@@ -202,14 +201,23 @@ public class SearchPage{
                 };
 
                 try {
-                    cr.setUrl("https://connect2telos.com/ws/telos/findClientByName/searchString");
+                    cr.setUrl("https://connect2telos.com/ws/telos/findClientByName/"+searchString);
                 } catch (Exception e) {
-                    Dialog d = new Dialog("error caused by my code"+e.toString());
-                    d.show();
+                    e.printStackTrace();
                 }
                 cr.setPost(false);
+                InfiniteProgress progress = new InfiniteProgress();
+                Dialog dialogProgress = progress.showInifiniteBlocking();
+                cr.setDisposeOnCompletion(dialogProgress);
+                if(searchInput.getText() != null)
+                {
+
+                    cr.addArgument("q", searchInput.getText());
+                }
                 NetworkManager.getInstance().addToQueue(cr);
             }
+
+
         });
 
 
@@ -450,7 +458,7 @@ public class SearchPage{
                     tabelContainer.removeAll();
 
                     try {
-                        dataList.setRenderer(new SearchRenderer());
+                        dataList.setRenderer(new SearchRenderer(searchPageForm));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -528,7 +536,7 @@ public class SearchPage{
                     tabelContainer.removeAll();
 
                     try {
-                        dataList.setRenderer(new SearchRenderer());
+                        dataList.setRenderer(new SearchRenderer(searchPageForm));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

@@ -33,13 +33,15 @@ public class ClientPage {
     Client client;
     List dataList;
     Container tabelContainer;
+    Form searchForm;
 
     final Form  clientForm = new Form();
     Button searchBy = new Button();
     TextField searchInput;
 
-    public ClientPage(Client client)
+    public ClientPage(Client client, Form origin)
     {
+        this.searchForm = origin;
         this.client = client;
         try {
             this.theme = Resources.openLayered("/theme");
@@ -132,7 +134,7 @@ public class ClientPage {
         searchInput = new TextField();
         searchInput.setHeight(1000);
         searchInput.putClientProperty("searchField", Boolean.TRUE);
-        //searchInput.setDoneListener(searchAction);
+        searchInput.setDoneListener(searchAction);
         container.addComponent(searchInput);
         toolbarContainer.addComponent(toolbarConstraint, container);
 
@@ -1032,7 +1034,7 @@ public class ClientPage {
         @Override
         public void actionPerformed(ActionEvent evt) {
 
-           // SearchPage.searchPageForm.showBack();
+            searchForm.showBack();
         }
     };
 
@@ -1144,7 +1146,7 @@ public class ClientPage {
                     tabelContainer.removeAll();
 
                     try {
-                        dataList.setRenderer(new SearchRenderer());
+                        dataList.setRenderer(new SearchRenderer(clientForm));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

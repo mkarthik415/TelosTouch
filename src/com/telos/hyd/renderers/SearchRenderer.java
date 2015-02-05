@@ -1,9 +1,6 @@
 package com.telos.hyd.renderers;
 
-import com.codename1.ui.Button;
-import com.codename1.ui.Component;
-import com.codename1.ui.Container;
-import com.codename1.ui.List;
+import com.codename1.ui.*;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.list.ListCellRenderer;
@@ -22,6 +19,7 @@ public class SearchRenderer implements ListCellRenderer {
 
 
     Resources theme;
+    Form searchForm;
 
     //row container
     Container rowContainer = new Container();
@@ -37,11 +35,12 @@ public class SearchRenderer implements ListCellRenderer {
     Button startDateButton = new Button();
     Button insuranceCompanyButton = new Button();
 
-    public SearchRenderer() throws IOException {
+    public SearchRenderer(Form origin) throws IOException {
         this.theme = Resources.openLayered("/theme");
+        this.searchForm = origin;
 
         TableLayout.Constraint rowConstraint = tableLayout.createConstraint();
-        rowConstraint.setWidthPercentage(17);
+        rowConstraint.setWidthPercentage(20);
         rowConstraint.setHorizontalAlign(Component.CENTER);
         rowConstraint.setVerticalAlign(Component.BOTTOM);
         rowContainer.setLayout(tableLayout);
@@ -121,7 +120,7 @@ public class SearchRenderer implements ListCellRenderer {
 
         public void actionPerformed(ActionEvent evt) {
 
-            ClientPage clientPage = new ClientPage(client);
+            ClientPage clientPage = new ClientPage(client,searchForm);
             try {
                 clientPage.createPage();
             } catch (IOException e) {
