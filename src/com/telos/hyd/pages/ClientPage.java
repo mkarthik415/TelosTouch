@@ -110,7 +110,7 @@ public class ClientPage {
         searchBy.getStyle().setPadding(0,0,10,0);
         searchBy.getUnselectedStyle().setPadding(0,0,10,0);
         searchBy.getSelectedStyle().setPadding(0,0,10,0);
-        //searchBy.addActionListener(action);
+        searchBy.addActionListener(action);
 
         Container container = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         container.getStyle().setBgImage(theme.getImage("searchBgImg.png"));
@@ -1025,4 +1025,62 @@ public class ClientPage {
            // SearchPage.searchPageForm.showBack();
         }
     };
+
+
+    //action for search by button.
+    ActionListener action = new ActionListener() {
+
+        public void actionPerformed(ActionEvent evt) {
+
+            dialog = new Dialog();
+            Container container= new Container();
+            container.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
+            Button b = new Button();
+            Styles.ButtonStyles(b, "name.png", theme);
+            b.setName("Name");
+            //b.addActionListener(searchAction);
+            Button b1 = new Button();
+            Styles.ButtonStyles(b1, "carNumber.png", theme);
+            b1.setName("Vehical #");
+            //b1.addActionListener(searchByButtonAction);
+            Button b2 = new Button();
+            Styles.ButtonStyles(b2, "serialNumber.png.png", theme);
+            b2.setName("Serial #");
+            //b2.addActionListener(searchByButtonAction);
+            Button b3 = new Button();
+            Styles.ButtonStyles(b3, "policyIssue.png", theme);
+            b3.setName("Policy Date");
+            //b3.addActionListener(searchByButtonAction);
+            Button b4 = new Button();
+            Styles.ButtonStyles(b4, "policyCertificate.png", theme);
+            b4.setName("Policy #");
+            //b4.addActionListener(searchByButtonAction);
+            Button b5 = new Button();
+            Styles.ButtonStyles(b5, "telephoneNumber.png", theme);
+            b5.setName("Telephone #");
+            //b5.addActionListener(searchByButtonAction);
+            container.addComponent(b);
+            container.addComponent(b1);
+            container.addComponent(b2);
+            container.addComponent(b3);
+            container.addComponent(b4);
+            container.addComponent(b5);
+            container.getStyle().setBgTransparency(0);
+            container.getUnselectedStyle().setBgTransparency(0);
+            container.getSelectedStyle().setBgTransparency(0);
+            dialog.addComponent(container);
+            dialog.getStyle().setBgTransparency(0);
+            dialog.getUnselectedStyle().setBgTransparency(0);
+            dialog.getSelectedStyle().setBgTransparency(0);
+            dialog.getDialogStyle().setBgTransparency(0);
+            //dialog.show();
+            dialog.showPopupDialog(searchBy);
+
+        }
+    };
+
+
+
+
+
 }
