@@ -913,19 +913,19 @@ public class ClientPage {
         tabs.setTabSelectedIcon(0,theme.getImage("personalDetailsWhite.png"));
 
         tabs.addTab("", theme.getImage("companyDetails.png"), companyDeatilsContainer);
-        tabs.setTabSelectedIcon(1,theme.getImage("personalDetailsWhite.png"));
+        tabs.setTabSelectedIcon(1,theme.getImage("companyDetailsWhite.png"));
 
-        tabs.addTab("",theme.getImage("personalDetails.png"),policyDeatilsContainer);
-        tabs.setTabSelectedIcon(2,theme.getImage("personalDetailsWhite.png"));
+        tabs.addTab("",theme.getImage("policyDetails.png"),policyDeatilsContainer);
+        tabs.setTabSelectedIcon(2,theme.getImage("policyDetailsWhite.png"));
 
-        tabs.addTab("", theme.getImage("personalDetails.png"), amountDetailsContainer);
-        tabs.setTabSelectedIcon(3,theme.getImage("personalDetailsWhite.png"));
+        tabs.addTab("", theme.getImage("amountDetails.png"), amountDetailsContainer);
+        tabs.setTabSelectedIcon(3,theme.getImage("amountDetailsWhite.png"));
 
-        tabs.addTab("",theme.getImage("personalDetails.png"),documentsContainer);
-        tabs.setTabSelectedIcon(4,theme.getImage("personalDetailsWhite.png"));
+        tabs.addTab("",theme.getImage("documents.png"),documentsContainer);
+        tabs.setTabSelectedIcon(4,theme.getImage("documentswhite.png"));
 
-        tabs.addTab("", theme.getImage("personalDetails.png"), renewalDeatilsContainer);
-        tabs.setTabSelectedIcon(5,theme.getImage("personalDetailsWhite.png"));
+        tabs.addTab("", theme.getImage("renewalDetails.png"), renewalDeatilsContainer);
+        tabs.setTabSelectedIcon(5,theme.getImage("renewalDetailsWhite.png"));
 
 
         tabsContainer.addComponent(BorderLayout.NORTH,tabs);

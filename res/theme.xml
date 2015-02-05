@@ -10,7 +10,6 @@
     <image name="carNumber.png" type="multi"  />
     <image name="companyDetails.png" type="multi"  />
     <image name="companyDetailsWhite.png" type="multi"  />
-    <image name="companyDetailsWhite.png 1" type="multi"  />
     <image name="contactBlue.png" type="multi"  />
     <image name="contactButton.png" type="multi"  />
     <image name="contactsButton.png"  />
@@ -36,9 +35,9 @@
     <image name="name.png" type="multi"  />
     <image name="personalDetails.png" type="multi"  />
     <image name="personalDetailsWhite.png" type="multi"  />
-    <image name="personalDetailsWhite.png 1" type="multi"  />
     <image name="policyCertificate.png" type="multi"  />
     <image name="policyDetails.png" type="multi"  />
+    <image name="policyDetailsWhite.png" type="multi"  />
     <image name="policyIssue.png" type="multi"  />
     <image name="renewalDetails.png" type="multi"  />
     <image name="renewalDetailsWhite.png" type="multi"  />
