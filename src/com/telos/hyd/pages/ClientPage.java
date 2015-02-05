@@ -671,7 +671,7 @@ public class ClientPage {
 
         //Amount Details tab contents
         Container amountDetailsContainer = new Container();
-        amountDetailsContainer.setUIID("TabContainers");
+        amountDetailsContainer.setUIID("tabContainer");
         amountDetailsContainer.setLayout(pContainerBoxLayout);
 
         //labels
@@ -833,7 +833,7 @@ public class ClientPage {
 
         //Documents Details Container
         Container documentsContainer = new Container();
-        documentsContainer.setUIID("TabContainers");
+        documentsContainer.setUIID("tabContainer");
         Button b4= new Button("Company Details");
         documentsContainer.addComponent(b4);
 
@@ -991,7 +991,7 @@ public class ClientPage {
 
 
         Label clientFoundLabel = new Label();
-        clientFoundLabel.setText("Search Results");
+        clientFoundLabel.setText("Client "+client.getId());
         Container foundContainer = new Container(new BorderLayout());
         TableLayout tableLayout = new TableLayout(1,1);
         foundContainer.setLayout(tableLayout);

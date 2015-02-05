@@ -119,7 +119,7 @@
         <val key="clientInfoLabel.sel#padding" value="0,15,10,10" />
         <val key="clientInfoLabel.sel#transparency" value="255" />
         <val key="clientInfoLabel.transparency" value="255" />
-        <font key="clientLabel.font" type="system" face="0" style="0" size="8" />
+        <font key="clientLabel.font" type="system" face="0" style="0" size="0" />
         <val key="clientLabel.padding" value="15,0,10,10" />
         <font key="clientLabel.press#font" type="system" face="0" style="0" size="16" />
         <val key="clientLabel.press#padding" value="15,0,10,10" />
