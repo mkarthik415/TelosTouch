@@ -36,6 +36,16 @@ public class SearchPage{
     ArrayList<Client> totalclients;
     Container contantContainer;
     Container tabelContainer = new Container();
+
+    public List getDataList() {
+        return dataList;
+    }
+
+    public void setDataList(List dataList) {
+        this.dataList = dataList;
+    }
+
+    List dataList;
     public final  Form  searchPageForm = new Form();
     public SearchPage(Form form)
     {
@@ -308,6 +318,13 @@ public class SearchPage{
         foundContainer.addComponent(rowConstraint,clientFoundLabel);
         fieldContainer.addComponent(constraint,foundContainer);
 
+        if(this.getDataList() != null)
+        {
+            tabelContainer.setScrollableY(true);
+            tabelContainer.setLayout(new BorderLayout());
+            tabelContainer.addComponent(BorderLayout.NORTH, this.getDataList());
+        }
+
         searchPageForm.show();
     }
 
@@ -437,7 +454,7 @@ public class SearchPage{
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    tabelContainer.setScrollable(true);
+                    tabelContainer.setScrollableY(true);
                     tabelContainer.setLayout(new BorderLayout());
                     tabelContainer.addComponent(BorderLayout.NORTH, dataList);
                     searchPageForm.repaint();
