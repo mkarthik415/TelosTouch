@@ -201,7 +201,7 @@ public class SearchPage{
                 };
 
                 try {
-                    cr.setUrl("https://connect2telos.com/ws/telos/findClientByName/"+searchString);
+                    cr.setUrl("http://telosws-poplar5.rhcloud.com/byName");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -212,7 +212,7 @@ public class SearchPage{
                 if(searchInput.getText() != null)
                 {
 
-                    cr.addArgument("q", searchInput.getText());
+                    cr.addArgument("name", searchInput.getText());
                 }
                 NetworkManager.getInstance().addToQueue(cr);
             }
@@ -451,7 +451,7 @@ public class SearchPage{
                     for (Object object : list) {
                         Client clientValues = new Client();
                         clientMapper.readMap((Map) object, clientValues);
-                        System.out.println("client values are" + clientValues.getName());
+                        System.out.println("client values are" + clientValues.getClientName());
                         dataList.addItem(clientValues);
                     }
 
@@ -497,7 +497,6 @@ public class SearchPage{
         @Override
         public void actionPerformed(ActionEvent evt) {
             dialog.dispose();
-            String searchString = searchInput.getText();
 
             final ClientMapper clientMapper = new ClientMapper();
 
@@ -551,7 +550,7 @@ public class SearchPage{
             };
 
             try {
-                cr.setUrl("https://connect2telos.com/ws/telos/findClientByName/"+searchString);
+                cr.setUrl("http://telosws-poplar5.rhcloud.com/byName");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -562,7 +561,7 @@ public class SearchPage{
             if(searchInput.getText() != null)
             {
 
-                cr.addArgument("q", searchInput.getText());
+                cr.addArgument("name", searchInput.getText());
             }
             NetworkManager.getInstance().addToQueue(cr);
         }

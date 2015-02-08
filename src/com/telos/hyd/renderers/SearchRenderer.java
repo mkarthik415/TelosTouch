@@ -75,9 +75,9 @@ public class SearchRenderer implements ListCellRenderer {
         Client client = (Client) value;
         this.client = client;
 
-        Styles.ButtonStylesForCell(idButton, client.getId().toString() + index, this.theme);
+        Styles.ButtonStylesForCell(idButton, new Integer(client.getId()).toString(), this.theme);
 
-        Styles.ButtonStylesForCell(nameButton, client.getName(), this.theme);
+        Styles.ButtonStylesForCell(nameButton, client.getClientName(), this.theme);
 
         Styles.ButtonStylesForCell(departmentButton, client.getDepartment(), this.theme);
         if(client.getPolicyNumber() != null )

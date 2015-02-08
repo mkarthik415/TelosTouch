@@ -8,3 +8,5 @@
 .idea/rebel_project.xml
 /out
 
+
+.idea/checkstyle-idea.xml

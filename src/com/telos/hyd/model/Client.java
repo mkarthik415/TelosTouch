@@ -6,73 +6,73 @@ import java.util.Date;
  * Created by karthikmarupeddi on 12/11/14.
  */
 public class Client {
-    public Integer id;
-    public String name;
-    public String company;
-    public String phoneNumber;
-    public String secondaryPhoneNumber;
-    public String email;
-    public String secondaryEmail;
-    public String gender;
-    public String industry;
-    public String address;
-    public Date dob;
-    public String policyNumber;
-    public String endrsNumber;
-    public Date policyStartdate;
-    public Date policyEndDate;
-    public String insCompanyName;
-    public String insBranchName;
-    public String officeCode;
-    public String source;
-    public String policyDetails;
-    public String agent;
-    public String policyType;
-    public Date collectionDate;
-    public String fireTypeOfPolicy;
-    public Double basicRate;
-    public Double earthQuakePremium;
-    public Double anyAdditionalPremium;
-    public String marineTypeOfPolicy;
-    public String marineOpenPolicy;
-    public String marineOpenCover;
-    public String marineOtherPolicies;
-    public String marineVoyageFrom;
-    public String marineVoyageTo;
-    public Double premiumAmount;
-    public Double terrorismPremiumAmount;
-    public Double serviceTax;
-    public Double serviceTaxAmount;
-    public Double totalPremiumAmount;
-    public Double commionRate;
-    public Double commionRateAmount;
-    public Double sumInsured;
-    public String vehicleNumber;
-    public String iDV;
-    public String vehicleMake;
-    public Date vehicleManufactureYear;
-    public String nBC;
-    public String department;
-    public String miscTypeOfPolicy;
-    public String miscIdCard;
-    public Date miscDispatchDate;
-    public Double renewalAmount;
-    public String renewalCompany;
+    private int id;
+    private String clientName;
+    private String company;
+    private String phoneNumber;
+    private String secondaryPhoneNumber;
+    private String email;
+    private String secondaryEmail;
+    private String gender;
+    private String industry;
+    private String address;
+    private Date dob;
+    private String policyNumber;
+    private String endrsNumber;
+    private Date policyStartdate;
+    private Date policyEndDate;
+    private String InsCompanyName;
+    private String InsBranchName;
+    private String officeCode;
+    private String source;
+    private String policyDetails;
+    private String agent;
+    private String policyType;
+    private Date collectionDate;
+    private String fireTypeOfPolicy;
+    private Double basicRate;
+    private Double earthQuakePremium;
+    private Double anyAdditionalPremium;
+    private String marineTypeOfPolicy;
+    private String marineOpenPolicy;
+    private String marineOpenCover;
+    private String marineOtherPolicies;
+    private String marineVoyageFrom;
+    private String marineVoyageTo;
+    private Double premiumAmount;
+    private Double terrorismPremiumAmount;
+    private Double serviceTax;
+    private Double serviceTaxAmount;
+    private Double totalPremiumAmount;
+    private Double commionRate;
+    private Double commionRateAmount;
+    private Double sumInsured;
+    private String vehicleNumber;
+    private String iDV;
+    private String vehicleMake;
+    private Date vehicleManufactureYear;
+    private String nBC;
+    private String department;
+    private String miscTypeOfPolicy;
+    private String miscIdCard;
+    private Date miscDispatchDate;
+    private Double renewalAmount;
+    private String renewalCompany;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getClientName() {
+        return clientName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
     public String getCompany() {
@@ -180,19 +180,19 @@ public class Client {
     }
 
     public String getInsCompanyName() {
-        return insCompanyName;
+        return InsCompanyName;
     }
 
     public void setInsCompanyName(String insCompanyName) {
-        this.insCompanyName = insCompanyName;
+        InsCompanyName = insCompanyName;
     }
 
     public String getInsBranchName() {
-        return insBranchName;
+        return InsBranchName;
     }
 
     public void setInsBranchName(String insBranchName) {
-        this.insBranchName = insBranchName;
+        InsBranchName = insBranchName;
     }
 
     public String getOfficeCode() {

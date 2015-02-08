@@ -180,10 +180,10 @@ public class ClientPage {
         //name labels
         Label nameLabel = new Label("Name");
         Label clientName = new Label();
-        if(client.getName() != null )
+        if(client.getClientName() != null )
         {
 
-            clientName.setText(client.getName());
+            clientName.setText(client.getClientName());
         }
         else
             clientName.setText("N/A");
@@ -943,46 +943,6 @@ public class ClientPage {
         contantContainer.addComponent(tabelContainer);
 
 
-//        //logo Button
-//        Button logoButton = new Button();
-//        Styles.ButtonStyles(logoButton, "telosLogoBlue.png", theme);
-//        buttonsContainer.addComponent(logoButton);
-//
-//        //search Button
-//        Button searchButton = new Button();
-//        Styles.ButtonStyles(searchButton, "searchWhite.png", theme);
-//        buttonsContainer.addComponent(searchButton);
-//
-//        //reports Button
-//        Button reportsButton = new Button();
-//        Styles.ButtonStyles(reportsButton, "reportBlue.png", theme);
-//        buttonsContainer.addComponent(reportsButton);
-//
-//        //graphs Button
-//        Button graphsButton = new Button();
-//        Styles.ButtonStyles(graphsButton, "graphsBlue.png", theme);
-//        buttonsContainer.addComponent(graphsButton);
-//
-//        //graphs Button
-//        Button contactsButton = new Button();
-//        Styles.ButtonStyles(contactsButton, "contactBlue.png", theme);
-//        buttonsContainer.addComponent(contactsButton);
-//
-//        //graphs Button
-//        Button locateButton = new Button();
-//        Styles.ButtonStyles(locateButton, "locateBlue.png", theme);
-//        buttonsContainer.addComponent(locateButton);
-//
-//        //graphs Button
-//        Button helpButton = new Button();
-//        Styles.ButtonStyles(helpButton, "helpBlue.png", theme);
-//        buttonsContainer.addComponent(helpButton);
-//
-//        //graphs Button
-//        Button emptyButton = new Button();
-//        Styles.ButtonStyles(emptyButton, "spaceBlue.png", theme);
-//        buttonsContainer.addComponent(emptyButton);
-
         //back button
         com.codename1.ui.Button backButton = new Button();
         backButton.setGap(0);
@@ -1162,11 +1122,6 @@ public class ClientPage {
             Dialog dialogProgress = progress.showInifiniteBlocking();
             cr.setDisposeOnCompletion(dialogProgress);
             searchPage.searchPageForm.show();
-            if(searchInput.getText() != null)
-            {
-
-                cr.addArgument("q", searchInput.getText());
-            }
             NetworkManager.getInstance().addToQueue(cr);
         }
     };
