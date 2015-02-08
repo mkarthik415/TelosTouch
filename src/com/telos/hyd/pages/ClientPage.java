@@ -1113,11 +1113,16 @@ public class ClientPage {
             };
 
             try {
-                cr.setUrl("https://connect2telos.com/ws/telos/findClientByName/"+searchString);
+                cr.setUrl("http://telosws-poplar5.rhcloud.com/byName");
             } catch (Exception e) {
                 e.printStackTrace();
             }
             cr.setPost(false);
+            if(searchInput.getText() != null)
+            {
+
+                cr.addArgument("name", searchInput.getText());
+            }
             InfiniteProgress progress = new InfiniteProgress();
             Dialog dialogProgress = progress.showInifiniteBlocking();
             cr.setDisposeOnCompletion(dialogProgress);

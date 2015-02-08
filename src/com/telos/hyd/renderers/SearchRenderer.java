@@ -40,7 +40,7 @@ public class SearchRenderer implements ListCellRenderer {
         this.searchForm = origin;
 
         TableLayout.Constraint rowConstraint = tableLayout.createConstraint();
-        rowConstraint.setWidthPercentage(20);
+        rowConstraint.setWidthPercentage(17);
         rowConstraint.setHorizontalAlign(Component.CENTER);
         rowConstraint.setVerticalAlign(Component.BOTTOM);
         rowContainer.setLayout(tableLayout);
