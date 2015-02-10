@@ -135,96 +135,9 @@ public class SearchPage{
 
         searchInput = new TextField();
         searchInput.putClientProperty("searchField", Boolean.TRUE);
-        searchInput.setDoneListener(new ActionListener() {
-
-
-            /**
-             * Invoked when an action occurred on a component
-             *
-             * @param evt event object describing the source of the action as well as
-             *            its trigger
-             */
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                dialog.dispose();
-                String searchString = searchInput.getText();
-
-                final ClientMapper clientMapper = new ClientMapper();
-
-                ConnectionRequest cr = new ConnectionRequest() {
-
-
-                    public Map<String, Object> totalList;
-
-                    protected void readResponse(InputStream is)
-                            throws IOException {
-
-                        JSONParser p = new JSONParser();
-                        totalList = p.parseJSON(new InputStreamReader(is));
-
-
-                    }
-
-                    /**
-                     * A callback method that's invoked on the EDT after the readResponse() method has finished,
-                     * this is the place where developers should change their Codename One user interface to
-                     * avoid race conditions that might be triggered by modifications within readResponse.
-                     * Notice this method is only invoked on a successful response and will not be invoked in case
-                     * of a failure.
-                     */
-                    @Override
-                    protected void postResponse() {
-                        List dataList = new List();
-                        dataList.setItemGap(0);
-                        ArrayList list = (ArrayList) totalList.get("root");
-                        for (Object object : list) {
-                            Client clientValues = new Client();
-                            clientMapper.readMap((Map) object, clientValues);
-                            dataList.addItem(clientValues);
-                        }
-
-                        tabelContainer.removeAll();
-
-                        try {
-                            dataList.setRenderer(new SearchRenderer(searchPageForm));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        tabelContainer.setScrollableY(true);
-                        tabelContainer.setLayout(new BorderLayout());
-                        tabelContainer.addComponent(BorderLayout.NORTH, dataList);
-                        searchPageForm.repaint();
-
-                    }
-
-
-                };
-
-                try {
-                    cr.setUrl("http://telosws-poplar5.rhcloud.com/byName");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                cr.setPost(false);
-                InfiniteProgress progress = new InfiniteProgress();
-                Dialog dialogProgress = progress.showInifiniteBlocking();
-                cr.setDisposeOnCompletion(dialogProgress);
-                if(searchInput.getText() != null)
-                {
-
-                    cr.addArgument("name", searchInput.getText());
-                }
-                NetworkManager.getInstance().addToQueue(cr);
-            }
-
-
-        });
-
-
         container.addComponent(searchInput);
         toolbarContainer.addComponent(toolbarConstraint, container);
-
-
+        searchInput.setDoneListener(searchAction);
 
 
         final TextField txt = new TextField();
@@ -419,67 +332,10 @@ public class SearchPage{
             dialog.dispose();
             String value = evt.getComponent().getName();
             searchBy.setText(value);
-
-            final ClientMapper clientMapper = new ClientMapper();
-
-            ConnectionRequest cr = new ConnectionRequest() {
+            Graphs graphs = new Graphs();
+            graphs.createPieChartForm();
 
 
-                public Map<String, Object> totalList;
-
-                protected void readResponse(InputStream is)
-                        throws IOException {
-
-                    JSONParser p = new JSONParser();
-                    totalList = p.parseJSON(new InputStreamReader(is));
-
-
-                }
-
-                /**
-                 * A callback method that's invoked on the EDT after the readResponse() method has finished,
-                 * this is the place where developers should change their Codename One user interface to
-                 * avoid race conditions that might be triggered by modifications within readResponse.
-                 * Notice this method is only invoked on a successful response and will not be invoked in case
-                 * of a failure.
-                 */
-                @Override
-                protected void postResponse() {
-                    List dataList = new List();
-                    dataList.setItemGap(0);
-                    ArrayList list = (ArrayList) totalList.get("root");
-                    for (Object object : list) {
-                        Client clientValues = new Client();
-                        clientMapper.readMap((Map) object, clientValues);
-                        System.out.println("client values are" + clientValues.getClientName());
-                        dataList.addItem(clientValues);
-                    }
-
-                    tabelContainer.removeAll();
-
-                    try {
-                        dataList.setRenderer(new SearchRenderer(searchPageForm));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    tabelContainer.setScrollableY(true);
-                    tabelContainer.setLayout(new BorderLayout());
-                    tabelContainer.addComponent(BorderLayout.NORTH, dataList);
-                    searchPageForm.repaint();
-
-                }
-
-
-            };
-
-            try {
-                cr.setUrl("https://connect2telos.com/ws/telos/findClientByName/q");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            cr.setPost(false);
-            cr.addArgument("q", "rajesh");
-            NetworkManager.getInstance().addToQueue(cr);
         }
     };
 
@@ -496,7 +352,7 @@ public class SearchPage{
          */
         @Override
         public void actionPerformed(ActionEvent evt) {
-            dialog.dispose();
+            //dialog.dispose();
 
             final ClientMapper clientMapper = new ClientMapper();
 
@@ -558,11 +414,12 @@ public class SearchPage{
             InfiniteProgress progress = new InfiniteProgress();
             Dialog dialogProgress = progress.showInifiniteBlocking();
             cr.setDisposeOnCompletion(dialogProgress);
-            if(searchInput.getText() != null)
-            {
-
-                cr.addArgument("name", searchInput.getText());
-            }
+//            if(searchInput.getText() != null)
+//            {
+//
+//                cr.addArgument("name", searchInput.getText());
+//            }
+            cr.addArgument("name", "karthik");
             NetworkManager.getInstance().addToQueue(cr);
         }
     };

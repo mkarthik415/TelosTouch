@@ -54,6 +54,7 @@ public class Styles {
     {
         button.setText(buttonName);
         button.setUIID("Label");
+        button.getStyle().setPadding(10,10,0,0);
     }
 
 
