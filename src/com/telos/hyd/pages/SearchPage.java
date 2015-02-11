@@ -198,10 +198,6 @@ public class SearchPage{
         HeadingContainer.addComponent(rowHeadingConstraint,new Label("Company"));
         contantContainer.addComponent(HeadingContainer);
 
-//        WebBrowser b = new WebBrowser();
-//
-//        b.setURL("http://research.microsoft.com/pubs/79655/gazelle.pdf");
-//        contantContainer.addComponent(b);
 
 
         //
@@ -332,8 +328,6 @@ public class SearchPage{
             dialog.dispose();
             String value = evt.getComponent().getName();
             searchBy.setText(value);
-            Graphs graphs = new Graphs();
-            graphs.createPieChartForm();
 
 
         }
@@ -414,12 +408,12 @@ public class SearchPage{
             InfiniteProgress progress = new InfiniteProgress();
             Dialog dialogProgress = progress.showInifiniteBlocking();
             cr.setDisposeOnCompletion(dialogProgress);
-//            if(searchInput.getText() != null)
-//            {
-//
-//                cr.addArgument("name", searchInput.getText());
-//            }
-            cr.addArgument("name", "karthik");
+            if(searchInput.getText() != null)
+            {
+
+                cr.addArgument("name", searchInput.getText());
+            }
+
             NetworkManager.getInstance().addToQueue(cr);
         }
     };

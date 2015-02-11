@@ -1,6 +1,7 @@
 package com.telos.hyd.pages;
 
 import com.codename1.components.InfiniteProgress;
+import com.codename1.components.WebBrowser;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkManager;
@@ -835,9 +836,19 @@ public class ClientPage {
         //Documents Details Container
         Container documentsContainer = new Container();
         documentsContainer.setUIID("tabContainer");
-        Button b4= new Button("Company Details");
-        documentsContainer.addComponent(b4);
-
+        TableLayout documentsLayout = new TableLayout(1,2);
+        documentsContainer.setLayout(documentsLayout);
+//        Container fileContainer = new Container(new FlowLayout());
+//        documentsContainer.addComponent(fileContainer);
+//        Button file = new Button();
+//        Styles.ButtonStyles(file, "documentsFileSpace.png", theme);
+//        fileContainer.addComponent(file);
+        TableLayout.Constraint showDocConstraint = toolbarContainerLayout.createConstraint();
+        showDocConstraint.setWidthPercentage(-2);
+        showDocConstraint.setHeightPercentage(-2);
+        WebBrowser webBrowser = new WebBrowser();
+        webBrowser.setURL("http://research.microsoft.com/pubs/79655/gazelle.pdf");
+        documentsContainer.addComponent(showDocConstraint,webBrowser);
 
 
 
