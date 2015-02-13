@@ -1,5 +1,6 @@
 package com.telos.hyd.Styles;
 
+import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
 import com.codename1.ui.Component;
 import com.codename1.ui.plaf.Border;
@@ -56,6 +57,8 @@ public class Styles {
         button.setUIID("Label");
         button.getStyle().setPadding(10,10,0,0);
     }
+
+    public static SimpleDateFormat simpleDateFormat =new SimpleDateFormat("dd-mm-yyyy");
 
 
 }

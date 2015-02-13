@@ -10,6 +10,7 @@ import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.table.TableLayout;
 import com.codename1.ui.util.Resources;
 import com.telos.hyd.Styles.Styles;
@@ -33,7 +34,6 @@ public class ClientPage {
     Dialog dialog;
     Client client;
     List dataList;
-    Container tabelContainer;
     Form searchForm;
 
     final Form  clientForm = new Form();
@@ -54,10 +54,9 @@ public class ClientPage {
     public void createPage() throws IOException {
 
         clientForm.setTitle("");
-        clientForm.setScrollable(false);
         BoxLayout boxLayout = new BoxLayout(BoxLayout.X_AXIS);
         clientForm.setLayout(boxLayout);
-        clientForm.setScrollableY(true);
+        clientForm.setScrollableY(false);
 
 
         Toolbar toolbar = new Toolbar();
@@ -94,7 +93,6 @@ public class ClientPage {
         //toolbar.addCommandToSideMenu(cmdTelos);
         Container toolbarContainer = new Container();
         toolbarContainer.setUIID("logInContainer");
-        toolbarContainer.setScrollable(false);
         TableLayout toolbarContainerLayout = new TableLayout(1, 2);
         toolbarContainer.setLayout(toolbarContainerLayout);
 
@@ -150,14 +148,12 @@ public class ClientPage {
 
         Container contantContainer  = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         contantContainer.setUIID("tabContainer");
-        contantContainer.setScrollableY(true);
-        contantContainer.setScrollableY(true);
         clientForm.addComponent(contantContainer);
+        contantContainer.setScrollableY(false);
 
 
         //Container for search filed and others
         Container fieldContainer = new Container();
-        fieldContainer.setScrollableY(true);
         TableLayout layout = new TableLayout(1, 2);
         fieldContainer.setLayout(layout);
         contantContainer.addComponent(fieldContainer);
@@ -166,7 +162,6 @@ public class ClientPage {
 
         //tabs Container
         Container tabsContainer = new Container();
-        tabsContainer.setScrollableY(true);
         tabsContainer.setLayout(new BorderLayout());
         Tabs tabs = new Tabs(Component.RIGHT);
 
@@ -365,7 +360,7 @@ public class ClientPage {
         if(client.getPolicyStartdate() != null )
         {
 
-            companyPolicyStart.setText(client.getPolicyStartdate().toString());
+            companyPolicyStart.setText(Styles.simpleDateFormat.format(client.getPolicyStartdate()));
         }
         else
             companyPolicyStart.setText("N/A");
@@ -432,7 +427,7 @@ public class ClientPage {
         if(client.getPolicyEndDate() != null )
         {
 
-            companyPolicyEnd.setText(client.getPolicyEndDate().toString());
+            companyPolicyStart.setText(Styles.simpleDateFormat.format(client.getPolicyEndDate()));
         }
         else
             companyPolicyEnd.setText("N/A");
@@ -602,7 +597,7 @@ public class ClientPage {
         if(client.getVehicleManufactureYear() != null )
         {
 
-            policyVehicleYear.setText(client.getVehicleManufactureYear().toString());
+            companyPolicyStart.setText(Styles.simpleDateFormat.format(client.getVehicleManufactureYear()));
         }
         else
             policyVehicleYear.setText("N/A");
@@ -761,7 +756,7 @@ public class ClientPage {
         if(client.getCollectionDate() != null )
         {
 
-            amountCollection.setText(client.getCollectionDate().toString());
+            companyPolicyStart.setText(Styles.simpleDateFormat.format(client.getCollectionDate()));
         }
         else
             amountCollection.setText("N/A");
@@ -836,17 +831,20 @@ public class ClientPage {
         //Documents Details Container
         Container documentsContainer = new Container();
         documentsContainer.setUIID("tabContainer");
-        TableLayout documentsLayout = new TableLayout(1,2);
+        TableLayout documentsLayout = new TableLayout(2,1);
         documentsContainer.setLayout(documentsLayout);
-//        Container fileContainer = new Container(new FlowLayout());
-//        documentsContainer.addComponent(fileContainer);
-//        Button file = new Button();
-//        Styles.ButtonStyles(file, "documentsFileSpace.png", theme);
-//        fileContainer.addComponent(file);
+        Container fileContainer = new Container(new FlowLayout());
+        documentsContainer.addComponent(fileContainer);
+        Button fileButton = new Button();
+        Styles.ButtonStyles(fileButton, "documentsFileSpace.png", theme);
+        fileButton.setText("Testing file");
+        fileButton.setTextPosition(Component.BOTTOM);
+        fileContainer.addComponent(fileButton);
         TableLayout.Constraint showDocConstraint = toolbarContainerLayout.createConstraint();
-        showDocConstraint.setWidthPercentage(-2);
         showDocConstraint.setHeightPercentage(-2);
+        showDocConstraint.setWidthPercentage(100);
         WebBrowser webBrowser = new WebBrowser();
+        webBrowser.getStyle().setPadding(0,0,55,0);
         webBrowser.setURL("http://research.microsoft.com/pubs/79655/gazelle.pdf");
         documentsContainer.addComponent(showDocConstraint,webBrowser);
 
@@ -886,7 +884,7 @@ public class ClientPage {
         if(client.getServiceTax() != null )
         {
 
-            renewalSmsDate.setText(client.getServiceTax().toString());
+            //companyPolicyStart.setText(client.getSe);
         }
         else
             renewalSmsDate.setText("N/A");
@@ -943,15 +941,6 @@ public class ClientPage {
         tabsContainer.addComponent(BorderLayout.NORTH,tabs);
         contantContainer.addComponent(tabsContainer);
 
-
-
-
-
-
-        //lable Container
-        tabelContainer = new Container(new BorderLayout());
-        tabelContainer.setUIID("tabContainer");
-        contantContainer.addComponent(tabelContainer);
 
 
         //back button
@@ -1103,7 +1092,7 @@ public class ClientPage {
                         dataList.addItem(clientValues);
                     }
 
-                    tabelContainer.removeAll();
+                   // tabelContainer.removeAll();
 
                     try {
                         dataList.setRenderer(new SearchRenderer(clientForm));
