@@ -836,13 +836,13 @@ public class ClientPage {
         Container fileContainer = new Container(new FlowLayout());
         documentsContainer.addComponent(fileContainer);
         Button fileButton = new Button();
-        Styles.ButtonStyles(fileButton, "documentsFileSpace.png", theme);
+        Styles.ButtonStyles(fileButton, "documentsFile.png", theme);
         fileButton.setText("Testing file");
         fileButton.setTextPosition(Component.BOTTOM);
         fileContainer.addComponent(fileButton);
         TableLayout.Constraint showDocConstraint = toolbarContainerLayout.createConstraint();
         showDocConstraint.setHeightPercentage(-2);
-        showDocConstraint.setWidthPercentage(100);
+        showDocConstraint.setWidthPercentage(-2);
         WebBrowser webBrowser = new WebBrowser();
         webBrowser.getStyle().setPadding(0,0,55,0);
         webBrowser.setURL("http://research.microsoft.com/pubs/79655/gazelle.pdf");

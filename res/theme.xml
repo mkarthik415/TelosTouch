@@ -16,7 +16,7 @@
     <image name="contactSmall.png" type="multi"  />
     <ui name="DialogForm" />
     <image name="documents.png" type="multi"  />
-    <image name="documentsFileSpace.png" type="multi"  />
+    <image name="documentsFile.png" type="multi"  />
     <image name="documentswhite.png" type="multi"  />
     <image name="downArrow.png" type="multi"  />
     <image name="fireImage.png" type="multi"  />

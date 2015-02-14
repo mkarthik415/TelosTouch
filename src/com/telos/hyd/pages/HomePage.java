@@ -49,12 +49,6 @@ Form logInForm;
         bannerContainer.getUnselectedStyle().setBgTransparency(255);
         bannerContainer.getSelectedStyle().setBgTransparency(255);
 
-//        Color color = new Color(72, 90, 162);
-//        int rgb = color.getRGB();
-//        bannerContainer.getStyle().setBgColor(rgb);
-//        bannerContainer.getUnselectedStyle().setBgColor(rgb);
-//        bannerContainer.getSelectedStyle().setBgColor(rgb);
-
         //Banner
         Label banner = new Label();
         banner.getStyle().setBgTransparency(0);
