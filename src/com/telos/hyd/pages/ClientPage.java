@@ -427,7 +427,7 @@ public class ClientPage {
         if(client.getPolicyEndDate() != null )
         {
 
-            companyPolicyStart.setText(Styles.simpleDateFormat.format(client.getPolicyEndDate()));
+            companyPolicyEnd.setText(Styles.simpleDateFormat.format(client.getPolicyEndDate()));
         }
         else
             companyPolicyEnd.setText("N/A");
@@ -1054,7 +1054,6 @@ public class ClientPage {
          */
         @Override
         public void actionPerformed(ActionEvent evt) {
-            dialog.dispose();
             final SearchPage searchPage = new SearchPage(new Form());
             String searchString = searchInput.getText();
 

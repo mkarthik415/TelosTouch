@@ -376,11 +376,15 @@ public class SearchPage{
                     List dataList = new List();
                     dataList.setItemGap(0);
                     ArrayList list = (ArrayList) totalList.get("root");
-                    for (Object object : list) {
-                        Client clientValues = new Client();
-                        clientMapper.readMap((Map) object, clientValues);
-                        dataList.addItem(clientValues);
-                    }
+                      if(list != null)
+                      {
+
+                          for (Object object : list) {
+                              Client clientValues = new Client();
+                              clientMapper.readMap((Map) object, clientValues);
+                              dataList.addItem(clientValues);
+                          }
+                      }
 
                     tabelContainer.removeAll();
 
