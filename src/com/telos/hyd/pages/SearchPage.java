@@ -346,7 +346,6 @@ public class SearchPage{
          */
         @Override
         public void actionPerformed(ActionEvent evt) {
-            //dialog.dispose();
 
             final ClientMapper clientMapper = new ClientMapper();
 

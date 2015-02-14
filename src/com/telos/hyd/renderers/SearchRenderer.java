@@ -25,7 +25,7 @@ public class SearchRenderer implements ListCellRenderer {
     Container rowContainer = new Container();
     TableLayout tableLayout = new TableLayout(1,6);
 
-    Client client;
+    Client client= null;
 
     //Buttons
     Button idButton = new Button();
@@ -85,9 +85,10 @@ public class SearchRenderer implements ListCellRenderer {
         else
             Styles.ButtonStylesForCell(policyNumberButton, "N/A", this.theme);
 
-//        Format formatter = new SimpleDateFormat("dd-MM-YYYY");
-//        String stringDate = formatter.format(client.getPolicyStartdate());
-        Styles.ButtonStylesForCell(startDateButton, "01/02/2015", this.theme);
+        if(client.getPolicyNumber() != null )
+            Styles.ButtonStylesForCell(startDateButton, Styles.simpleDateFormat.format(client.getPolicyStartdate()), this.theme);
+        else
+            Styles.ButtonStylesForCell(startDateButton, "N/A", this.theme);
 
         Styles.ButtonStylesForCell(insuranceCompanyButton, client.getInsCompanyName(), this.theme);
 
