@@ -37,6 +37,8 @@ public class SearchPage{
     ArrayList<Client> totalclients;
     Container contantContainer;
     Container tabelContainer = new Container();
+    Button b = null;
+    Button b1 = null;
 
     public List getDataList() {
         return dataList;
@@ -253,30 +255,60 @@ public class SearchPage{
         public void actionPerformed(ActionEvent evt) {
 
             dialog = new Dialog();
-            Container container= new Container();
+            Container container = new Container();
             container.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
-            Button b = new Button();
-            Styles.ButtonStyles(b, "name.png", theme);
+            b = new Button();
+            if (searchBy.getText().equals("name")) {
+
+                Styles.ButtonStylesForDialog(b, "nameClick.png", theme);
+
+            } else
+                Styles.ButtonStylesForDialog(b, "name.png", theme);
             b.setName("Name");
             b.addActionListener(searchAction);
-            Button b1 = new Button();
-            Styles.ButtonStyles(b1, "carNumber.png", theme);
+            b1 = new Button();
+            if (searchBy.getText().equals("Vehical #")) {
+
+                Styles.ButtonStylesForDialog(b1, "carNumberClick.png", theme);
+
+            } else
+                Styles.ButtonStylesForDialog(b1, "carNumber.png", theme);
             b1.setName("Vehical #");
             b1.addActionListener(searchByButtonAction);
             Button b2 = new Button();
-            Styles.ButtonStyles(b2, "serialNumber.png", theme);
+            if (searchBy.getText().equals("Serial #")) {
+
+                Styles.ButtonStylesForDialog(b2, "serialNumberClick.png", theme);
+
+            } else
+                Styles.ButtonStylesForDialog(b2, "serialNumber.png", theme);
             b2.setName("Serial #");
             b2.addActionListener(searchByButtonAction);
             Button b3 = new Button();
-            Styles.ButtonStyles(b3, "policyIssue.png", theme);
+            if (searchBy.getText().equals("Policy Date")) {
+
+                Styles.ButtonStylesForDialog(b3, "policyIssueClick.png", theme);
+
+            } else
+                Styles.ButtonStylesForDialog(b3, "policyIssue.png", theme);
             b3.setName("Policy Date");
             b3.addActionListener(searchByButtonAction);
             Button b4 = new Button();
-            Styles.ButtonStyles(b4, "policyCertificate.png", theme);
+            if (searchBy.getText().equals("Policy #")) {
+
+                Styles.ButtonStylesForDialog(b4, "policyCertificateClick.png", theme);
+
+            } else
+                Styles.ButtonStylesForDialog(b4, "policyCertificate.png", theme);
             b4.setName("Policy #");
             b4.addActionListener(searchByButtonAction);
             Button b5 = new Button();
-            Styles.ButtonStyles(b5, "telephoneNumber.png", theme);
+            if (searchBy.getText().equals("Telephone #")) {
+
+                Styles.ButtonStylesForDialog(b5, "telephoneNumberClick.png", theme);
+
+            } else
+                Styles.ButtonStylesForDialog(b5, "telephoneNumber.png", theme);
             b5.setName("Telephone #");
             b5.addActionListener(searchByButtonAction);
             container.addComponent(b);
