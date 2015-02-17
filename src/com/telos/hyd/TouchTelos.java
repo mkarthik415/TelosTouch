@@ -64,18 +64,11 @@ public class TouchTelos {
         bannerContainer.getUnselectedStyle().setBgTransparency(255);
         bannerContainer.getSelectedStyle().setBgTransparency(255);
         bannerContainer.setUIID("bannerContainer");
-//        Color color = new Color(72, 90, 162);
-//        int rgb = color.getRGB();
-//        bannerContainer.getStyle().setBgColor(rgb);
-//        bannerContainer.getUnselectedStyle().setBgColor(rgb);
-//        bannerContainer.getSelectedStyle().setBgColor(rgb);
 
 
         Container imageContainer = new Container();
         TableLayout imageTableLayout = new TableLayout(2,2);
         TableLayout.Constraint imageRowConstraint = imageTableLayout.createConstraint();
-//        imageRowConstraint.setWidthPercentage(50);
-//        imageRowConstraint.setHeightPercentage(50);
         imageRowConstraint.setHorizontalAlign(Component.CENTER);
         imageRowConstraint.setVerticalAlign(Component.CENTER);
         imageContainer.setLayout(imageTableLayout);
@@ -86,43 +79,6 @@ public class TouchTelos {
         imageContainer.getUnselectedStyle().setBgColor(0xffffff);
         imageContainer.getSelectedStyle().setBgColor(0xffffff);
 
-
-        Container fieldsContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-        fieldsContainer.setName("fieldsContainer");
-        TableLayout fieldTableLayout = new TableLayout(3,1);
-        TableLayout.Constraint fieldRowConstraint = imageTableLayout.createConstraint();
-        fieldRowConstraint.setWidthPercentage(100);
-        fieldRowConstraint.setHorizontalAlign(Component.CENTER);
-        fieldRowConstraint.setVerticalAlign(Component.CENTER);
-        fieldsContainer.setLayout(imageTableLayout);
-        fieldsContainer.getStyle().setBgTransparency(225);
-        fieldsContainer.getUnselectedStyle().setBgTransparency(225);
-        fieldsContainer.getSelectedStyle().setBgTransparency(225);
-//        fieldsContainer.getStyle().setBgColor(Styles.getGray());
-//        fieldsContainer.getUnselectedStyle().setBgColor(Styles.getGray());
-//        fieldsContainer.getSelectedStyle().setBgColor(Styles.getGray());
-        fieldsContainer.setUIID("logInContainer");
-        fieldsContainer.setLayout(fieldTableLayout);
-        fieldsContainer.getStyle().setPadding(20,20,0,0);
-
-
-
-
-        Container formContainer = new Container();
-        formContainer.setName("formContainer");
-        formContainer.setScrollable(false);
-        formContainer.setLayout(new BorderLayout());
-
-
-        //Banner
-        Label banner = new Label();
-        banner.getStyle().setBgTransparency(0);
-        banner.getUnselectedStyle().setBgTransparency(0);
-        banner.getSelectedStyle().setBgTransparency(0);
-        banner.setGap(0);
-        banner.setIcon(theme.getImage("telosLogo.png"));
-        bannerContainer.addComponent(rowConstraint,banner);
-        f.addComponent(BorderLayout.NORTH, bannerContainer);
 
         //Home page Image
         Label carImage = new Label();
@@ -145,14 +101,29 @@ public class TouchTelos {
         travelImage.setIcon(theme.getImage("travelImage.png"));
 
 
-        imageContainer.addComponent(carImage);
-        imageContainer.addComponent(shipImage);
-        imageContainer.addComponent(fireImage);
-        imageContainer.addComponent(travelImage);
+        imageContainer.addComponent(imageRowConstraint,carImage);
+        imageContainer.addComponent(imageRowConstraint,shipImage);
+        imageContainer.addComponent(imageRowConstraint,fireImage);
+        imageContainer.addComponent(imageRowConstraint,travelImage);
 
 
-        f.addComponent(BorderLayout.CENTER, imageContainer);
+       // f.addComponent(BorderLayout.SOUTH, imageContainer);
 
+
+        Container fieldsContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        fieldsContainer.setName("fieldsContainer");
+        TableLayout fieldTableLayout = new TableLayout(3,1);
+        TableLayout.Constraint fieldRowConstraint = imageTableLayout.createConstraint();
+        fieldRowConstraint.setWidthPercentage(100);
+        fieldRowConstraint.setHorizontalAlign(Component.CENTER);
+        fieldRowConstraint.setVerticalAlign(Component.CENTER);
+        fieldsContainer.setLayout(imageTableLayout);
+        fieldsContainer.getStyle().setBgTransparency(225);
+        fieldsContainer.getUnselectedStyle().setBgTransparency(225);
+        fieldsContainer.getSelectedStyle().setBgTransparency(225);
+        fieldsContainer.setUIID("logInContainer");
+        fieldsContainer.setLayout(fieldTableLayout);
+        fieldsContainer.getStyle().setPadding(20,0,0,0);
 
         //text fields
         TextField userName = new TextField();
@@ -175,13 +146,34 @@ public class TouchTelos {
         loginButton.setUIID("logInButton");
         loginButton.setIcon(theme.getImage("login.png"));
 
-
         fieldsContainer.addComponent(fieldRowConstraint,userName);
         fieldsContainer.addComponent(fieldRowConstraint,passWord);
         fieldsContainer.addComponent(fieldRowConstraint,loginButton);
 
 
         f.addComponent(BorderLayout.CENTER, fieldsContainer);
+
+
+
+
+        Container formContainer = new Container();
+        formContainer.setName("formContainer");
+        formContainer.setScrollable(false);
+        formContainer.setLayout(new BorderLayout());
+
+
+        //Banner
+        Label banner = new Label();
+        banner.getStyle().setBgTransparency(0);
+        banner.getUnselectedStyle().setBgTransparency(0);
+        banner.getSelectedStyle().setBgTransparency(0);
+        banner.setGap(0);
+        banner.setIcon(theme.getImage("telosLogo.png"));
+        bannerContainer.addComponent(rowConstraint,banner);
+        f.addComponent(BorderLayout.NORTH, bannerContainer);
+
+
+
 
 
 

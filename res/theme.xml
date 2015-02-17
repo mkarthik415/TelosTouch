@@ -7,7 +7,6 @@
     <image name="backButtonGrey.png"  />
     <image name="backWhite.png" type="multi"  />
     <image name="carImage.png" type="multi"  />
-    <image name="carNumber.png" type="multi"  />
     <image name="companyDetails.png" type="multi"  />
     <image name="companyDetailsWhite.png" type="multi"  />
     <image name="contactBlue.png" type="multi"  />
@@ -33,13 +32,10 @@
     <image name="locateSmall.png" type="multi"  />
     <image name="login.png" type="multi"  />
     <image name="manageAccount.png" type="multi"  />
-    <image name="name.png" type="multi"  />
     <image name="personalDetails.png" type="multi"  />
     <image name="personalDetailsWhite.png" type="multi"  />
-    <image name="policyCertificate.png" type="multi"  />
     <image name="policyDetails.png" type="multi"  />
     <image name="policyDetailsWhite.png" type="multi"  />
-    <image name="policyIssue.png" type="multi"  />
     <image name="renewalDetails.png" type="multi"  />
     <image name="renewalDetailsWhite.png" type="multi"  />
     <image name="reportButton.png" type="multi"  />
@@ -48,12 +44,10 @@
     <image name="searchButton.png" type="multi"  />
     <image name="searchSmall.png" type="multi"  />
     <image name="searchWhite.png" type="multi"  />
-    <image name="serialNumber.png" type="multi"  />
     <image name="shipImage.png" type="multi"  />
     <image name="signOut.png" type="multi"  />
     <image name="spaceBlue.png" type="multi"  />
     <image name="spinner.jpg" type="multi"  />
-    <image name="telephoneNumber.png" type="multi"  />
     <image name="telosLogo.png" type="multi"  />
     <image name="telosLogoBlue.png" type="multi"  />
     <image name="telosSmall.png" type="multi"  />
@@ -132,7 +126,7 @@
         <val key="logInButton.margin" value="0,0,0,0" />
         <val key="logInButton.padding" value="10,0,0,0" />
         <val key="logInButton.transparency" value="0" />
-        <val key="logInContainer.bgColor" value="a0a1a4" />
+        <val key="logInContainer.bgColor" value="a8a9ad" />
         <val key="logInContainer.margin" value="0,0,0,0" />
         <val key="logInContainer.padding" value="0,0,0,0" />
         <val key="logInContainer.sel#bgColor" value="9c9da2" />

@@ -3,6 +3,7 @@ package com.telos.hyd.pages;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
+import com.codename1.io.Log;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.*;
 import com.codename1.ui.events.ActionEvent;
@@ -263,7 +264,7 @@ public class SearchPage{
             b1.setName("Vehical #");
             b1.addActionListener(searchByButtonAction);
             Button b2 = new Button();
-            Styles.ButtonStyles(b2, "serialNumber.png.png", theme);
+            Styles.ButtonStyles(b2, "serialNumber.png", theme);
             b2.setName("Serial #");
             b2.addActionListener(searchByButtonAction);
             Button b3 = new Button();
@@ -403,18 +404,49 @@ public class SearchPage{
             };
 
             try {
-                cr.setUrl("http://telosws-poplar5.rhcloud.com/byName");
+                if (searchBy.getText().equals("Name")) {
+
+                    cr.setUrl("http://telosws-poplar5.rhcloud.com/byName");
+                } else if (searchBy.getText().equals("Vehical #")) {
+                    cr.setUrl("http://telosws-poplar5.rhcloud.com/byVehicleNumber");
+
+                } else if (searchBy.getText().equals("Serial #")) {
+                    cr.setUrl("http://telosws-poplar5.rhcloud.com/byPolicyNumber");
+
+                } else if (searchBy.getText().equals("Policy Date")) {
+                    cr.setUrl("http://telosws-poplar5.rhcloud.com/startDate");
+
+                } else if (searchBy.getText().equals("Policy #")) {
+                    cr.setUrl("http://telosws-poplar5.rhcloud.com/byPolicyNumber");
+                } else if (searchBy.getText().equals("Telephone #")) {
+                    cr.setUrl("http://telosws-poplar5.rhcloud.com/byPhoneNumber");
+
+                }
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.p(e.toString());
             }
             cr.setPost(false);
             InfiniteProgress progress = new InfiniteProgress();
             Dialog dialogProgress = progress.showInifiniteBlocking();
             cr.setDisposeOnCompletion(dialogProgress);
-            if(searchInput.getText() != null)
-            {
+            if (searchBy.getText().equals("name")) {
 
                 cr.addArgument("name", searchInput.getText());
+
+            } else if (searchBy.getText().equals("Vehical #")) {
+                cr.addArgument("vehicleNumber", searchInput.getText());
+
+            } else if (searchBy.getText().equals("Serial #")) {
+                cr.addArgument("name", searchInput.getText());
+
+            } else if (searchBy.getText().equals("Policy Date")) {
+                cr.addArgument("name", searchInput.getText());
+
+            } else if (searchBy.getText().equals("Policy #")) {
+                cr.addArgument("policyNumber", searchInput.getText());
+            } else if (searchBy.getText().equals("Telephone #")) {
+                cr.addArgument("phoneNumber", searchInput.getText());
+
             }
 
             NetworkManager.getInstance().addToQueue(cr);
