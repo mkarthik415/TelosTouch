@@ -9,6 +9,7 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.table.TableLayout;
 import com.codename1.ui.util.Resources;
+import com.telos.hyd.Styles.Styles;
 import com.telos.hyd.pages.HomePage;
 
 import java.io.IOException;
@@ -143,8 +144,7 @@ public class TouchTelos {
 
         //login Button
         final Button loginButton = new Button();
-        loginButton.setUIID("logInButton");
-        loginButton.setIcon(theme.getImage("login.png"));
+        Styles.ButtonStylesForHomePage(loginButton,"login.png",theme);
 
         fieldsContainer.addComponent(fieldRowConstraint,userName);
         fieldsContainer.addComponent(fieldRowConstraint,passWord);

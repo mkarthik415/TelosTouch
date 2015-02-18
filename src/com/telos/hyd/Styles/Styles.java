@@ -35,7 +35,7 @@ public class Styles {
         button.setGap(0);
         button.getStyle().setMargin(Component.BOTTOM, 0);
         button.setIcon(theme.getImage(buttonName));
-        button.setPressedIcon(theme.getImage(buttonName.replace(".png","Click.png")));
+        //button.setPressedIcon(theme.getImage(buttonName.replace(".png","Click.png")));
         button.getStyle().setAlignment(Component.CENTER);
         button.getSelectedStyle().setBgTransparency(0);
         button.getUnselectedStyle().setBgTransparency(0);
