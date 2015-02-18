@@ -557,109 +557,326 @@ public class ClientPage {
         else
             policyName.setText("N/A");
 
-        //Vehicle Number labels
-        Label vehicleNumber = new Label("Vehicle Number");
-        Label policyVehicle = new Label();
-        if(client.getVehicleNumber() != null )
+        if(client.getDepartment().equals("Motor"))
+        {
+            //Vehicle Number labels
+            Label vehicleNumber = new Label("Vehicle Number");
+            Label policyVehicle = new Label();
+            if(client.getVehicleNumber() != null )
+            {
+
+                policyVehicle.setText(client.getVehicleNumber());
+            }
+            else
+                policyVehicle.setText("N/A");
+
+            //I.D.V labels
+            Label idvLabel = new Label("I.D.V.");
+            Label policyIdv = new Label();
+            if(client.getiDV() != null )
+            {
+
+                policyIdv.setText(client.getiDV());
+            }
+            else
+                policyIdv.setText("N/A");
+
+
+            //Vehicle Make labels
+            Label vehicleLabel = new Label("Vehicle Make");
+            Label policyVehicleMake = new Label();
+            if(client.getVehicleMake() != null )
+            {
+
+                policyVehicleMake.setText(client.getVehicleMake());
+            }
+            else
+                policyVehicleMake.setText("N/A");
+
+            //Year of Manufacturing labels
+            Label vehicleYear = new Label("Year of Manufacturing");
+            Label policyVehicleYear = new Label();
+            if(client.getVehicleManufactureYear() != null )
+            {
+
+                policyVehicleYear.setText(Styles.simpleDateFormat.format(client.getVehicleManufactureYear()));
+            }
+            else
+                policyVehicleYear.setText("N/A");
+
+            policyDeatilsContainer.addComponent(policyType);
+            policyDeatilsContainer.addComponent(policyName);
+
+            //NCB labels
+            Label ncbLabel = new Label("NCB");
+            Label policyNcb = new Label();
+            if(client.getnBC() != null )
+            {
+
+                policyNcb.setText(client.getnBC());
+            }
+            else
+                policyNcb.setText("N/A");
+
+
+            //Label Padding
+            //policy Type label padding
+            policyType.setUIID("clientLabel");
+            policyName.setUIID("clientInfoLabel");
+
+            //Vehicle Number label padding
+            vehicleNumber.setUIID("clientLabel");
+            policyVehicle.setUIID("clientInfoLabel");
+
+            //I.D.V label padding
+            idvLabel.setUIID("clientLabel");
+            policyIdv.setUIID("clientInfoLabel");
+
+            //Vehicle Make label padding
+            vehicleLabel.setUIID("clientLabel");
+            policyVehicleMake.setUIID("clientInfoLabel");
+
+            //Year of Manufacturing padding
+            vehicleYear.setUIID("clientLabel");
+            policyVehicleYear.setUIID("clientInfoLabel");
+
+            //NCB label padding
+            ncbLabel.setUIID("clientLabel");
+            policyNcb.setUIID("clientInfoLabel");
+
+            policyDeatilsContainer.addComponent(vehicleNumber);
+            policyDeatilsContainer.addComponent(policyVehicle);
+
+
+            policyDeatilsContainer.addComponent(idvLabel);
+            policyDeatilsContainer.addComponent(policyIdv);
+
+
+            policyDeatilsContainer.addComponent(vehicleLabel);
+            policyDeatilsContainer.addComponent(policyVehicleMake);
+
+            policyDeatilsContainer.addComponent(vehicleYear);
+            policyDeatilsContainer.addComponent(policyVehicleYear);
+
+
+            policyDeatilsContainer.addComponent(ncbLabel);
+            policyDeatilsContainer.addComponent(policyNcb);
+
+        }
+        else if(client.getDepartment().equals("Miscellaneous"))
         {
 
-            policyVehicle.setText(client.getVehicleNumber());
-        }
-        else
-            policyVehicle.setText("N/A");
+            //I.D.V labels
+            Label idCard = new Label("ID Card");
+            Label policyIdCard= new Label();
+            if(client.getMiscIdCard() != null )
+            {
 
-        //I.D.V labels
-        Label idvLabel = new Label("I.D.V.");
-        Label policyIdv = new Label();
-        if(client.getiDV() != null )
+                policyIdCard.setText(client.getMiscIdCard());
+            }
+            else
+                policyIdCard.setText("N/A");
+
+
+            //Vehicle Make labels
+            Label dispatchDate = new Label("Dispatch Date");
+            Label policyDispatchDate = new Label();
+            if(client.getMiscDispatchDate() != null )
+            {
+
+                policyDispatchDate.setText(Styles.simpleDateFormat.format(client.getMiscDispatchDate()));
+            }
+            else
+                policyDispatchDate.setText("N/A");
+
+
+            //Label Padding
+            //policy Type label padding
+            idCard.setUIID("clientLabel");
+            policyIdCard.setUIID("clientInfoLabel");
+
+            //Vehicle Number label padding
+            dispatchDate.setUIID("clientLabel");
+            policyDispatchDate.setUIID("clientInfoLabel");
+
+            policyDeatilsContainer.addComponent(idCard);
+            policyDeatilsContainer.addComponent(policyIdCard);
+
+
+            policyDeatilsContainer.addComponent(dispatchDate);
+            policyDeatilsContainer.addComponent(policyDispatchDate);
+
+
+
+        }
+        else if(client.getDepartment().equals("Marine"))
         {
 
-            policyIdv.setText(client.getiDV());
+            //I.D.V labels
+            Label openPolicy = new Label("Open Policy");
+            Label policyOpenPolicy = new Label();
+            if(client.getMarineOpenPolicy() != null )
+            {
+
+                policyOpenPolicy.setText(client.getMarineOpenPolicy());
+            }
+            else
+                policyOpenPolicy.setText("N/A");
+
+
+            //Vehicle Make labels
+            Label openCover = new Label("Open Cover");
+            Label policyOpenCover = new Label();
+            if(client.getMarineOpenCover() != null )
+            {
+
+                policyOpenCover.setText(client.getMarineOpenCover());
+            }
+            else
+                policyOpenCover.setText("N/A");
+
+            //Year of Manufacturing labels
+            Label otherPolicies = new Label("Other Policies");
+            Label policyOtherPolicies = new Label();
+            if(client.getMarineOtherPolicies() != null )
+            {
+
+                policyOtherPolicies.setText(client.getMarineOtherPolicies());
+            }
+            else
+                policyOtherPolicies.setText(client.getMarineOtherPolicies());
+
+            //NCB labels
+            Label voyageFrom = new Label("Voyage From");
+            Label policyVoyageFrom= new Label();
+            if(client.getMarineVoyageFrom() != null )
+            {
+
+                policyVoyageFrom.setText(client.getMarineVoyageFrom());
+            }
+            else
+                policyVoyageFrom.setText("N/A");
+
+
+            //Vehicle Number labels
+            Label voyageTo = new Label("Voyage To");
+            Label policyVoyageTo = new Label();
+            if(client.getMarineVoyageTo() != null )
+            {
+
+                policyVoyageTo.setText(client.getMarineVoyageTo());
+            }
+            else
+                policyVoyageTo.setText("N/A");
+
+
+            //Label Padding
+            //policy Type label padding
+            openPolicy.setUIID("clientLabel");
+            policyOpenPolicy.setUIID("clientInfoLabel");
+
+            //Vehicle Number label padding
+            openCover.setUIID("clientLabel");
+            policyOpenCover.setUIID("clientInfoLabel");
+
+            //I.D.V label padding
+            otherPolicies.setUIID("clientLabel");
+            policyOtherPolicies.setUIID("clientInfoLabel");
+
+            //Vehicle Make label padding
+            voyageFrom.setUIID("clientLabel");
+            policyVoyageFrom.setUIID("clientInfoLabel");
+
+            //Year of Manufacturing padding
+            voyageTo.setUIID("clientLabel");
+            policyVoyageTo.setUIID("clientInfoLabel");
+
+            policyDeatilsContainer.addComponent(openPolicy);
+            policyDeatilsContainer.addComponent(policyOpenPolicy);
+
+
+            policyDeatilsContainer.addComponent(openCover);
+            policyDeatilsContainer.addComponent(policyOpenCover);
+
+
+            policyDeatilsContainer.addComponent(otherPolicies);
+            policyDeatilsContainer.addComponent(policyOtherPolicies);
+
+
+            policyDeatilsContainer.addComponent(voyageFrom);
+            policyDeatilsContainer.addComponent(policyVoyageFrom);
+
+            policyDeatilsContainer.addComponent(voyageTo);
+            policyDeatilsContainer.addComponent(policyVoyageTo);
+
         }
-        else
-            policyIdv.setText("N/A");
+        else if(client.getDepartment().equals("Fire"))
+        {
+            //Basic Rate labels
+            Label basicRate = new Label("Basic Rate");
+            Label policyBasicRate = new Label();
+            if(client.getBasicRate() != null )
+            {
+
+                policyBasicRate.setText(client.getBasicRate().toString());
+            }
+            else
+                policyBasicRate.setText("N/A");
 
 
-        //Vehicle Make labels
-        Label vehicleLabel = new Label("Vehicle Make");
-        Label policyVehicleMake = new Label();
-        if(client.getVehicleMake() != null )
+            //Earth Quake premium
+            Label earthQuake = new Label("Earth Quake Premium");
+            Label policyEarthQuakeRate = new Label();
+            if(client.getEarthQuakePremium() != null )
+            {
+
+                policyEarthQuakeRate.setText(client.getEarthQuakePremium().toString());
+            }
+            else
+                policyEarthQuakeRate.setText("N/A");
+
+
+            //additioinal premium
+            Label additionPremium = new Label("Additional Premium");
+            Label policyAdditionPremium = new Label();
+            if(client.getEarthQuakePremium() != null )
+            {
+
+                policyAdditionPremium.setText(client.getAnyAdditionalPremium().toString());
+            }
+            else
+                policyAdditionPremium.setText("N/A");
+
+
+            //Label Padding
+            //policy Type label padding
+            basicRate.setUIID("clientLabel");
+            policyBasicRate.setUIID("clientInfoLabel");
+
+            //Vehicle Number label padding
+            earthQuake.setUIID("clientLabel");
+            policyEarthQuakeRate.setUIID("clientInfoLabel");
+
+            //I.D.V label padding
+            additionPremium.setUIID("clientLabel");
+            policyAdditionPremium.setUIID("clientInfoLabel");
+
+            policyDeatilsContainer.addComponent(basicRate);
+            policyDeatilsContainer.addComponent(policyBasicRate);
+
+
+            policyDeatilsContainer.addComponent(earthQuake);
+            policyDeatilsContainer.addComponent(policyEarthQuakeRate);
+
+
+            policyDeatilsContainer.addComponent(additionPremium);
+            policyDeatilsContainer.addComponent(policyAdditionPremium);
+
+        }
+        else if(client.getDepartment().equals("Engineering"))
         {
 
-            policyVehicleMake.setText(client.getVehicleMake());
         }
-        else
-            policyVehicleMake.setText("N/A");
-
-        //Year of Manufacturing labels
-        Label vehicleYear = new Label("Year of Manufacturing");
-        Label policyVehicleYear = new Label();
-        if(client.getVehicleManufactureYear() != null )
-        {
-
-            companyPolicyStart.setText(Styles.simpleDateFormat.format(client.getVehicleManufactureYear()));
-        }
-        else
-            policyVehicleYear.setText("N/A");
-
-        //NCB labels
-        Label ncbLabel = new Label("NCB");
-        Label policyNcb = new Label();
-        if(client.getnBC() != null )
-        {
-
-            policyNcb.setText(client.getnBC());
-        }
-        else
-            policyNcb.setText("N/A");
-
-
-        //Label Padding
-        //policy Type label padding
-        policyType.setUIID("clientLabel");
-        policyName.setUIID("clientInfoLabel");
-
-        //Vehicle Number label padding
-        vehicleNumber.setUIID("clientLabel");
-        policyVehicle.setUIID("clientInfoLabel");
-
-        //I.D.V label padding
-        idvLabel.setUIID("clientLabel");
-        policyIdv.setUIID("clientInfoLabel");
-
-        //Vehicle Make label padding
-        vehicleLabel.setUIID("clientLabel");
-        policyVehicleMake.setUIID("clientInfoLabel");
-
-        //Year of Manufacturing padding
-        vehicleYear.setUIID("clientLabel");
-        policyVehicleYear.setUIID("clientInfoLabel");
-
-        //NCB label padding
-        ncbLabel.setUIID("clientLabel");
-        policyNcb.setUIID("clientInfoLabel");
-
-        policyDeatilsContainer.addComponent(policyType);
-        policyDeatilsContainer.addComponent(policyName);
-
-
-        policyDeatilsContainer.addComponent(vehicleNumber);
-        policyDeatilsContainer.addComponent(policyVehicle);
-
-
-        policyDeatilsContainer.addComponent(idvLabel);
-        policyDeatilsContainer.addComponent(policyIdv);
-
-
-        policyDeatilsContainer.addComponent(vehicleLabel);
-        policyDeatilsContainer.addComponent(policyVehicleMake);
-
-        policyDeatilsContainer.addComponent(vehicleYear);
-        policyDeatilsContainer.addComponent(policyVehicleYear);
-
-
-        policyDeatilsContainer.addComponent(ncbLabel);
-        policyDeatilsContainer.addComponent(policyNcb);
 
 
 
