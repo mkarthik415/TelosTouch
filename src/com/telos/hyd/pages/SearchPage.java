@@ -258,14 +258,14 @@ public class SearchPage{
             Container container = new Container();
             container.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
             b = new Button();
-            if (searchBy.getText().equals("name")) {
+            if (searchBy.getText().equals("Name")) {
 
                 Styles.ButtonStylesForDialog(b, "nameClick.png", theme);
 
             } else
                 Styles.ButtonStylesForDialog(b, "name.png", theme);
             b.setName("Name");
-            b.addActionListener(searchAction);
+            b.addActionListener(searchByButtonAction);
             b1 = new Button();
             if (searchBy.getText().equals("Vehical #")) {
 
@@ -458,10 +458,15 @@ public class SearchPage{
                 Log.p(e.toString());
             }
             cr.setPost(false);
+
+
             InfiniteProgress progress = new InfiniteProgress();
             Dialog dialogProgress = progress.showInifiniteBlocking();
             cr.setDisposeOnCompletion(dialogProgress);
-            if (searchBy.getText().equals("name")) {
+
+
+
+            if (searchBy.getText().equals("Name")) {
 
                 cr.addArgument("name", searchInput.getText());
 
