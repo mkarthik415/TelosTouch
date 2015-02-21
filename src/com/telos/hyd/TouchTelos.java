@@ -21,6 +21,7 @@ public class TouchTelos {
     private Form current;
     Resources theme;
     Boolean tablet = false;
+    Form f;
 
     public void init(Object context) {
         try{
@@ -47,7 +48,7 @@ public class TouchTelos {
             current.show();
             return;
         }
-        final Form f = new Form();
+        f = new Form();
         f.setScrollable(false);
         f.setLayout(new BorderLayout());
         //container
@@ -61,9 +62,6 @@ public class TouchTelos {
         rowConstraint.setHorizontalAlign(Component.CENTER);
         rowConstraint.setVerticalAlign(Component.CENTER);
         bannerContainer.setLayout(bannerTableLayout);
-        bannerContainer.getStyle().setBgTransparency(225);
-        bannerContainer.getUnselectedStyle().setBgTransparency(255);
-        bannerContainer.getSelectedStyle().setBgTransparency(255);
         bannerContainer.setUIID("bannerContainer");
 
 
@@ -74,10 +72,6 @@ public class TouchTelos {
         fieldRowConstraint.setWidthPercentage(100);
         fieldRowConstraint.setHorizontalAlign(Component.CENTER);
         fieldRowConstraint.setVerticalAlign(Component.CENTER);
-        fieldsContainer.setLayout(fieldTableLayout);
-        fieldsContainer.getStyle().setBgTransparency(225);
-        fieldsContainer.getUnselectedStyle().setBgTransparency(225);
-        fieldsContainer.getSelectedStyle().setBgTransparency(225);
         fieldsContainer.setUIID("logInContainer");
         fieldsContainer.setLayout(fieldTableLayout);
         fieldsContainer.getStyle().setPadding(20,0,0,0);
@@ -128,25 +122,22 @@ public class TouchTelos {
         f.addComponent(BorderLayout.NORTH, bannerContainer);
 
 
-
-
-
-
-        ActionListener action = new ActionListener() {
-
-            public void actionPerformed(ActionEvent evt) {
-
-                HomePage homePage = new HomePage(f);
-                homePage.createPage();
-
-            }
-        };
-
         loginButton.addActionListener(action);
 
 
         f.show();
     }
+
+
+    ActionListener action = new ActionListener() {
+
+        public void actionPerformed(ActionEvent evt) {
+
+            HomePage homePage = new HomePage(f);
+            homePage.createPage();
+
+        }
+    };
 
     public void stop() {
         current = Display.getInstance().getCurrent();
