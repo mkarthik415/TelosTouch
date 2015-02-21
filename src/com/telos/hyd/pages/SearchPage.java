@@ -380,113 +380,118 @@ public class SearchPage{
         @Override
         public void actionPerformed(ActionEvent evt) {
 
-            final ClientMapper clientMapper = new ClientMapper();
+            if(! searchBy.getText().equals("Name"))
+            {
 
-            ConnectionRequest cr = new ConnectionRequest() {
+                final ClientMapper clientMapper = new ClientMapper();
 
-
-                public Map<String, Object> totalList;
-
-                protected void readResponse(InputStream is)
-                        throws IOException {
-
-                    JSONParser p = new JSONParser();
-                    totalList = p.parseJSON(new InputStreamReader(is));
+                ConnectionRequest cr = new ConnectionRequest() {
 
 
-                }
+                    public Map<String, Object> totalList;
 
-                /**
-                 * A callback method that's invoked on the EDT after the readResponse() method has finished,
-                 * this is the place where developers should change their Codename One user interface to
-                 * avoid race conditions that might be triggered by modifications within readResponse.
-                 * Notice this method is only invoked on a successful response and will not be invoked in case
-                 * of a failure.
-                 */
-                @Override
-                protected void postResponse() {
-                    List dataList = new List();
-                    dataList.setItemGap(0);
-                    ArrayList list = (ArrayList) totalList.get("root");
-                      if(list != null)
-                      {
+                    protected void readResponse(InputStream is)
+                            throws IOException {
 
-                          for (Object object : list) {
-                              Client clientValues = new Client();
-                              clientMapper.readMap((Map) object, clientValues);
-                              dataList.addItem(clientValues);
-                          }
-                      }
+                        JSONParser p = new JSONParser();
+                        totalList = p.parseJSON(new InputStreamReader(is));
 
-                    tabelContainer.removeAll();
 
-                    try {
-                        dataList.setRenderer(new SearchRenderer(searchPageForm));
-                    } catch (IOException e) {
-                        e.printStackTrace();
                     }
-                    tabelContainer.setScrollableY(true);
-                    tabelContainer.setLayout(new BorderLayout());
-                    tabelContainer.addComponent(BorderLayout.NORTH, dataList);
-                    searchPageForm.repaint();
 
+                    /**
+                     * A callback method that's invoked on the EDT after the readResponse() method has finished,
+                     * this is the place where developers should change their Codename One user interface to
+                     * avoid race conditions that might be triggered by modifications within readResponse.
+                     * Notice this method is only invoked on a successful response and will not be invoked in case
+                     * of a failure.
+                     */
+                    @Override
+                    protected void postResponse() {
+                        List dataList = new List();
+                        dataList.setItemGap(0);
+                        ArrayList list = (ArrayList) totalList.get("root");
+                        if(list != null)
+                        {
+
+                            for (Object object : list) {
+                                Client clientValues = new Client();
+                                clientMapper.readMap((Map) object, clientValues);
+                                dataList.addItem(clientValues);
+                            }
+                        }
+
+                        tabelContainer.removeAll();
+
+                        try {
+                            dataList.setRenderer(new SearchRenderer(searchPageForm));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        tabelContainer.setScrollableY(true);
+                        tabelContainer.setLayout(new BorderLayout());
+                        tabelContainer.addComponent(BorderLayout.NORTH, dataList);
+                        searchPageForm.repaint();
+
+                    }
+
+
+                };
+
+                try {
+                    if (searchBy.getText().equals("Name")) {
+
+                        cr.setUrl("http://telosws-poplar5.rhcloud.com/byName");
+                    } else if (searchBy.getText().equals("Vehical #")) {
+                        cr.setUrl("http://telosws-poplar5.rhcloud.com/byVehicleNumber");
+
+                    } else if (searchBy.getText().equals("Serial #")) {
+                        cr.setUrl("http://telosws-poplar5.rhcloud.com/byPolicyNumber");
+
+                    } else if (searchBy.getText().equals("Policy Date")) {
+                        cr.setUrl("http://telosws-poplar5.rhcloud.com/startDate");
+
+                    } else if (searchBy.getText().equals("Policy #")) {
+                        cr.setUrl("http://telosws-poplar5.rhcloud.com/byPolicyNumber");
+                    } else if (searchBy.getText().equals("Telephone #")) {
+                        cr.setUrl("http://telosws-poplar5.rhcloud.com/byPhoneNumber");
+
+                    }
+                } catch (Exception e) {
+                    Log.p(e.toString());
                 }
+                cr.setPost(false);
 
 
-            };
+                InfiniteProgress progress = new InfiniteProgress();
+                Dialog dialogProgress = progress.showInifiniteBlocking();
+                cr.setDisposeOnCompletion(dialogProgress);
 
-            try {
+
+
                 if (searchBy.getText().equals("Name")) {
 
-                    cr.setUrl("http://telosws-poplar5.rhcloud.com/byName");
+                    cr.addArgument("name", searchInput.getText());
+
                 } else if (searchBy.getText().equals("Vehical #")) {
-                    cr.setUrl("http://telosws-poplar5.rhcloud.com/byVehicleNumber");
+                    cr.addArgument("vehicleNumber", searchInput.getText());
 
                 } else if (searchBy.getText().equals("Serial #")) {
-                    cr.setUrl("http://telosws-poplar5.rhcloud.com/byPolicyNumber");
+                    cr.addArgument("name", searchInput.getText());
 
                 } else if (searchBy.getText().equals("Policy Date")) {
-                    cr.setUrl("http://telosws-poplar5.rhcloud.com/startDate");
+                    cr.addArgument("name", searchInput.getText());
 
                 } else if (searchBy.getText().equals("Policy #")) {
-                    cr.setUrl("http://telosws-poplar5.rhcloud.com/byPolicyNumber");
+                    cr.addArgument("policyNumber", searchInput.getText());
                 } else if (searchBy.getText().equals("Telephone #")) {
-                    cr.setUrl("http://telosws-poplar5.rhcloud.com/byPhoneNumber");
+                    cr.addArgument("phoneNumber", searchInput.getText());
 
                 }
-            } catch (Exception e) {
-                Log.p(e.toString());
-            }
-            cr.setPost(false);
 
-
-            InfiniteProgress progress = new InfiniteProgress();
-            Dialog dialogProgress = progress.showInifiniteBlocking();
-            cr.setDisposeOnCompletion(dialogProgress);
-
-
-
-            if (searchBy.getText().equals("Name")) {
-
-                cr.addArgument("name", searchInput.getText());
-
-            } else if (searchBy.getText().equals("Vehical #")) {
-                cr.addArgument("vehicleNumber", searchInput.getText());
-
-            } else if (searchBy.getText().equals("Serial #")) {
-                cr.addArgument("name", searchInput.getText());
-
-            } else if (searchBy.getText().equals("Policy Date")) {
-                cr.addArgument("name", searchInput.getText());
-
-            } else if (searchBy.getText().equals("Policy #")) {
-                cr.addArgument("policyNumber", searchInput.getText());
-            } else if (searchBy.getText().equals("Telephone #")) {
-                cr.addArgument("phoneNumber", searchInput.getText());
-
+                NetworkManager.getInstance().addToQueue(cr);
             }
 
-            NetworkManager.getInstance().addToQueue(cr);
         }
     };
 }

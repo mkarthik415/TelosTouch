@@ -8,3 +8,4 @@ package com.telos.hyd.model
 
 data_mapper Client:ClientMapper
 data_mapper File:FileMapper
+data_mapper User:UserMapper
