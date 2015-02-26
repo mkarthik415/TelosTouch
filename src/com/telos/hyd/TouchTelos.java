@@ -56,6 +56,8 @@ public class TouchTelos {
          System.out.println("displaysize is "+Display.getInstance().getDisplayWidth());
 
         Container textfieldContainer = new Container();
+        textfieldContainer.setUIID("logInContainer");
+        textfieldContainer.getStyle().setPadding(20,0,0,0);
         TableLayout fieldTableLayout = new TableLayout(3,1);
         TableLayout.Constraint fieldRowConstraint = fieldTableLayout.createConstraint();
         fieldRowConstraint.setWidthPercentage(100);
