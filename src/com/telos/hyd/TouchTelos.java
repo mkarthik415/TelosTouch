@@ -56,18 +56,24 @@ public class TouchTelos {
          System.out.println("displaysize is "+Display.getInstance().getDisplayWidth());
 
         Container textfieldContainer = new Container();
+        TableLayout fieldTableLayout = new TableLayout(3,1);
+        TableLayout.Constraint fieldRowConstraint = fieldTableLayout.createConstraint();
+        fieldRowConstraint.setWidthPercentage(100);
+        fieldRowConstraint.setHorizontalAlign(Component.CENTER);
+        fieldRowConstraint.setVerticalAlign(Component.CENTER);
+        textfieldContainer.setLayout(fieldTableLayout);
 
         TextField username = new TextField();
         username.setHint("UserName");
-        textfieldContainer.addComponent(username);
+        textfieldContainer.addComponent(fieldRowConstraint,username);
         TextField password = new TextField();
         password.setHint("Password");
-        textfieldContainer.addComponent(password);
+        textfieldContainer.addComponent(fieldRowConstraint,password);
 
         //login Button
         final Button loginButton = new Button();
         Styles.ButtonStylesForHomePage(loginButton, "login.png", theme);
-        textfieldContainer.addComponent(loginButton);
+        textfieldContainer.addComponent(fieldRowConstraint,loginButton);
         loginButton.addActionListener(action);
 
         f.addComponent(BorderLayout.CENTER,textfieldContainer);
