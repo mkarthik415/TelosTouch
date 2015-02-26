@@ -5,7 +5,6 @@ import com.codename1.ui.*;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
-import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.table.TableLayout;
 import com.codename1.ui.util.Resources;
@@ -51,8 +50,30 @@ public class TouchTelos {
         f = new Form();
         f.setScrollable(false);
         f.setLayout(new BorderLayout());
-        //container
+
+
+        // text field container
          System.out.println("displaysize is "+Display.getInstance().getDisplayWidth());
+
+        Container textfieldContainer = new Container();
+
+        TextField username = new TextField();
+        username.setHint("UserName");
+        textfieldContainer.addComponent(username);
+        TextField password = new TextField();
+        password.setHint("Password");
+        textfieldContainer.addComponent(password);
+
+        //login Button
+        final Button loginButton = new Button();
+        Styles.ButtonStylesForHomePage(loginButton, "login.png", theme);
+        textfieldContainer.addComponent(loginButton);
+        loginButton.addActionListener(action);
+
+        f.addComponent(BorderLayout.CENTER,textfieldContainer);
+
+
+        //Header container
 
 
         Container bannerContainer = new Container();
@@ -65,53 +86,7 @@ public class TouchTelos {
         bannerContainer.setUIID("bannerContainer");
 
 
-        Container fieldsContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-        fieldsContainer.setName("fieldsContainer");
-        TableLayout fieldTableLayout = new TableLayout(3,1);
-        TableLayout.Constraint fieldRowConstraint = fieldTableLayout.createConstraint();
-        fieldRowConstraint.setWidthPercentage(100);
-        fieldRowConstraint.setHorizontalAlign(Component.CENTER);
-        fieldRowConstraint.setVerticalAlign(Component.CENTER);
-        fieldsContainer.setUIID("logInContainer");
-        fieldsContainer.setLayout(fieldTableLayout);
-        fieldsContainer.getStyle().setPadding(20,0,0,0);
 
-        //text fields
-        TextField userName = new TextField();
-        userName.setHint("Username");
-        userName.getStyle().setPadding(10,10,0,0);
-        userName.getUnselectedStyle().setPadding(10,10,0,0);
-        userName.getSelectedStyle().setPadding(10,10,0,0);
-        userName.getPressedStyle().setPadding(10,10,0,0);
-        TextField passWord = new TextField();
-        passWord.getStyle().setPadding(10,10,0,0);
-        passWord.getUnselectedStyle().setPadding(10,10,0,0);
-        passWord.getSelectedStyle().setPadding(10,10,0,0);
-        passWord.getPressedStyle().setPadding(10,10,0,0);
-        passWord.setConstraint(TextField.PASSWORD);
-        passWord.setHint("Password");
-
-        //login Button
-        final Button loginButton = new Button();
-        Styles.ButtonStylesForHomePage(loginButton,"login.png",theme);
-
-        fieldsContainer.addComponent(fieldRowConstraint,userName);
-        fieldsContainer.addComponent(fieldRowConstraint,passWord);
-        fieldsContainer.addComponent(fieldRowConstraint,loginButton);
-
-
-        f.addComponent(BorderLayout.CENTER, fieldsContainer);
-
-
-
-
-        Container formContainer = new Container();
-        formContainer.setName("formContainer");
-        formContainer.setScrollable(false);
-        formContainer.setLayout(new BorderLayout());
-
-
-        //Banner
         Label banner = new Label();
         banner.getStyle().setBgTransparency(0);
         banner.getUnselectedStyle().setBgTransparency(0);
@@ -120,10 +95,6 @@ public class TouchTelos {
         banner.setIcon(theme.getImage("telosLogo.png"));
         bannerContainer.addComponent(rowConstraint,banner);
         f.addComponent(BorderLayout.NORTH, bannerContainer);
-
-
-        loginButton.addActionListener(action);
-
 
         f.show();
     }
