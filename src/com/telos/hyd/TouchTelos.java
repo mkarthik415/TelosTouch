@@ -1,6 +1,10 @@
 package com.telos.hyd;
 
+import com.codename1.components.InfiniteProgress;
+import com.codename1.io.ConnectionRequest;
+import com.codename1.io.JSONParser;
 import com.codename1.io.Log;
+import com.codename1.io.NetworkManager;
 import com.codename1.ui.*;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
@@ -12,6 +16,10 @@ import com.telos.hyd.Styles.Styles;
 import com.telos.hyd.pages.HomePage;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by karthikmarupeddi on 9/30/14.
@@ -21,6 +29,8 @@ public class TouchTelos {
     Resources theme;
     Boolean tablet = false;
     Form f;
+    TextField username;
+    TextField password;
 
     public void init(Object context) {
         try{
@@ -65,10 +75,12 @@ public class TouchTelos {
         fieldRowConstraint.setVerticalAlign(Component.CENTER);
         textfieldContainer.setLayout(fieldTableLayout);
 
-        TextField username = new TextField();
+        username = new TextField();
         username.setHint("UserName");
         textfieldContainer.addComponent(fieldRowConstraint,username);
-        TextField password = new TextField();
+
+
+        password = new TextField();
         password.setHint("Password");
         textfieldContainer.addComponent(fieldRowConstraint,password);
 
@@ -112,8 +124,65 @@ public class TouchTelos {
 
         public void actionPerformed(ActionEvent evt) {
 
-            HomePage homePage = new HomePage(f);
-            homePage.createPage();
+            if (password.getText() != null && username.getText() != null) {
+
+                ConnectionRequest cr = new ConnectionRequest() {
+
+
+                    public Map<String, Object> totalList;
+
+                    protected void readResponse(InputStream is)
+                            throws IOException {
+
+                        JSONParser p = new JSONParser();
+                        totalList = p.parseJSON(new InputStreamReader(is));
+
+
+                    }
+
+
+                    /**
+                     * A callback method that's invoked on the EDT after the readResponse() method has finished,
+                     * this is the place where developers should change their Codename One user interface to
+                     * avoid race conditions that might be triggered by modifications within readResponse.
+                     * Notice this method is only invoked on a successful response and will not be invoked in case
+                     * of a failure.
+                     */
+                    @Override
+                    protected void postResponse() {
+                        List dataList = new List();
+                        dataList.setItemGap(0);
+                        ArrayList list = (ArrayList) totalList.get("root");
+                        if (list != null) {
+
+                            for (Object object : list) {
+
+                            }
+                        }
+                        HomePage homePage = new HomePage(f);
+                        homePage.createPage();
+
+                    }
+
+
+                };
+
+
+                cr.setUrl("http://telosws-poplar5.rhcloud.com/findUser");
+
+                cr.setPost(false);
+
+
+                InfiniteProgress progress = new InfiniteProgress();
+                Dialog dialogProgress = progress.showInifiniteBlocking();
+                cr.setDisposeOnCompletion(dialogProgress);
+                cr.addArgument("userName", username.getText());
+                cr.addArgument("password", password.getText());
+
+
+                NetworkManager.getInstance().addToQueue(cr);
+            }
+
 
         }
     };
