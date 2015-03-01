@@ -17,7 +17,8 @@ import java.io.IOException;
  */
 public class HomePage {
 
-Form logInForm;
+    Form logInForm;
+    Form homePageForm;
     Resources theme;
    public HomePage(Form form)
     {
@@ -32,7 +33,7 @@ Form logInForm;
 
    public void createPage()
     {
-        final Form homePageForm = new Form();
+        homePageForm = new Form();
         homePageForm.setScrollable(false);
         homePageForm.setLayout(new BorderLayout());
 
@@ -215,5 +216,11 @@ Form logInForm;
 
         searchButton.addActionListener(action);
         signOut.addActionListener(logOff);
+    }
+
+
+    public Form getForm()
+    {
+        return  homePageForm;
     }
 }

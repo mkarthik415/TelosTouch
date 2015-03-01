@@ -380,8 +380,6 @@ public class SearchPage{
         @Override
         public void actionPerformed(ActionEvent evt) {
 
-            if(! searchBy.getText().equals("Name"))
-            {
 
                 final ClientMapper clientMapper = new ClientMapper();
 
@@ -468,7 +466,6 @@ public class SearchPage{
                 cr.setDisposeOnCompletion(dialogProgress);
 
 
-
                 if (searchBy.getText().equals("Name")) {
 
                     cr.addArgument("name", searchInput.getText());
@@ -490,7 +487,7 @@ public class SearchPage{
                 }
 
                 NetworkManager.getInstance().addToQueue(cr);
-            }
+
 
         }
     };

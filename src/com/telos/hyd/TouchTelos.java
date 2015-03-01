@@ -31,6 +31,8 @@ public class TouchTelos {
     Form f;
     TextField username;
     TextField password;
+    Label errorLabel;
+    boolean login = false;
 
     public void init(Object context) {
         try{
@@ -68,7 +70,7 @@ public class TouchTelos {
         Container textfieldContainer = new Container();
         textfieldContainer.setUIID("logInContainer");
         textfieldContainer.getStyle().setPadding(20,0,0,0);
-        TableLayout fieldTableLayout = new TableLayout(3,1);
+        TableLayout fieldTableLayout = new TableLayout(4,1);
         TableLayout.Constraint fieldRowConstraint = fieldTableLayout.createConstraint();
         fieldRowConstraint.setWidthPercentage(100);
         fieldRowConstraint.setHorizontalAlign(Component.CENTER);
@@ -82,7 +84,12 @@ public class TouchTelos {
 
         password = new TextField();
         password.setHint("Password");
+        password.setConstraint(TextField.PASSWORD);
         textfieldContainer.addComponent(fieldRowConstraint,password);
+
+        errorLabel = new Label("Please check your username or password");
+        errorLabel.setVisible(false);
+        textfieldContainer.addComponent(fieldRowConstraint,errorLabel);
 
         //login Button
         final Button loginButton = new Button();
@@ -122,66 +129,22 @@ public class TouchTelos {
 
     ActionListener action = new ActionListener() {
 
+
         public void actionPerformed(ActionEvent evt) {
 
-            if (password.getText() != null && username.getText() != null) {
-
-                ConnectionRequest cr = new ConnectionRequest() {
-
-
-                    public Map<String, Object> totalList;
-
-                    protected void readResponse(InputStream is)
-                            throws IOException {
-
-                        JSONParser p = new JSONParser();
-                        totalList = p.parseJSON(new InputStreamReader(is));
-
-
-                    }
-
-
-                    /**
-                     * A callback method that's invoked on the EDT after the readResponse() method has finished,
-                     * this is the place where developers should change their Codename One user interface to
-                     * avoid race conditions that might be triggered by modifications within readResponse.
-                     * Notice this method is only invoked on a successful response and will not be invoked in case
-                     * of a failure.
-                     */
-                    @Override
-                    protected void postResponse() {
-                        List dataList = new List();
-                        dataList.setItemGap(0);
-                        ArrayList list = (ArrayList) totalList.get("root");
-                        if (list != null) {
-
-                            for (Object object : list) {
-
-                            }
-                        }
-                        HomePage homePage = new HomePage(f);
-                        homePage.createPage();
-
-                    }
-
-
-                };
-
-
-                cr.setUrl("http://telosws-poplar5.rhcloud.com/findUser");
-
-                cr.setPost(false);
-
-
-                InfiniteProgress progress = new InfiniteProgress();
-                Dialog dialogProgress = progress.showInifiniteBlocking();
-                cr.setDisposeOnCompletion(dialogProgress);
-                cr.addArgument("userName", username.getText());
-                cr.addArgument("password", password.getText());
-
-
-                NetworkManager.getInstance().addToQueue(cr);
+            System.out.println("the value of log in is "+login);
+            if(webservice())
+            {
+                errorLabel.setVisible(false);
+                HomePage homePage = new HomePage(f);
+                homePage.createPage();
+                homePage.getForm().show();
             }
+            else
+            {
+                errorLabel.setVisible(true);
+            }
+
 
 
         }
@@ -192,5 +155,75 @@ public class TouchTelos {
     }
 
     public void destroy() {
+    }
+
+
+    public boolean  webservice()
+    {
+        int i = 0;
+        System.out.println("inside the webservices method  "+i++);
+
+        if (password.getText() != null && username.getText() != null) {
+
+            ConnectionRequest cr = new ConnectionRequest() {
+
+                public Map<String, Object> totalList;
+
+                protected void readResponse(InputStream is)
+                        throws IOException {
+
+                    JSONParser p = new JSONParser();
+                    totalList = p.parseJSON(new InputStreamReader(is));
+                    login = true;
+
+                }
+
+
+                /**
+                 * A callback method that's invoked on the EDT after the readResponse() method has finished,
+                 * this is the place where developers should change their Codename One user interface to
+                 * avoid race conditions that might be triggered by modifications within readResponse.
+                 * Notice this method is only invoked on a successful response and will not be invoked in case
+                 * of a failure.
+                 */
+                @Override
+                protected void postResponse() {
+
+                    List dataList = new List();
+                    dataList.setItemGap(0);
+                    ArrayList list = (ArrayList) totalList.get("root");
+                    if (list != null) {
+
+                        for (Object object : list) {
+                            login = true;
+
+                        }
+                    }
+
+
+
+                }
+
+
+            };
+
+
+            cr.setUrl("http://telosws-poplar5.rhcloud.com/findUser");
+
+            cr.setPost(false);
+
+            //login = true;
+            InfiniteProgress progress = new InfiniteProgress();
+            Dialog dialogProgress = progress.showInifiniteBlocking();
+            cr.setDisposeOnCompletion(dialogProgress);
+            cr.addArgument("userName", username.getText());
+            cr.addArgument("password", password.getText());
+            NetworkManager.getInstance().addToQueueAndWait(cr);
+
+        }
+
+        //I can log in one click when returned true;
+        //return true;
+        return login;
     }
 }
