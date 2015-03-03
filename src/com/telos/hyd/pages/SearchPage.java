@@ -1,6 +1,5 @@
 package com.telos.hyd.pages;
 
-import com.codename1.components.InfiniteProgress;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.Log;
@@ -39,6 +38,7 @@ public class SearchPage{
     Container tabelContainer = new Container();
     Button b = null;
     Button b1 = null;
+    Label clientFoundLabel = null;
 
     public List getDataList() {
         return dataList;
@@ -138,6 +138,7 @@ public class SearchPage{
 
         searchInput = new TextField();
         searchInput.putClientProperty("searchField", Boolean.TRUE);
+        searchInput.setHint("Please Select Search By Criteria ...........");
         container.addComponent(searchInput);
         toolbarContainer.addComponent(toolbarConstraint, container);
         searchInput.setDoneListener(searchAction);
@@ -221,7 +222,7 @@ public class SearchPage{
         fieldContainer.addComponent(backButton);
 
 
-        Label clientFoundLabel = new Label();
+        clientFoundLabel = new Label();
         clientFoundLabel.setText("Search Results");
         Container foundContainer = new Container(new BorderLayout());
         TableLayout tableLayout = new TableLayout(1,1);
@@ -393,6 +394,10 @@ public class SearchPage{
 
                         JSONParser p = new JSONParser();
                         totalList = p.parseJSON(new InputStreamReader(is));
+                        if(totalList.isEmpty() || totalList == null)
+                        {
+                            clientFoundLabel.setText("No Search Results found");
+                        }
 
 
                     }
@@ -406,30 +411,39 @@ public class SearchPage{
                      */
                     @Override
                     protected void postResponse() {
-                        List dataList = new List();
-                        dataList.setItemGap(0);
-                        ArrayList list = (ArrayList) totalList.get("root");
-                        if(list != null)
+
+                        if(totalList != null)
                         {
+                            clientFoundLabel.setText("Select Results");
+                            List dataList = new List();
+                            dataList.setItemGap(0);
+                            ArrayList list = (ArrayList) totalList.get("root");
+                            if (list != null) {
 
-                            for (Object object : list) {
-                                Client clientValues = new Client();
-                                clientMapper.readMap((Map) object, clientValues);
-                                dataList.addItem(clientValues);
+                                for (Object object : list) {
+                                    Client clientValues = new Client();
+                                    clientMapper.readMap((Map) object, clientValues);
+                                    dataList.addItem(clientValues);
+                                }
                             }
+
+                            tabelContainer.removeAll();
+
+                            try {
+                                dataList.setRenderer(new SearchRenderer(searchPageForm));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            tabelContainer.setScrollableY(true);
+                            tabelContainer.setLayout(new BorderLayout());
+                            tabelContainer.addComponent(BorderLayout.NORTH, dataList);
+                            searchPageForm.repaint();
+                        }
+                        else
+                        {
+                             clientFoundLabel.setText("No Search Results found");
                         }
 
-                        tabelContainer.removeAll();
-
-                        try {
-                            dataList.setRenderer(new SearchRenderer(searchPageForm));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        tabelContainer.setScrollableY(true);
-                        tabelContainer.setLayout(new BorderLayout());
-                        tabelContainer.addComponent(BorderLayout.NORTH, dataList);
-                        searchPageForm.repaint();
 
                     }
 
@@ -454,6 +468,8 @@ public class SearchPage{
                     } else if (searchBy.getText().equals("Telephone #")) {
                         cr.setUrl("http://telosws-poplar5.rhcloud.com/byPhoneNumber");
 
+                    } else {
+                        clientFoundLabel.setText("Select Search by Criteria");
                     }
                 } catch (Exception e) {
                     Log.p(e.toString());
@@ -461,9 +477,9 @@ public class SearchPage{
                 cr.setPost(false);
 
 
-                InfiniteProgress progress = new InfiniteProgress();
-                Dialog dialogProgress = progress.showInifiniteBlocking();
-                cr.setDisposeOnCompletion(dialogProgress);
+//                InfiniteProgress progress = new InfiniteProgress();
+//                Dialog dialogProgress = progress.showInifiniteBlocking();
+//                cr.setDisposeOnCompletion(dialogProgress);
 
 
                 if (searchBy.getText().equals("Name")) {
@@ -490,5 +506,6 @@ public class SearchPage{
 
 
         }
+
     };
 }

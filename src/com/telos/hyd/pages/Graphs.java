@@ -7,7 +7,7 @@ package com.telos.hyd.pages;
 
 
 public class Graphs {
-
+//
 //    private DefaultRenderer buildCategoryRenderer(int[] colors) {
 //        DefaultRenderer renderer = new DefaultRenderer();
 //        renderer.setLabelsTextSize(15);

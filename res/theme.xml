@@ -64,7 +64,6 @@
     <image name="telosLogoBlue.png" type="multi"  />
     <image name="telosSmall.png" type="multi"  />
     <theme name="Theme">
-        <val key="@infiniteImage" value="spinner.jpg" />
         <val key="Button.margin" value="0,0,0,0" />
         <val key="Button.padding" value="0,0,0,0" />
         <val key="Button.press#margin" value="0,0,0,0" />
