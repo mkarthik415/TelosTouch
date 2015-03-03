@@ -361,36 +361,45 @@ public class SearchPage{
         public void actionPerformed(ActionEvent evt) {
             dialog.dispose();
             String value = evt.getComponent().getName();
-            if(value !=null || !value.isEmpty() )
+            if(value !=null)
             {
 
                 if(value.equals("Name"))
                 {
+                    searchInput.setText("");
                     searchInput.setHint("Enter Name Here");
                 }
                 else if(value.equals("Vehical #"))
                 {
+                    searchInput.setText("");
                     searchInput.setHint("Enter Vehicle Number Here");
                 }
                 else if(value.equals("Serial #"))
                 {
+                    searchInput.setText("");
                     searchInput.setHint("Enter Serial Number Here");
                 }
                 else if(value.equals("Policy #"))
                 {
+                    searchInput.setText("");
                     searchInput.setHint("Enter Policy Number here");
                 }
                 else if(value.equals("Telephone #"))
                 {
+                    searchInput.setText("");
                     searchInput.setHint("Enter Phone Number here");
                 }
                 else
                 {
+                    searchInput.setText("");
                     searchInput.setHint("Select Search By Criteria ......");
                 }
             }
             else
+            {
+                searchInput.setText("");
                 searchInput.setHint("Select Search By Criteria ......");
+            }
 
             searchBy.setText(value);
 
