@@ -361,30 +361,37 @@ public class SearchPage{
         public void actionPerformed(ActionEvent evt) {
             dialog.dispose();
             String value = evt.getComponent().getName();
-            if(value.equals("Name"))
+            if(value !=null || !value.isEmpty() )
             {
-                searchInput.setHint("Enter Name Here");
-            }
-            else if(value.equals("Vehical #"))
-            {
-                searchInput.setHint("Enter Vehicle Number Here");
-            }
-            else if(value.equals("Serial #"))
-            {
-                searchInput.setHint("Enter Serial Number Here");
-            }
-            else if(value.equals("Policy #"))
-            {
-                searchInput.setHint("Enter Policy Number here");
-            }
-            else if(value.equals("Telephone #"))
-            {
-                searchInput.setHint("Enter Phone Number here");
+
+                if(value.equals("Name"))
+                {
+                    searchInput.setHint("Enter Name Here");
+                }
+                else if(value.equals("Vehical #"))
+                {
+                    searchInput.setHint("Enter Vehicle Number Here");
+                }
+                else if(value.equals("Serial #"))
+                {
+                    searchInput.setHint("Enter Serial Number Here");
+                }
+                else if(value.equals("Policy #"))
+                {
+                    searchInput.setHint("Enter Policy Number here");
+                }
+                else if(value.equals("Telephone #"))
+                {
+                    searchInput.setHint("Enter Phone Number here");
+                }
+                else
+                {
+                    searchInput.setHint("Select Search By Criteria ......");
+                }
             }
             else
-            {
                 searchInput.setHint("Select Search By Criteria ......");
-            }
+
             searchBy.setText(value);
 
 
