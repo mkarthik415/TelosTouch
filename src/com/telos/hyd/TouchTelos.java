@@ -1,5 +1,6 @@
 package com.telos.hyd;
 
+import com.codename1.components.InfiniteProgress;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.Log;
@@ -31,6 +32,7 @@ public class TouchTelos {
     TextField username;
     TextField password;
     Label errorLabel;
+    private static String name;
     boolean login = false;
 
     public void init(Object context) {
@@ -193,7 +195,9 @@ public class TouchTelos {
                     if (list != null) {
 
                         for (Object object : list) {
+                            f.setName(username.getText());
                             login = true;
+                            break;
 
                         }
                     }
@@ -207,11 +211,14 @@ public class TouchTelos {
 
 
             cr.setUrl("http://telosws-poplar5.rhcloud.com/findUser");
-
             cr.setPost(false);
-//            InfiniteProgress progress = new InfiniteProgress();
-//            Dialog dialogProgress = progress.showInifiniteBlocking();
-//            cr.setDisposeOnCompletion(dialogProgress);
+
+            InfiniteProgress progress = new InfiniteProgress();
+            progress.setUIID("InfiniteProgress");
+            Dialog dialogProgress = progress.showInifiniteBlocking();
+            cr.setDisposeOnCompletion(dialogProgress);
+
+
             cr.addArgument("userName", username.getText());
             cr.addArgument("password", password.getText());
             NetworkManager.getInstance().addToQueueAndWait(cr);

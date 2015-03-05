@@ -34,6 +34,8 @@
     <image name="locateSmall.png" type="multi"  />
     <image name="login.png" type="multi"  />
     <image name="manageAccount.png" type="multi"  />
+    <image name="mnraoPhoto.png" type="multi"  />
+    <image name="mrgrajuPhoto.png" type="multi"  />
     <image name="name.png" type="multi"  />
     <image name="nameClick.png" type="multi"  />
     <image name="personalDetails.png" type="multi"  />
@@ -58,12 +60,14 @@
     <image name="signOut.png" type="multi"  />
     <image name="spaceBlue.png" type="multi"  />
     <image name="spinner.jpg" type="multi"  />
+    <image name="spinnerImage.png" type="multi"  />
     <image name="telephoneNumber.png" type="multi"  />
     <image name="telephoneNumberClick.png" type="multi"  />
     <image name="telosLogo.png" type="multi"  />
     <image name="telosLogoBlue.png" type="multi"  />
     <image name="telosSmall.png" type="multi"  />
     <theme name="Theme">
+        <val key="@infiniteImage" value="spinnerImage.png" />
         <val key="Button.margin" value="0,0,0,0" />
         <val key="Button.padding" value="0,0,0,0" />
         <val key="Button.press#margin" value="0,0,0,0" />
@@ -75,6 +79,8 @@
         <val key="Button.transparency" value="255" />
         <val key="Form.margin" value="0,0,0,0" />
         <val key="Form.padding" value="0,0,0,0" />
+        <val key="InfiniteProgress.sel#transparency" value="0" />
+        <val key="InfiniteProgress.transparency" value="0" />
         <val key="Label.margin" value="0,0,0,0" />
         <val key="Label.padding" value="0,0,0,0" />
         <val key="Label.transparency" value="0" />

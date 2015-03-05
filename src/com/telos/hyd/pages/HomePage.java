@@ -134,7 +134,6 @@ public class HomePage {
         pic.getUnselectedStyle().setBgTransparency(0);
         pic.getSelectedStyle().setBgTransparency(0);
         pic.setGap(0);
-        pic.setIcon(theme.getImage("karthikPhoto.png"));
         imageContainer.addComponent(picTableLayoutConstraint,pic);
         pic.getStyle().setPadding(10,0,10,0);
         detailsContainer.addComponent(imageContainer);
@@ -146,7 +145,25 @@ public class HomePage {
         TableLayout.Constraint fieldRowConstraint = namedTableLayout.createConstraint();
         fieldRowConstraint.setHorizontalAlign(Component.CENTER);
         fieldRowConstraint.setVerticalAlign(Component.CENTER);
-        Label name = new Label("Karthik Marupeddi");
+        Label name;
+        String mnrao = "mnrao";
+        if(logInForm.getName().equals(mnrao) )
+        {
+             pic.setIcon(theme.getImage("mnraoPhoto.png"));
+             name = new Label("Narasimha Rao Marupeddi");
+        }
+        else if(logInForm.getName() == "mrgraju")
+        {
+             pic.setIcon(theme.getImage("mrgrajuPhoto.png"));
+             name = new Label("M.R.G Raju");
+        }
+        else
+        {
+             pic.setIcon(theme.getImage("karthikPhoto.png"));
+             name = new Label("Karthik Marupeddi");
+
+        }
+
         name.setUIID("nameLabel");
         name.getStyle().setPadding(50,0,20,0);
         nameContainer.addComponent(fieldRowConstraint,name);

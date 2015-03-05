@@ -1,5 +1,6 @@
 package com.telos.hyd.pages;
 
+import com.codename1.components.InfiniteProgress;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.Log;
@@ -517,9 +518,10 @@ public class SearchPage{
                 cr.setPost(false);
 
 
-//                InfiniteProgress progress = new InfiniteProgress();
-//                Dialog dialogProgress = progress.showInifiniteBlocking();
-//                cr.setDisposeOnCompletion(dialogProgress);
+                InfiniteProgress progress = new InfiniteProgress();
+                progress.setUIID("InfiniteProgress");
+                Dialog dialogProgress = progress.showInifiniteBlocking();
+                cr.setDisposeOnCompletion(dialogProgress);
 
 
                 if (searchBy.getText().equals("Name")) {
