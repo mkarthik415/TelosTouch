@@ -20,6 +20,7 @@ public class HomePage {
     Form logInForm;
     Form homePageForm;
     Resources theme;
+    Label name;
    public HomePage(Form form)
     {
         this.logInForm = form;
@@ -145,14 +146,13 @@ public class HomePage {
         TableLayout.Constraint fieldRowConstraint = namedTableLayout.createConstraint();
         fieldRowConstraint.setHorizontalAlign(Component.CENTER);
         fieldRowConstraint.setVerticalAlign(Component.CENTER);
-        Label name;
         String mnrao = "mnrao";
         if(logInForm.getName().equals(mnrao) )
         {
              pic.setIcon(theme.getImage("mnraoPhoto.png"));
              name = new Label("Narasimha Rao Marupeddi");
         }
-        else if(logInForm.getName() == "mrgraju")
+        else if(logInForm.getName().equals("mrgraju"))
         {
              pic.setIcon(theme.getImage("mrgrajuPhoto.png"));
              name = new Label("M.R.G Raju");
@@ -221,6 +221,17 @@ public class HomePage {
         };
 
 
+        ActionListener graphAction = new ActionListener() {
+
+            public void actionPerformed(ActionEvent evt) {
+
+                Graphs graphs = new Graphs();
+                graphs.createPieChartForm();
+
+            }
+        };
+
+
         ActionListener logOff = new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
@@ -232,6 +243,7 @@ public class HomePage {
         };
 
         searchButton.addActionListener(action);
+        graphButton.addActionListener(graphAction);
         signOut.addActionListener(logOff);
     }
 

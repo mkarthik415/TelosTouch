@@ -165,6 +165,7 @@ public class TouchTelos {
         System.out.println("inside the webservices method  "+i++);
 
         if (password.getText() != null && username.getText() != null) {
+            f.setName(username.getText());
 
             ConnectionRequest cr = new ConnectionRequest() {
 
@@ -195,7 +196,7 @@ public class TouchTelos {
                     if (list != null) {
 
                         for (Object object : list) {
-                            f.setName(username.getText());
+
                             login = true;
                             break;
 

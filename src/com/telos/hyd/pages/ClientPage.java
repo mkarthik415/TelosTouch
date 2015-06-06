@@ -1,7 +1,6 @@
 package com.telos.hyd.pages;
 
 import com.codename1.components.InfiniteProgress;
-import com.codename1.components.WebBrowser;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkManager;
@@ -10,7 +9,6 @@ import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
-import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.table.TableLayout;
 import com.codename1.ui.util.Resources;
 import com.telos.hyd.Styles.Styles;
@@ -1046,24 +1044,47 @@ public class ClientPage {
 
 
         //Documents Details Container
+//        Container documentsContainer = new Container();
+//        documentsContainer.setUIID("tabContainer");
+//        TableLayout documentsLayout = new TableLayout(2,1);
+//        documentsContainer.setLayout(documentsLayout);
+//        Container fileContainer = new Container(new FlowLayout());
+//        documentsContainer.addComponent(fileContainer);
+//        Button fileButton = new Button();
+//        Styles.ButtonStyles(fileButton, "documentsFile.png", theme);
+//        fileButton.setText("Testing file");
+//        fileButton.setTextPosition(Component.BOTTOM);
+//        fileContainer.addComponent(fileButton);
+//        TableLayout.Constraint showDocConstraint = toolbarContainerLayout.createConstraint();
+//        //showDocConstraint.setHeightPercentage(-2);
+//        showDocConstraint.setWidthPercentage(-2);
+//        WebBrowser webBrowser = new WebBrowser();
+//        webBrowser.getStyle().setPadding(0,0,55,0);
+//        webBrowser.setURL("https://connect2telos.com/resources/Reports/3369.pdf");
+//        documentsContainer.addComponent(showDocConstraint,webBrowser);
+
+
         Container documentsContainer = new Container();
-        documentsContainer.setUIID("tabContainer");
-        TableLayout documentsLayout = new TableLayout(2,1);
+        TableLayout documentsLayout = new TableLayout(1,1);
         documentsContainer.setLayout(documentsLayout);
-        Container fileContainer = new Container(new FlowLayout());
-        documentsContainer.addComponent(fileContainer);
+//        TableLayout.Constraint showDocConstraint = toolbarContainerLayout.createConstraint();
+//        showDocConstraint.setHeightPercentage(-2);
+//        showDocConstraint.setWidthPercentage(-2);
+        documentsContainer.setUIID("tabContainer");
+//        WebBrowser webBrowser = new WebBrowser();
+//        webBrowser.setURL("https://connect2telos.com/resources/Reports/3369.pdf");
         Button fileButton = new Button();
         Styles.ButtonStyles(fileButton, "documentsFile.png", theme);
-        fileButton.setText("Testing file");
-        fileButton.setTextPosition(Component.BOTTOM);
-        fileContainer.addComponent(fileButton);
-        TableLayout.Constraint showDocConstraint = toolbarContainerLayout.createConstraint();
-        showDocConstraint.setHeightPercentage(-2);
-        showDocConstraint.setWidthPercentage(-2);
-        WebBrowser webBrowser = new WebBrowser();
-        webBrowser.getStyle().setPadding(0,0,55,0);
-        webBrowser.setURL("http://research.microsoft.com/pubs/79655/gazelle.pdf");
-        documentsContainer.addComponent(showDocConstraint,webBrowser);
+        documentsContainer.addComponent(fileButton);
+
+        fileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Display.getInstance().execute("https://connect2telos.com/resources/Reports/3369.pdf");
+
+            }
+        });
+
 
 
 
