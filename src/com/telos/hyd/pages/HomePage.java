@@ -157,12 +157,6 @@ public class HomePage {
              pic.setIcon(theme.getImage("mrgrajuPhoto.png"));
              name = new Label("M.R.G Raju");
         }
-        else
-        {
-             pic.setIcon(theme.getImage("karthikPhoto.png"));
-             name = new Label("Karthik Marupeddi");
-
-        }
 
         name.setUIID("nameLabel");
         name.getStyle().setPadding(50,0,20,0);
@@ -225,8 +219,12 @@ public class HomePage {
 
             public void actionPerformed(ActionEvent evt) {
 
-                Graphs graphs = new Graphs();
-                graphs.createPieChartForm();
+                ViewFile graphs = new ViewFile(homePageForm);
+                try {
+                    graphs.createPage();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             }
         };

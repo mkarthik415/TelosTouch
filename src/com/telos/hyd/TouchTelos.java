@@ -79,6 +79,7 @@ public class TouchTelos {
         textfieldContainer.setLayout(fieldTableLayout);
 
         username = new TextField();
+        username.setWidth(10);
         username.setHint("UserName");
         textfieldContainer.addComponent(fieldRowConstraint,username);
 

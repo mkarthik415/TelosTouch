@@ -3,17 +3,22 @@ package com.telos.hyd.pages;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
+import com.codename1.io.Log;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.*;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
+import com.codename1.ui.events.SelectionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.table.TableLayout;
 import com.codename1.ui.util.Resources;
 import com.telos.hyd.Styles.Styles;
 import com.telos.hyd.model.Client;
 import com.telos.hyd.model.ClientMapper;
+import com.telos.hyd.model.File;
+import com.telos.hyd.model.FileMapper;
 import com.telos.hyd.renderers.SearchRenderer;
 
 import java.io.IOException;
@@ -36,6 +41,8 @@ public class ClientPage {
 
     final Form  clientForm = new Form();
     Button searchBy = new Button();
+    Container documentsContainer = new Container();
+    Container fileContainer = new Container(new FlowLayout());
     TextField searchInput;
 
     public ClientPage(Client client, Form origin)
@@ -1044,46 +1051,11 @@ public class ClientPage {
 
 
         //Documents Details Container
-//        Container documentsContainer = new Container();
-//        documentsContainer.setUIID("tabContainer");
-//        TableLayout documentsLayout = new TableLayout(2,1);
-//        documentsContainer.setLayout(documentsLayout);
-//        Container fileContainer = new Container(new FlowLayout());
-//        documentsContainer.addComponent(fileContainer);
-//        Button fileButton = new Button();
-//        Styles.ButtonStyles(fileButton, "documentsFile.png", theme);
-//        fileButton.setText("Testing file");
-//        fileButton.setTextPosition(Component.BOTTOM);
-//        fileContainer.addComponent(fileButton);
-//        TableLayout.Constraint showDocConstraint = toolbarContainerLayout.createConstraint();
-//        //showDocConstraint.setHeightPercentage(-2);
-//        showDocConstraint.setWidthPercentage(-2);
-//        WebBrowser webBrowser = new WebBrowser();
-//        webBrowser.getStyle().setPadding(0,0,55,0);
-//        webBrowser.setURL("https://connect2telos.com/resources/Reports/3369.pdf");
-//        documentsContainer.addComponent(showDocConstraint,webBrowser);
-
-
-        Container documentsContainer = new Container();
-        TableLayout documentsLayout = new TableLayout(1,1);
-        documentsContainer.setLayout(documentsLayout);
-//        TableLayout.Constraint showDocConstraint = toolbarContainerLayout.createConstraint();
-//        showDocConstraint.setHeightPercentage(-2);
-//        showDocConstraint.setWidthPercentage(-2);
         documentsContainer.setUIID("tabContainer");
-//        WebBrowser webBrowser = new WebBrowser();
-//        webBrowser.setURL("https://connect2telos.com/resources/Reports/3369.pdf");
-        Button fileButton = new Button();
-        Styles.ButtonStyles(fileButton, "documentsFile.png", theme);
-        documentsContainer.addComponent(fileButton);
-
-        fileButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                Display.getInstance().execute("https://connect2telos.com/resources/Reports/3369.pdf");
-
-            }
-        });
+        documentsContainer.addComponent(fileContainer);
+        TableLayout.Constraint showDocConstraint = toolbarContainerLayout.createConstraint();
+        //showDocConstraint.setHeightPercentage(-2);
+        showDocConstraint.setWidthPercentage(-2);
 
 
 
@@ -1153,24 +1125,21 @@ public class ClientPage {
         renewalDeatilsContainer.addComponent(renewalSmsDate);
 
 
-
-
-
-
-        tabs.addTab("",theme.getImage("personalDetails.png"),personalContainer);
-        tabs.setTabSelectedIcon(0,theme.getImage("personalDetailsWhite.png"));
+        tabs.addTab("", theme.getImage("personalDetails.png"), personalContainer);
+        tabs.setTabSelectedIcon(0, theme.getImage("personalDetailsWhite.png"));
 
         tabs.addTab("", theme.getImage("companyDetails.png"), companyDeatilsContainer);
-        tabs.setTabSelectedIcon(1,theme.getImage("companyDetailsWhite.png"));
+        tabs.setTabSelectedIcon(1, theme.getImage("companyDetailsWhite.png"));
 
-        tabs.addTab("",theme.getImage("policyDetails.png"),policyDeatilsContainer);
-        tabs.setTabSelectedIcon(2,theme.getImage("policyDetailsWhite.png"));
+        tabs.addTab("", theme.getImage("policyDetails.png"), policyDeatilsContainer);
+        tabs.setTabSelectedIcon(2, theme.getImage("policyDetailsWhite.png"));
 
         tabs.addTab("", theme.getImage("amountDetails.png"), amountDetailsContainer);
-        tabs.setTabSelectedIcon(3,theme.getImage("amountDetailsWhite.png"));
+        tabs.setTabSelectedIcon(3, theme.getImage("amountDetailsWhite.png"));
 
-        tabs.addTab("",theme.getImage("documents.png"),documentsContainer);
-        tabs.setTabSelectedIcon(4,theme.getImage("documentswhite.png"));
+        tabs.addTab("", theme.getImage("documents.png"), documentsContainer);
+        tabs.setTabSelectedIcon(4, theme.getImage("documentswhite.png"));
+        tabs.addSelectionListener(findDocuments);
 
         tabs.addTab("", theme.getImage("renewalDetails.png"), renewalDeatilsContainer);
         tabs.setTabSelectedIcon(5,theme.getImage("renewalDetailsWhite.png"));
@@ -1415,6 +1384,122 @@ public class ClientPage {
             searchPage.searchPageForm.show();
             NetworkManager.getInstance().addToQueue(cr);
         }
+    };
+
+
+
+    SelectionListener findDocuments = new SelectionListener() {
+
+
+        /**
+         * Indicates the selection changed in the underlying list model
+         *
+         * @param oldSelected old selected index in list model
+         * @param newSelected new selected index in list model
+         */
+        @Override
+        public void selectionChanged(int oldSelected, int newSelected) {
+
+            {
+
+                if(newSelected == 4)
+                {
+
+                    System.out.println("+++++++++++++++++"+newSelected);
+                    final FileMapper fileMapper = new FileMapper();
+
+                    ConnectionRequest cr = new ConnectionRequest() {
+
+
+                        public Map<String, Object> totalList;
+
+                        protected void readResponse(InputStream is)
+                                throws IOException {
+
+                            JSONParser p = new JSONParser();
+                            totalList = p.parseJSON(new InputStreamReader(is));
+                            if(totalList.isEmpty() || totalList == null)
+                            {
+                                //clientFoundLabel.setText("No Search Results found");
+                            }
+
+
+                        }
+
+                        /**
+                         * A callback method that's invoked on the EDT after the readResponse() method has finished,
+                         * this is the place where developers should change their Codename One user interface to
+                         * avoid race conditions that might be triggered by modifications within readResponse.
+                         * Notice this method is only invoked on a successful response and will not be invoked in case
+                         * of a failure.
+                         */
+                        @Override
+                        protected void postResponse() {
+
+                            if(totalList != null)
+                            {
+                                //clientFoundLabel.setText("Select Results");
+                                List dataList = new List();
+                                dataList.setItemGap(0);
+                                ArrayList list = (ArrayList) totalList.get("root");
+
+                                if (list != null) {
+                                    TableLayout documentsLayout = new TableLayout(list.size(),1);
+                                    documentsContainer.setLayout(documentsLayout);
+
+                                    for (Object object : list) {
+                                        final File fileValues = new File();
+                                        fileMapper.readMap((Map) object, fileValues);
+                                        dataList.addItem(fileValues);
+
+
+                                        Button fileButton = new Button();
+                                        Styles.ButtonStyles(fileButton, "documentsFile.png", theme);
+                                        fileButton.setText(fileValues.getFileName());
+                                        fileButton.setTextPosition(Component.BOTTOM);
+                                        fileButton.getStyle().setPadding(10, 10, 10,10);
+                                        fileButton.getSelectedStyle().setPadding(10, 10, 10,10);
+                                        fileButton.getUnselectedStyle().setPadding(10, 10, 10,10);
+                                        fileContainer.addComponent(fileButton);
+
+
+                                        fileButton.addActionListener(new ActionListener() {
+                                            @Override
+                                            public void actionPerformed(ActionEvent evt) {
+                                                Display.getInstance().execute(fileValues.getUrl());
+
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+
+
+                        }
+
+
+                    };
+
+                    try {
+                        cr.setUrl("http://telosws-poplar5.rhcloud.com/documentsByClient");
+                    } catch (Exception e) {
+                        Log.p(e.toString());
+                    }
+                    cr.setPost(false);
+
+
+                    InfiniteProgress progress = new InfiniteProgress();
+                    progress.setUIID("InfiniteProgress");
+                    Dialog dialogProgress = progress.showInifiniteBlocking();
+                    cr.setDisposeOnCompletion(dialogProgress);
+                    cr.addArgument("id", String.valueOf(client.getId()));
+                    NetworkManager.getInstance().addToQueue(cr);
+                }
+
+            }
+
+        }
+
     };
 
 

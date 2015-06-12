@@ -32,6 +32,7 @@ public class SearchPage{
     Form logInForm;
     Resources theme;
     Button searchBy = new Button();
+    Button testing = new Button("Go");
     Dialog dialog;
     TextField searchInput;
     ArrayList<Client> totalclients;
@@ -101,7 +102,8 @@ public class SearchPage{
         Container toolbarContainer = new Container();
         toolbarContainer.setUIID("logInContainer");
         toolbarContainer.setScrollable(false);
-        TableLayout toolbarContainerLayout = new TableLayout(1, 2);
+        TableLayout toolbarContainerLayout = new TableLayout(1, 3);
+        //TableLayout toolbarContainerLayout = new TableLayout(1, 2);
         toolbarContainer.setLayout(toolbarContainerLayout);
 
         //constraint for text field
@@ -111,6 +113,8 @@ public class SearchPage{
 
 
         toolbarContainer.addComponent(searchBy);
+        testing.addActionListener(searchAction);
+        toolbarContainer.addComponent(testing);
 
 
 
