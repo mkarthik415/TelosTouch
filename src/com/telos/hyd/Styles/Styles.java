@@ -77,5 +77,19 @@ public class Styles {
 
     public static SimpleDateFormat simpleDateFormat =new SimpleDateFormat("dd-mm-yyyy");
 
+    public static void setCompBgColor(Component c,int i)
+    {
+            c.getSelectedStyle().setBgColor(i);
+            c.getUnselectedStyle().setBgColor(i);
+            c.getStyle().setBgColor(i);
+    }
+
+    public static void setCompTranspColor(Component c,int i)
+    {
+        c.getSelectedStyle().setBgTransparency(i);
+        c.getUnselectedStyle().setBgTransparency(i);
+        c.getStyle().setBgTransparency(i);
+    }
+
 
 }
