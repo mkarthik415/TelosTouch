@@ -6,11 +6,13 @@
     <image name="amountDetailsWhite.png" type="multi"  />
     <image name="backButtonGrey.png"  />
     <image name="backWhite.png" type="multi"  />
+    <image name="byMonthBlue.png" type="multi"  />
+    <image name="byMonthWhite.png" type="multi"  />
     <image name="carImage.png" type="multi"  />
     <image name="carNumber.png" type="multi"  />
     <image name="carNumberClick.png" type="multi"  />
-    <image name="commission.png" type="multi"  />
-    <image name="commissionBlue.png" type="multi"  />
+    <image name="commisionCheck.png" type="multi"  />
+    <image name="commissionAmount.png" type="multi"  />
     <image name="companyDetails.png" type="multi"  />
     <image name="companyDetailsWhite.png" type="multi"  />
     <image name="contactBlue.png" type="multi"  />
@@ -30,14 +32,16 @@
     <image name="helpButton.png 1" type="multi"  />
     <image name="helpSmall.png" type="multi"  />
     <image name="karthikPhoto.png" type="multi"  />
-    <image name="kindsBlue.png" type="multi"  />
-    <image name="kindsClick.png" type="multi"  />
+    <image name="kindsOfCheck.png" type="multi"  />
+    <image name="kindsOfPolicies.png" type="multi"  />
     <image name="leftArrow.png" type="multi"  />
     <image name="locateBlue.png" type="multi"  />
     <image name="locateButton.png" type="multi"  />
     <image name="locateSmall.png" type="multi"  />
     <image name="login.png" type="multi"  />
     <image name="manageAccount.png" type="multi"  />
+    <image name="missedCheck.png" type="multi"  />
+    <image name="missedRenewals.png" type="multi"  />
     <image name="mnraoPhoto.png" type="multi"  />
     <image name="mrgrajuPhoto.png" type="multi"  />
     <image name="name.png" type="multi"  />
@@ -53,7 +57,7 @@
     <image name="renewalDetails.png" type="multi"  />
     <image name="renewalDetailsWhite.png" type="multi"  />
     <image name="renewals.png" type="multi"  />
-    <image name="renewalsBlue.png" type="multi"  />
+    <image name="renewalsCheck.png" type="multi"  />
     <image name="reportButton.png" type="multi"  />
     <image name="reportsBlue.png" type="multi"  />
     <image name="reportSmall.png" type="multi"  />
@@ -176,6 +180,6 @@
         <val key="tabContainer.transparency" value="255" />
     </theme>
     <image name="travelImage.png" type="multi"  />
-    <image name="typesBlue.png" type="multi"  />
-    <image name="typesClick.png" type="multi"  />
+    <image name="typesOfCheck.png" type="multi"  />
+    <image name="typesOfPolicies.png" type="multi"  />
 </resource>

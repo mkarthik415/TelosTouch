@@ -45,8 +45,7 @@ public class Graphs {
     public void createPieChartForm() {
 
         Container contantContainer = PageTemplate.getContainer(PageTemplate.setBackButton(logInForm), theme, f);
-        f.setScrollableY(true);
-        f.setScrollable(true);
+
 
 
         String[] titles = new String[] { "2007", "2008" };
@@ -55,7 +54,7 @@ public class Graphs {
                 11600, 13500});
         values.add(new double[]{14230, 12300, 14240, 15244, 15900, 19200, 22030, 21200, 19500, 15500,
                 12600, 14000});
-        int[] colors = new int[] { ColorUtil.CYAN, ColorUtil.LTGRAY };
+        int[] colors = new int[] { ColorUtil.LTGRAY, ColorUtil.BLUE };
         XYMultipleSeriesRenderer renderer = buildBarRenderer(colors);
         renderer.setOrientation(XYMultipleSeriesRenderer.Orientation.HORIZONTAL);
         setChartSettings(renderer, "Monthly sales in the last 2 years", "Month", "Units sold", 0.5,

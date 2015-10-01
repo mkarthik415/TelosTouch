@@ -21,6 +21,7 @@ public class ViewFile {
     Resources theme;
     Dialog dialog;
     Button selectTypeComboBox;
+    Button monthButton;
 
 
 
@@ -51,11 +52,20 @@ public class ViewFile {
         selectTypeComboBox.addActionListener(action);
 
         //Row #2
-        Label periodLabel = new Label("Select Type");
-        ComboBox<String> periodComboBox = new ComboBox();
-        periodComboBox.addItem("By Month");
-        periodComboBox.addItem("Yearly");
+        Label periodLabel = new Label("Select Period");
+        periodLabel.setVisible(true);
+        Container buttonContainer = new Container();
+        BoxLayout bContainerBoxLayout = new BoxLayout(BoxLayout.X_AXIS);
+        buttonContainer.setLayout(bContainerBoxLayout);
 
+        monthButton = new Button("testin");
+        Button yearButton = new Button();
+
+        Styles.ButtonStyles(yearButton, "byMonthWhite.png", theme);
+        monthButton.addActionListener(MonthlyAction);
+
+        buttonContainer.addComponent(monthButton);
+        buttonContainer.addComponent(yearButton);
 
         //Row #3
         Label compareLabel = new Label("Compare");
@@ -63,22 +73,19 @@ public class ViewFile {
         compareComboBox.addItem("Yes");
         compareComboBox.addItem("No");
 
-        //Row #4
-        Label yearLabel = new Label("Select Year");
-        ComboBox<String> YearComboBox = new ComboBox();
-        YearComboBox.addItem("By Month");
-        YearComboBox.addItem("Yearly");
-
-
 
         //Adding padding
         selectTypeLabel.setUIID("clientLabel");
         selectTypeComboBox.setUIID("clientInfoLabel");
 
+        periodLabel.setUIID("clientLabel");
+
 
 
         webBrowserContainer.addComponent(selectTypeLabel);
         webBrowserContainer.addComponent(selectTypeComboBox);
+        webBrowserContainer.addComponent(periodLabel);
+        webBrowserContainer.addComponent(buttonContainer);
 
         contantContainer.addComponent(webBrowserContainer);
 
@@ -99,44 +106,54 @@ public class ViewFile {
             Container container = new Container();
             container.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
             Button b = new Button();
-            if (selectTypeComboBox.getText().equals("name")) {
+            if (selectTypeComboBox.getText().equals("Type Of Policies")) {
 
-                Styles.ButtonStylesForDialog(b, "typesClick.png", theme);
+                Styles.ButtonStylesForDialog(b, "typesOfCheck.png", theme);
 
             } else
-                Styles.ButtonStylesForDialog(b, "typesBlue.png", theme);
-            b.setName("Name");
+                Styles.ButtonStylesForDialog(b, "typesOfPolicies.png", theme);
+            b.setName("Type Of Policies");
             b.addActionListener(searchByButtonAction);
             Button b1 = new Button();
-            if (selectTypeComboBox.getText().equals("Vehical #")) {
+            if (selectTypeComboBox.getText().equals("Commission Amount Earned")) {
 
-                Styles.ButtonStylesForDialog(b1, "commissionBlue.png", theme);
+                Styles.ButtonStylesForDialog(b1, "commisionCheck.png", theme);
 
             } else
-                Styles.ButtonStylesForDialog(b1, "commission.png", theme);
-            b1.setName("Vehical #");
+                Styles.ButtonStylesForDialog(b1, "commissionAmount.png", theme);
+            b1.setName("Commission Amount Earned");
             b1.addActionListener(searchByButtonAction);
             Button b2 = new Button();
-            if (selectTypeComboBox.getText().equals("Serial #")) {
+            if (selectTypeComboBox.getText().equals("Renewals Received")) {
 
-                Styles.ButtonStylesForDialog(b2, "renewalsBlue.png", theme);
+                Styles.ButtonStylesForDialog(b2, "renewalsCheck.png", theme);
 
             } else
                 Styles.ButtonStylesForDialog(b2, "renewals.png", theme);
-            b2.setName("Serial #");
+            b2.setName("Renewals Received");
             b2.addActionListener(searchByButtonAction);
             Button b3 = new Button();
-            if (selectTypeComboBox.getText().equals("Policy Date")) {
+            if (selectTypeComboBox.getText().equals("Kinds Of Policies")) {
 
-                Styles.ButtonStylesForDialog(b3, "kindsClick.png", theme);
+                Styles.ButtonStylesForDialog(b3, "kindsOfCheck.png", theme);
 
             } else
-                Styles.ButtonStylesForDialog(b3, "kindsBlue.png", theme);
-            b3.setName("Policy Date");
+                Styles.ButtonStylesForDialog(b3, "kindsOfPolicies.png", theme);
+            b3.setName("Kinds Of Policies");
             b3.addActionListener(searchByButtonAction);
+            Button b4 = new Button();
+            if (selectTypeComboBox.getText().equals("Missed Renewals")) {
+
+                Styles.ButtonStylesForDialog(b4, "missedCheck.png", theme);
+
+            } else
+                Styles.ButtonStylesForDialog(b2, "missedRenewals.png", theme);
+            b4.setName("Missed Renewals");
+            b4.addActionListener(searchByButtonAction);
             container.addComponent(b);
             container.addComponent(b1);
             container.addComponent(b2);
+            container.addComponent(b4);
             container.addComponent(b3);
             container.getStyle().setBgTransparency(0);
             container.getUnselectedStyle().setBgTransparency(0);
@@ -167,8 +184,8 @@ public class ViewFile {
             String value = evt.getComponent().getName();
             selectTypeComboBox.setText(value);
 
-            Graphs graphs = new Graphs(viewFileForm);
-            graphs.createPieChartForm();
+//            Graphs graphs = new Graphs(viewFileForm);
+//            graphs.createPieChartForm();
 
 
         }
@@ -187,6 +204,21 @@ public class ViewFile {
         public void actionPerformed(ActionEvent evt) {
 
             logInForm.showBack();
+        }
+    };
+
+
+    ActionListener  MonthlyAction= new ActionListener() {
+
+        /**
+         * Invoked when an action occurred on a component
+         *
+         * @param evt event object describing the source of the action as well as
+         *            its trigger
+         */
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            Styles.ButtonStyles(monthButton, "byMonthBlue.png", theme);
         }
     };
 }
