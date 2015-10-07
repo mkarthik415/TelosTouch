@@ -6,6 +6,8 @@
     <image name="amountDetailsWhite.png" type="multi"  />
     <image name="backButtonGrey.png"  />
     <image name="backWhite.png" type="multi"  />
+    <image name="bottomBoxBig.png" type="multi"  />
+    <image name="bottomButton.png" type="multi"  />
     <image name="byMonthBlue.png" type="multi"  />
     <image name="byMonthWhite.png" type="multi"  />
     <image name="carImage.png" type="multi"  />
@@ -40,12 +42,16 @@
     <image name="locateSmall.png" type="multi"  />
     <image name="login.png" type="multi"  />
     <image name="manageAccount.png" type="multi"  />
+    <image name="middleBoxBig.png" type="multi"  />
+    <image name="middleButton.png" type="multi"  />
     <image name="missedCheck.png" type="multi"  />
     <image name="missedRenewals.png" type="multi"  />
     <image name="mnraoPhoto.png" type="multi"  />
     <image name="mrgrajuPhoto.png" type="multi"  />
     <image name="name.png" type="multi"  />
     <image name="nameClick.png" type="multi"  />
+    <image name="noBlue.png" type="multi"  />
+    <image name="noWhite.png" type="multi"  />
     <image name="personalDetails.png" type="multi"  />
     <image name="personalDetailsWhite.png" type="multi"  />
     <image name="policyCertificate.png" type="multi"  />
@@ -71,6 +77,15 @@
     <image name="spaceBlue.png" type="multi"  />
     <image name="spinner.jpg" type="multi"  />
     <image name="spinnerImage.png" type="multi"  />
+    <image name="submitButton.borderBottom_1.png" type="multi"  />
+    <image name="submitButton.borderBottomL_1.png" type="multi"  />
+    <image name="submitButton.borderBottomR_1.png" type="multi"  />
+    <image name="submitButton.borderCenter_1.png" type="multi"  />
+    <image name="submitButton.borderLeft_1.png" type="multi"  />
+    <image name="submitButton.borderRight_1.png" type="multi"  />
+    <image name="submitButton.borderTop_1.png" type="multi"  />
+    <image name="submitButton.borderTopL_1.png" type="multi"  />
+    <image name="submitButton.borderTopR_1.png" type="multi"  />
     <image name="telephoneNumber.png" type="multi"  />
     <image name="telephoneNumberClick.png" type="multi"  />
     <image name="telosLogo.png" type="multi"  />
@@ -175,11 +190,45 @@
         <val key="press#margin" value="0,0,0,0" />
         <val key="press#padding" value="0,0,0,0" />
         <val key="press#transparency" value="255" />
+        <val key="submitButton.align" value="4" />
+        <val key="submitButton.bgColor" value="485aa2" />
+        <val key="submitButton.dis#align" value="4" />
+        <val key="submitButton.dis#bgColor" value="485aa2" />
+        <val key="submitButton.dis#fgColor" value="ffffff" />
+        <font key="submitButton.dis#font" type="system" face="0" style="1" size="16" />
+        <val key="submitButton.dis#margin" value="50,70,50,70" />
+        <val key="submitButton.dis#padding" value="15,15,30,30" />
+        <val key="submitButton.dis#transparency" value="255" />
+        <val key="submitButton.fgColor" value="ffffff" />
+        <font key="submitButton.font" type="system" face="0" style="1" size="16" />
+        <val key="submitButton.margin" value="50,70,50,70" />
+        <val key="submitButton.padding" value="15,15,30,30" />
+        <val key="submitButton.press#align" value="4" />
+        <val key="submitButton.press#bgColor" value="485aa2" />
+        <val key="submitButton.press#fgColor" value="ffffff" />
+        <font key="submitButton.press#font" type="system" face="0" style="1" size="16" />
+        <val key="submitButton.press#margin" value="50,70,50,70" />
+        <val key="submitButton.press#padding" value="15,15,30,30" />
+        <val key="submitButton.press#transparency" value="255" />
+        <val key="submitButton.sel#align" value="4" />
+        <val key="submitButton.sel#bgColor" value="485aa2" />
+        <val key="submitButton.sel#fgColor" value="ffffff" />
+        <font key="submitButton.sel#font" type="system" face="0" style="1" size="16" />
+        <val key="submitButton.sel#margin" value="50,70,50,70" />
+        <val key="submitButton.sel#padding" value="15,15,30,30" />
+        <val key="submitButton.sel#transparency" value="255" />
+        <val key="submitButton.transparency" value="255" />
         <val key="tabContainer.margin" value="0,0,0,0" />
         <val key="tabContainer.padding" value="0,0,0,0" />
         <val key="tabContainer.transparency" value="255" />
     </theme>
+    <image name="topBoxBig.png" type="multi"  />
+    <image name="topButton.png" type="multi"  />
     <image name="travelImage.png" type="multi"  />
     <image name="typesOfCheck.png" type="multi"  />
     <image name="typesOfPolicies.png" type="multi"  />
+    <image name="yearlyBlue.png" type="multi"  />
+    <image name="yearlyWhite.png" type="multi"  />
+    <image name="yesBlue.png" type="multi"  />
+    <image name="yesWhite.png" type="multi"  />
 </resource>

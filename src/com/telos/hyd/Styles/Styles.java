@@ -1,8 +1,10 @@
 package com.telos.hyd.Styles;
 
 import com.codename1.l10n.SimpleDateFormat;
-import com.codename1.ui.Button;
-import com.codename1.ui.Component;
+import com.codename1.ui.*;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
+import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Border;
 import com.codename1.ui.util.Resources;
 
@@ -91,5 +93,39 @@ public class Styles {
         c.getStyle().setBgTransparency(i);
     }
 
+    public static void setButtonStyleForDialogBox(Button b) {
+        b.getUnselectedStyle().setFgColor(0xFFFFFF);
+        b.getSelectedStyle().setFgColor(0xFFFFFF);
+        b.getStyle().setFgColor(0xFFFFFF);
+        b.getPressedStyle().setFgColor(0xFFFFFF);
 
+        b.getSelectedStyle().setBgTransparency(0);
+        b.getUnselectedStyle().setBgTransparency(0);
+        b.getStyle().setBorder(Border.createEmpty());
+        b.getSelectedStyle().setBorder(Border.createEmpty());
+        b.getUnselectedStyle().setBorder(Border.createEmpty());
+        b.getPressedStyle().setBorder(Border.createEmpty());
+    }
+
+
+    public static Container getContainerForButtonInDialog(Resources theme, final Dialog dialog, final Button source, final String image, final String text) {
+        Container layeredContainer = new Container();
+        Label label = new Label();
+        label.setIcon(theme.getImage(image));
+        layeredContainer.setLayout(new LayeredLayout());
+        layeredContainer.addComponent(label);
+
+        Button b = new Button(text);
+        layeredContainer.addComponent(b);
+
+        Styles.setButtonStyleForDialogBox(b);
+        b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                source.setText(text);
+                dialog.dispose();
+            }
+        });
+        return layeredContainer;
+    }
 }

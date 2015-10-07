@@ -21,7 +21,13 @@ public class ViewFile {
     Resources theme;
     Dialog dialog;
     Button selectTypeComboBox;
+    Button selectFromYearComboBox;
+    Button selectToYearComboBox;
     Button monthButton;
+    Button yearButton;
+    Button yesButton;
+    Button noButton;
+    Button submitButton;
 
 
 
@@ -57,35 +63,105 @@ public class ViewFile {
         Container buttonContainer = new Container();
         BoxLayout bContainerBoxLayout = new BoxLayout(BoxLayout.X_AXIS);
         buttonContainer.setLayout(bContainerBoxLayout);
+        buttonContainer.getUnselectedStyle().setPadding(5,40,10,10);
+        buttonContainer.getSelectedStyle().setPadding(5, 40, 10, 10);
+        buttonContainer.getPressedStyle().setPadding(5, 40, 10, 10);
+        buttonContainer.getDisabledStyle().setPadding(5,40,10,10);
 
-        monthButton = new Button("testin");
-        Button yearButton = new Button();
+        monthButton = new Button();
+        yearButton = new Button();
 
-        Styles.ButtonStyles(yearButton, "byMonthWhite.png", theme);
+        Styles.ButtonStyles(monthButton, "byMonthWhite.png", theme);
         monthButton.addActionListener(MonthlyAction);
 
-        buttonContainer.addComponent(monthButton);
+        Styles.ButtonStyles(yearButton, "yearlyBlue.png", theme);
+        yearButton.addActionListener(yearlyAction);
+
         buttonContainer.addComponent(yearButton);
+        buttonContainer.addComponent(monthButton);
 
         //Row #3
         Label compareLabel = new Label("Compare");
-        ComboBox<String> compareComboBox = new ComboBox();
-        compareComboBox.addItem("Yes");
-        compareComboBox.addItem("No");
+        compareLabel.setUIID("Label");
+        compareLabel.setVisible(true);
+        Container compareButtonContainer = new Container();
+        BoxLayout compareButtonBoxLayout = new BoxLayout(BoxLayout.X_AXIS);
+        compareButtonContainer.setLayout(compareButtonBoxLayout);
+        compareButtonContainer.getUnselectedStyle().setPadding(5,40,10,10);
+        compareButtonContainer.getSelectedStyle().setPadding(5, 40, 10, 10);
+        compareButtonContainer.getPressedStyle().setPadding(5, 40, 10, 10);
+        compareButtonContainer.getDisabledStyle().setPadding(5,40,10,10);
 
+
+        yesButton = new Button();
+        noButton = new Button();
+
+        Styles.ButtonStyles(yesButton, "yesBlue.png", theme);
+        yesButton.addActionListener(yesAction);
+
+        Styles.ButtonStyles(noButton, "noWhite.png", theme);
+        noButton.addActionListener(noAction);
+
+        compareButtonContainer.addComponent(yesButton);
+        compareButtonContainer.addComponent(noButton);
+
+
+        //Row #4
+        Label yearFromLabel = new Label("Compare Year From");
+        yearFromLabel.setVisible(true);
+
+        selectFromYearComboBox = new Button("Click here to select Year");
+        selectFromYearComboBox.setUIID("Label");
+        selectFromYearComboBox.addActionListener(fromYearAction);
+
+
+        //Row #5
+        Label yearToLabel = new Label("Compare Year To");
+        yearToLabel.setVisible(true);
+
+        selectToYearComboBox = new Button("Click here to select Year");
+        selectToYearComboBox.setUIID("Label");
+        selectToYearComboBox.addActionListener(fromYearAction);
+
+
+        //Submit Button
+        submitButton = new Button("SUBMIT");
+        submitButton.setUIID("submitButton");
 
         //Adding padding
         selectTypeLabel.setUIID("clientLabel");
         selectTypeComboBox.setUIID("clientInfoLabel");
 
         periodLabel.setUIID("clientLabel");
+        compareLabel.setUIID("clientLabel");
+        yearFromLabel.setUIID("clientLabel");
+        yearToLabel.setUIID("clientLabel");
 
-
+        selectFromYearComboBox.setUIID("clientInfoLabel");
+        selectToYearComboBox.setUIID("clientInfoLabel");
 
         webBrowserContainer.addComponent(selectTypeLabel);
         webBrowserContainer.addComponent(selectTypeComboBox);
+
+        //Add Row#2
         webBrowserContainer.addComponent(periodLabel);
         webBrowserContainer.addComponent(buttonContainer);
+
+        //Add Row#3
+        webBrowserContainer.addComponent(compareLabel);
+        webBrowserContainer.addComponent(compareButtonContainer);
+
+        //Add Row#4
+        webBrowserContainer.addComponent(yearFromLabel);
+        webBrowserContainer.addComponent(selectFromYearComboBox);
+
+        //Add Row#5
+        webBrowserContainer.addComponent(yearToLabel);
+        webBrowserContainer.addComponent(selectToYearComboBox);
+
+        //Add Submit Button
+        webBrowserContainer.addComponent(submitButton);
+
 
         contantContainer.addComponent(webBrowserContainer);
 
@@ -184,8 +260,8 @@ public class ViewFile {
             String value = evt.getComponent().getName();
             selectTypeComboBox.setText(value);
 
-//            Graphs graphs = new Graphs(viewFileForm);
-//            graphs.createPieChartForm();
+            Graphs graphs = new Graphs(viewFileForm);
+            graphs.createPieChartForm();
 
 
         }
@@ -219,6 +295,95 @@ public class ViewFile {
         @Override
         public void actionPerformed(ActionEvent evt) {
             Styles.ButtonStyles(monthButton, "byMonthBlue.png", theme);
+            Styles.ButtonStyles(yearButton, "yearlyWhite.png", theme);
         }
     };
+
+    ActionListener yearlyAction = new ActionListener() {
+
+        /**
+         * Invoked when an action occurred on a component
+         *
+         * @param evt event object describing the source of the action as well as
+         *            its trigger
+         */
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            Styles.ButtonStyles(monthButton, "byMonthWhite.png", theme);
+            Styles.ButtonStyles(yearButton, "yearlyBlue.png", theme);
+        }
+    };
+
+
+
+
+
+    ActionListener  yesAction= new ActionListener() {
+
+        /**
+         * Invoked when an action occurred on a component
+         *
+         * @param evt event object describing the source of the action as well as
+         *            its trigger
+         */
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            Styles.ButtonStyles(yesButton, "yesBlue.png", theme);
+            Styles.ButtonStyles(noButton, "noWhite.png", theme);
+        }
+    };
+
+    ActionListener noAction = new ActionListener() {
+
+        /**
+         * Invoked when an action occurred on a component
+         *
+         * @param evt event object describing the source of the action as well as
+         *            its trigger
+         */
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            Styles.ButtonStyles(yesButton, "yesWhite.png", theme);
+            Styles.ButtonStyles(noButton, "noBlue.png", theme);
+        }
+    };
+
+
+
+    ActionListener fromYearAction = new ActionListener() {
+
+        public void actionPerformed(ActionEvent evt) {
+
+            Button sourceComponent = (Button) evt.getSource();
+            dialog = new Dialog();
+
+            Container container = new Container();
+            container.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
+
+            Container layeredContainer = Styles.getContainerForButtonInDialog(theme, dialog, sourceComponent, "topButton.png", "Year 2010");
+            Container bottomLayeredContainer = Styles.getContainerForButtonInDialog(theme, dialog, sourceComponent, "bottomButton.png", "Year 2015");
+
+            container.addComponent(layeredContainer);
+            for(int i=2011;i<=2014;i++)
+            {
+                container.addComponent(Styles.getContainerForButtonInDialog(theme, dialog, sourceComponent, "middleButton.png", "Year "+i));
+            }
+            container.addComponent(bottomLayeredContainer);
+
+
+            container.getStyle().setBgTransparency(0);
+            container.getUnselectedStyle().setBgTransparency(0);
+            container.getSelectedStyle().setBgTransparency(0);
+            dialog.addComponent(container);
+            dialog.getStyle().setBgTransparency(0);
+            dialog.getUnselectedStyle().setBgTransparency(0);
+            dialog.getSelectedStyle().setBgTransparency(0);
+            dialog.getDialogStyle().setBgTransparency(0);
+            dialog.showPopupDialog(sourceComponent);
+
+        }
+    };
+
+
+
 }
