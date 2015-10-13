@@ -57,8 +57,8 @@ version - the version number for the application as a floating point value
         <mkdir dir="${build.test.classes.dir}" />
         <javac destdir="${build.test.classes.dir}"
                encoding="${source.encoding}"
-               source="1.5"
-               target="1.5"
+               source="1.8"
+               target="1.8"
                bootclasspath="CLDC11.jar" excludes="${excludes}"
                classpath="${javac.classpath}:${build.classes.dir}">
             <src path="${test.src.dir}"/>
@@ -86,8 +86,8 @@ version - the version number for the application as a floating point value
         <mkdir dir="build/tmp"/>
         <javac destdir="build/tmp"
                encoding="${source.encoding}"
-               source="1.5"
-               target="1.5"
+               source="1.8"
+               target="1.8"
                bootclasspath="lib/CLDC11.jar" excludes="${excludes}"
                classpath="${javac.classpath}:${build.classes.dir}">
             <src path="${src.dir}"/>
@@ -109,8 +109,8 @@ version - the version number for the application as a floating point value
         <mkdir dir="lib/impl/native/javase" />
         <javac destdir="native/internal_tmp"
                encoding="${source.encoding}"
-               source="1.5"
-               target="1.5"
+               source="1.8"
+               target="1.8"
                bootclasspath="CLDC11.jar" excludes="${excludes}"
                classpath="${javac.classpath}:${build.classes.dir}">
             <src path="native/javase"/>
@@ -422,8 +422,8 @@ version - the version number for the application as a floating point value
 
     <target name="-pre-init">
         <property name="application.args" value="${codename1.packageName}.${codename1.mainName}"/>
-        <property name="javac.source" value="1.5" />
-        <property name="javac.target" value="1.5" />
+        <property name="javac.source" value="1.8" />
+        <property name="javac.target" value="1.8" />
         <mkdir dir="native/javase" />
         <mkdir dir="native/internal_tmp" />
         <mkdir dir="native/ios" />
