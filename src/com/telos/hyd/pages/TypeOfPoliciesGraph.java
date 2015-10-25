@@ -6,7 +6,7 @@ import com.codename1.charts.renderers.DefaultRenderer;
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.charts.views.PieChart;
 import com.codename1.ui.*;
-import com.codename1.ui.layouts.BorderLayout;
+import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.util.Resources;
 import com.telos.hyd.Styles.AbstractDemoChart;
 import com.telos.hyd.model.Charts;
@@ -67,8 +67,9 @@ public class TypeOfPoliciesGraph extends AbstractDemoChart{
         chart = new PieChart(seriesSet, renderer);
         chart1 = new PieChart(seriesSet1, renderer);
 
+        BoxLayout boxLayout = new BoxLayout(BoxLayout.Y_AXIS);
 
-        chartComponentContainer = new Container(new BorderLayout());
+        chartComponentContainer = new Container(boxLayout);
 
         chartComponent = new ChartComponent(chart);
         chartComponent1 = new ChartComponent(chart1);
@@ -76,8 +77,8 @@ public class TypeOfPoliciesGraph extends AbstractDemoChart{
         chartComponent.setZoomEnabled(true);
         chartComponent1.setZoomEnabled(true);
 
-        chartComponentContainer.addComponent(BorderLayout.CENTER, chartComponent);
-        chartComponentContainer.addComponent(BorderLayout.NORTH, chartComponent1);
+        chartComponentContainer.addComponent(chartComponent);
+        chartComponentContainer.addComponent(chartComponent1);
 
         wrap("Number of Type of Policies in year 2005 and 2006", chartComponentContainer, contantContainer).show();
 
