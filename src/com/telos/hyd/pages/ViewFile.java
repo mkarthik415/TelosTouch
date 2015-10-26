@@ -1,13 +1,25 @@
 package com.telos.hyd.pages;
 
+import com.codename1.io.ConnectionRequest;
+import com.codename1.io.JSONParser;
+import com.codename1.io.Log;
+import com.codename1.io.NetworkManager;
 import com.codename1.ui.*;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.util.Resources;
 import com.telos.hyd.Styles.Styles;
+import com.telos.hyd.model.Charts;
+import com.telos.hyd.model.ChartsMapper;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Stream;
 
 /**
  * Created by karthikmarupeddi on 6/11/15.
@@ -131,6 +143,7 @@ public class ViewFile {
         //Submit Button
         submitButton = new Button("SUBMIT");
         submitButton.setUIID("submitButton");
+        submitButton.addActionListener(searchAction);
 
         //Adding padding
         selectTypeLabel.setUIID("clientLabel");
@@ -263,26 +276,26 @@ public class ViewFile {
             dialog.dispose();
             String value = evt.getComponent().getName();
             selectTypeComboBox.setText(value);
-            if(value.equals(TYPE_OF_POLICIES))
-            {
-                TypeOfPoliciesGraph typeOfPoliciesGraph = new TypeOfPoliciesGraph(viewFileForm);
-                typeOfPoliciesGraph.createPieChartForm();
-            }
-            else if (value.equals(COMMISSION_AMOUNT_EARNED))
-            {
-                Graphs graphs = new Graphs(viewFileForm);
-                 graphs.createPieChartForm();
-            }
-            else if (value.equals(MISSED_RENEWALS))
-            {
-                Graphs graphs = new Graphs(viewFileForm);
-                graphs.createPieChartForm();
-            }
-            else if (value.equals(KINDS_OF_POLICIES))
-            {
-                Graphs graphs = new Graphs(viewFileForm);
-                graphs.createPieChartForm();
-            }
+//            if(value.equals(TYPE_OF_POLICIES))
+//            {
+//                TypeOfPoliciesGraph typeOfPoliciesGraph = new TypeOfPoliciesGraph(viewFileForm,new double[] { 12, 14, 11, 10, 19 });
+//                typeOfPoliciesGraph.createPieChartForm();
+//            }
+//            else if (value.equals(COMMISSION_AMOUNT_EARNED))
+//            {
+//                Graphs graphs = new Graphs(viewFileForm);
+//                 graphs.createPieChartForm();
+//            }
+//            else if (value.equals(MISSED_RENEWALS))
+//            {
+//                Graphs graphs = new Graphs(viewFileForm);
+//                graphs.createPieChartForm();
+//            }
+//            else if (value.equals(KINDS_OF_POLICIES))
+//            {
+//                Graphs graphs = new Graphs(viewFileForm);
+//                graphs.createPieChartForm();
+//            }
 
 
         }
@@ -405,6 +418,113 @@ public class ViewFile {
         }
     };
 
+
+    ActionListener   searchAction = new ActionListener() {
+
+
+        /**
+         * Invoked when an action occurred on a component
+         *
+         * @param evt event object describing the source of the action as well as
+         *            its trigger
+         */
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            final ChartsMapper chartsMapper = new ChartsMapper();
+
+            ConnectionRequest cr = new ConnectionRequest() {
+
+                public Map<String, Object> totalList;
+
+                protected void readResponse(InputStream is)
+                        throws IOException {
+
+                    JSONParser p = new JSONParser();
+                    totalList = p.parseJSON(new InputStreamReader(is));
+
+
+                }
+
+                /**
+                 * A callback method that's invoked on the EDT after the readResponse() method has finished,
+                 * this is the place where developers should change their Codename One user interface to
+                 * avoid race conditions that might be triggered by modifications within readResponse.
+                 * Notice this method is only invoked on a successful response and will not be invoked in case
+                 * of a failure.
+                 */
+                @Override
+                protected void postResponse() {
+
+                    java.util.List<Double> priYearValuesList = null;
+                    java.util.List<Double> compYearValuesList = null;
+
+                    ArrayList<Charts> dataForNextYear = null;
+                    ArrayList<Charts> dataForFirstYear = null;
+                    if (totalList != null) {
+                        ArrayList<Charts> dataList = new ArrayList<Charts>();
+                        dataForFirstYear = new ArrayList<Charts>();
+                        dataForNextYear = new ArrayList<Charts>();
+                        ArrayList list = (ArrayList) totalList.get("root");
+                        if (list != null) {
+
+                            for (Object object : list) {
+                                Charts chartsValue = new Charts();
+                                chartsMapper.readMap((Map) object, chartsValue);
+                                dataList.add(chartsValue);
+                            }
+                        }
+
+                        priYearValuesList = new ArrayList<>();
+                        compYearValuesList = new ArrayList<>();
+                        java.util.List<String> priYearTitleValue = new ArrayList<>();
+                        java.util.List<String> compYearTitleValue = new ArrayList<>();
+
+                        for (Charts charts : dataList) {
+                            if (charts.getToYear().toString().equals(selectFromYearComboBox.getText().replace("Year ", ""))) {
+                                dataForFirstYear.add(charts);
+                            }
+                        }
+
+                        for (Charts charts : dataList) {
+                            if (charts.getToYear().toString().equals(selectToYearComboBox.getText().replace("Year ", ""))) {
+                                dataForNextYear.add(charts);
+                            }
+                        }
+                    }
+                    Double[] doubleArray = Arrays.copyOf(priYearValuesList.toArray(), priYearValuesList.toArray().length, Double[].class);
+                    double[] value = Stream.of(doubleArray).mapToDouble(Double::doubleValue).toArray();
+
+                    Double[] doubleArray1 = Arrays.copyOf(compYearValuesList.toArray(), compYearValuesList.toArray().length, Double[].class);
+                    double[] value1 = Stream.of(doubleArray1).mapToDouble(Double::doubleValue).toArray();
+
+                    TypeOfPoliciesGraph graphForPolicies = new TypeOfPoliciesGraph(viewFileForm, dataForFirstYear, dataForNextYear);
+                    graphForPolicies.createPieChartForm();
+                }
+
+            };
+
+            try {
+                if(selectTypeComboBox.getText().equals(TYPE_OF_POLICIES))
+                {
+
+                    cr.setUrl("http://telosws-poplar5.rhcloud.com//getChartTypeOfPolicies");
+                }
+            } catch (Exception e) {
+                Log.p(e.toString());
+            }
+            cr.setPost(false);
+
+//            InfiniteProgress progress = new InfiniteProgress();
+//            progress.setUIID("InfiniteProgress");
+//            Dialog dialogProgress = progress.showInifiniteBlocking();
+//            cr.setDisposeOnCompletion(dialogProgress);
+
+            cr.addArgument("fromYear",selectFromYearComboBox.getText().replace("Year ",""));
+            cr.addArgument("toYear", selectToYearComboBox.getText().replace("Year ",""));
+            NetworkManager.getInstance().addToQueue(cr);
+        }
+
+    };
 
 
 }
