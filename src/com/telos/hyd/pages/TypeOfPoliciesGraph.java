@@ -7,6 +7,7 @@ import com.codename1.charts.util.ColorUtil;
 import com.codename1.charts.views.PieChart;
 import com.codename1.ui.*;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.Resources;
 import com.telos.hyd.Styles.AbstractDemoChart;
 import com.telos.hyd.model.Charts;
@@ -36,8 +37,11 @@ public class TypeOfPoliciesGraph extends AbstractDemoChart{
     ChartComponent chartComponent = null;
     ChartComponent chartComponent1 = null;
     Container chartComponentContainer = null;
+    Container firstChartContainer = null;
+    Container secondChartContainer = null;
     ArrayList<Charts> dataForNextYear = null;
     ArrayList<Charts> dataForFirstYear = null;
+    Label chartLabel = null;
 
 
     public TypeOfPoliciesGraph(Form form, ArrayList<Charts> values, ArrayList<Charts> values1)
@@ -67,18 +71,29 @@ public class TypeOfPoliciesGraph extends AbstractDemoChart{
         chart = new PieChart(seriesSet, renderer);
         chart1 = new PieChart(seriesSet1, renderer);
 
+        FlowLayout boxChartsLayout = new FlowLayout(Component.LEFT);
         BoxLayout boxLayout = new BoxLayout(BoxLayout.Y_AXIS);
+
+        firstChartContainer = new Container(boxChartsLayout);
+        secondChartContainer = new Container(boxChartsLayout);
 
         chartComponentContainer = new Container(boxLayout);
 
         chartComponent = new ChartComponent(chart);
         chartComponent1 = new ChartComponent(chart1);
 
+        firstChartContainer.addComponent(new Label("Year 2014"));
+        firstChartContainer.addComponent(chartComponent);
+
+        chartLabel = new Label("Year 2015");
+        secondChartContainer.addComponent(chartLabel);
+        secondChartContainer.addComponent(chartComponent1);
+
         chartComponent.setZoomEnabled(true);
         chartComponent1.setZoomEnabled(true);
 
-        chartComponentContainer.addComponent(chartComponent);
-        chartComponentContainer.addComponent(chartComponent1);
+        chartComponentContainer.addComponent(firstChartContainer);
+        chartComponentContainer.addComponent(secondChartContainer);
 
         wrap("Number of Type of Policies in year 2005 and 2006", chartComponentContainer, contantContainer).show();
 
