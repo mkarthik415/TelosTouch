@@ -9,6 +9,7 @@ import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.util.Resources;
+import com.codename1.util.StringUtil;
 import com.telos.hyd.Styles.Styles;
 import com.telos.hyd.model.Charts;
 import com.telos.hyd.model.ChartsMapper;
@@ -19,7 +20,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
-import java.util.stream.Stream;
 
 /**
  * Created by karthikmarupeddi on 6/11/15.
@@ -44,6 +44,8 @@ public class ViewFile {
     Button yesButton;
     Button noButton;
     Button submitButton;
+    Label yearFromLabel;
+    Label yearToLabel;
 
 
 
@@ -121,9 +123,27 @@ public class ViewFile {
         compareButtonContainer.addComponent(yesButton);
         compareButtonContainer.addComponent(noButton);
 
+//        yesButton.addActionListener((e) -> {
+//            yearFromLabel.setText("Compare Year From");
+//            yearToLabel.setVisible(true);
+//            yearToLabel.repaint();
+//            selectToYearComboBox.setVisible(true);
+//            selectToYearComboBox.repaint();
+//        });
+//
+//
+//
+//        noButton.addActionListener((e) -> {
+//            yearFromLabel.setText("Year From");
+//            yearToLabel.setVisible(false);
+//            yearToLabel.repaint();
+//            selectToYearComboBox.setVisible(false);
+//            selectToYearComboBox.repaint();
+//        });
+
 
         //Row #4
-        Label yearFromLabel = new Label("Compare Year From");
+        yearFromLabel = new Label("Compare Year From");
         yearFromLabel.setVisible(true);
 
         selectFromYearComboBox = new Button("Click here to select Year");
@@ -132,8 +152,8 @@ public class ViewFile {
 
 
         //Row #5
-        Label yearToLabel = new Label("Compare Year To");
-        yearToLabel.setVisible(true);
+        yearToLabel = new Label("Compare Year To");
+        //yearToLabel.setVisible(true);
 
         selectToYearComboBox = new Button("Click here to select Year");
         selectToYearComboBox.setUIID("Label");
@@ -460,6 +480,10 @@ public class ViewFile {
 
                     ArrayList<Charts> dataForNextYear = null;
                     ArrayList<Charts> dataForFirstYear = null;
+
+                    String fromYearComboBox = StringUtil.replaceAll(selectFromYearComboBox.getText().toString(),"Year ", "");
+                    String toYearComboBox = StringUtil.replaceAll(selectToYearComboBox.getText().toString(),"Year ", "");
+
                     if (totalList != null) {
                         ArrayList<Charts> dataList = new ArrayList<Charts>();
                         dataForFirstYear = new ArrayList<Charts>();
@@ -474,28 +498,24 @@ public class ViewFile {
                             }
                         }
 
-                        priYearValuesList = new ArrayList<>();
-                        compYearValuesList = new ArrayList<>();
-                        java.util.List<String> priYearTitleValue = new ArrayList<>();
-                        java.util.List<String> compYearTitleValue = new ArrayList<>();
+                        //priYearValuesList = new ArrayList<>();
+                        //compYearValuesList = new ArrayList<>();
 
                         for (Charts charts : dataList) {
-                            if (charts.getToYear().toString().equals(selectFromYearComboBox.getText().replace("Year ", ""))) {
+                            if (charts.getToYear().toString().equals(fromYearComboBox)) {
                                 dataForFirstYear.add(charts);
                             }
                         }
 
                         for (Charts charts : dataList) {
-                            if (charts.getToYear().toString().equals(selectToYearComboBox.getText().replace("Year ", ""))) {
+                            if (charts.getToYear().toString().equals(toYearComboBox)) {
                                 dataForNextYear.add(charts);
                             }
                         }
                     }
-                    Double[] doubleArray = Arrays.copyOf(priYearValuesList.toArray(), priYearValuesList.toArray().length, Double[].class);
-                    double[] value = Stream.of(doubleArray).mapToDouble(Double::doubleValue).toArray();
-
-                    Double[] doubleArray1 = Arrays.copyOf(compYearValuesList.toArray(), compYearValuesList.toArray().length, Double[].class);
-                    double[] value1 = Stream.of(doubleArray1).mapToDouble(Double::doubleValue).toArray();
+//                    Double[] doubleArray = Arrays.copyOf(priYearValuesList.toArray(), priYearValuesList.toArray().length, Double[].class);
+//
+//                    Double[] doubleArray1 = Arrays.copyOf(compYearValuesList.toArray(), compYearValuesList.toArray().length, Double[].class);
 
                     TypeOfPoliciesGraph graphForPolicies = new TypeOfPoliciesGraph(viewFileForm, dataForFirstYear, dataForNextYear);
                     graphForPolicies.createPieChartForm();
@@ -507,20 +527,14 @@ public class ViewFile {
                 if(selectTypeComboBox.getText().equals(TYPE_OF_POLICIES))
                 {
 
-                    cr.setUrl("http://telosws-poplar5.rhcloud.com//getChartTypeOfPolicies");
+                    cr.setUrl("http://telosws-poplar5.rhcloud.com/getChartTypeOfPolicies");
                 }
             } catch (Exception e) {
                 Log.p(e.toString());
             }
             cr.setPost(false);
-
-//            InfiniteProgress progress = new InfiniteProgress();
-//            progress.setUIID("InfiniteProgress");
-//            Dialog dialogProgress = progress.showInifiniteBlocking();
-//            cr.setDisposeOnCompletion(dialogProgress);
-
-            cr.addArgument("fromYear",selectFromYearComboBox.getText().replace("Year ",""));
-            cr.addArgument("toYear", selectToYearComboBox.getText().replace("Year ",""));
+            cr.addArgument("fromYear",StringUtil.replaceAll(selectFromYearComboBox.getText().toString(),"Year ", ""));
+            cr.addArgument("toYear", StringUtil.replaceAll(selectToYearComboBox.getText().toString(),"Year ", ""));
             NetworkManager.getInstance().addToQueue(cr);
         }
 

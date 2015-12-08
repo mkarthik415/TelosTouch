@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="CN1MirahJSON-macros">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../codenameone_Lib/CN1MirahJSON-macros.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mirah/macros/CN1MirahJSON-macros.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

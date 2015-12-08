@@ -6,10 +6,14 @@ import com.codename1.charts.renderers.DefaultRenderer;
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.charts.views.PieChart;
 import com.codename1.ui.*;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.Resources;
 import com.telos.hyd.Styles.AbstractDemoChart;
+import com.telos.hyd.Styles.Styles;
+import com.telos.hyd.Styles.TimeUtil;
 import com.telos.hyd.model.Charts;
 
 import java.io.IOException;
@@ -28,7 +32,7 @@ public class TypeOfPoliciesGraph extends AbstractDemoChart{
     Resources theme;
     Form currentForm = null;
     Font largeFont = Font.createSystemFont(Font.FACE_SYSTEM, Font.SIZE_LARGE, Font.STYLE_PLAIN);
-    Button selectFromYearComboBox;
+    Button selectMonth;
     Dialog dialog;
     PieChart chart;
     PieChart chart1;
@@ -48,8 +52,8 @@ public class TypeOfPoliciesGraph extends AbstractDemoChart{
     {
         currentForm = new Form("Number of Type of Policies in year 2005 and 2006");
         this.logInForm = form;
-        this.dataForNextYear =  values;
-        this.dataForFirstYear =  values1;
+        this.dataForFirstYear =  values;
+        this.dataForNextYear =  values1;
         try {
             this.theme = Resources.openLayered("/theme");
         } catch (IOException e) {
@@ -82,10 +86,16 @@ public class TypeOfPoliciesGraph extends AbstractDemoChart{
         chartComponent = new ChartComponent(chart);
         chartComponent1 = new ChartComponent(chart1);
 
-        firstChartContainer.addComponent(new Label("Year 2014"));
+        firstChartContainer.addComponent(new Label(dataForFirstYear.get(0).getToYear().toString()));
         firstChartContainer.addComponent(chartComponent);
 
-        chartLabel = new Label("Year 2015");
+        selectMonth = new Button("Select Month");
+        selectMonth.setUIID("clientInfoLabel");
+        selectMonth.addActionListener(fromYearAction);
+
+        firstChartContainer.addComponent(selectMonth);
+
+        chartLabel = new Label(dataForNextYear.get(0).getToYear().toString());
         secondChartContainer.addComponent(chartLabel);
         secondChartContainer.addComponent(chartComponent1);
 
@@ -117,7 +127,7 @@ public class TypeOfPoliciesGraph extends AbstractDemoChart{
     protected Form wrap(String title, Component c, Container contantContainer) {
         //contantContainer.setLayout(new BorderLayout());
         contantContainer.addComponent(c);
-        currentForm.setTitle("wefewfefewfewfewfweqf");
+        currentForm.setTitle("TouchTelos");
         return currentForm;
     }
 
@@ -162,6 +172,52 @@ public class TypeOfPoliciesGraph extends AbstractDemoChart{
 
         return series;
     }
+
+
+    ActionListener fromYearAction = new ActionListener() {
+
+        public void actionPerformed(ActionEvent evt) {
+
+            Button sourceComponent = (Button) evt.getSource();
+            dialog = new Dialog();
+
+            Container container = new Container();
+            container.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
+
+            for(String month : TimeUtil.getMonths())
+            {
+                if("January" == month)
+                {
+                    Container layeredContainer = Styles.getContainerForButtonInDialog(theme, dialog, sourceComponent, "topButton.png", month);
+                    container.addComponent(layeredContainer);
+                }
+                else if("December" == month)
+                {
+                    Container
+                            bottomLayeredContainer = Styles.getContainerForButtonInDialog(theme, dialog, sourceComponent, "bottomButton.png", month);
+                    container.addComponent(bottomLayeredContainer);
+                }
+                else
+                {
+                    container.addComponent(Styles.getContainerForButtonInDialog(theme, dialog, sourceComponent, "middleButton.png", month));
+                }
+
+            }
+
+
+
+            container.getStyle().setBgTransparency(0);
+            container.getUnselectedStyle().setBgTransparency(0);
+            container.getSelectedStyle().setBgTransparency(0);
+            dialog.addComponent(container);
+            dialog.getStyle().setBgTransparency(0);
+            dialog.getUnselectedStyle().setBgTransparency(0);
+            dialog.getSelectedStyle().setBgTransparency(0);
+            dialog.getDialogStyle().setBgTransparency(0);
+            dialog.showPopupDialog(sourceComponent);
+
+        }
+    };
 }
 
 
